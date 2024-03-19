@@ -1,38 +1,90 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --colB1: #00abe4;
+  --colB2: #00d2ff;
+  --colB3: #2edaff;
+  --colB4: #50e0ff;
+  --colB5: #73e6ff;
+  --colB6: #9bedff;
+  --colW1: #f4f9fd;
+  --colW2: #e9f1fa;
+  --colW3: #ffffff;
+  --colG1: #005D5D;
+  --colG2: #7654F6;
+  --colG3: #304074;
+
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.text {
+  color: var(--colB5);
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.navbarAnimation {
+  animation: slider 0.5s ease-in-out;
+}
+@keyframes slider {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-200px);
   }
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.navbarAnimationOut {
+  animation: sliderOut 0.5s ease-in-out;
+  top: 0;
+}
+@keyframes sliderOut {
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+.top {
+  top: -120px;
+}
+.gradient1 {
+  background-image: linear-gradient(
+    to top right,
+    var(--colB6),
+    #beedf7,
+    var(--colB6)
+  );
+}
+.gradient2 {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--colB6),
+    #beedf7,
+    var(--colB6)
+  );
 }
 
-.App-link {
-  color: #61dafb;
+.testShadow{
+  text-shadow: #00d2ff8a 0px 5px 20px ;
+}
+.img { 
+  -webkit-filter: drop-shadow(5px 5px 15px #3040749f);
+  filter:         drop-shadow(5px 5px 15px #3040749f); 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
 }
