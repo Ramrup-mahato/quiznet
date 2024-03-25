@@ -24,6 +24,15 @@
 
 
 }
+.yourAnswer{
+  background-color: var(--colB1) !important;
+  color: var(--colW2);
+}
+.selectedQuestion{
+  background-color: var(--colG1) !important;
+  color: var(--colW2);
+
+}
 
 .text {
   color: var(--colB5);
@@ -87,4 +96,43 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
+}
+
+.inputMainField {
+  animation: InputAnm 0.3s ease-in-out;
+}
+@keyframes InputAnm {
+  0% {
+    display: none !important;
+  }
+
+  100% {
+    display: flex !important;
+  }
+}
+.EditInput:focus {
+  outline: none;
+}
+.EditInput {
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+  padding: 4px 10px;
+}
+.EditRed {
+  border: 1px solid red;
+}
+.EditRed:focus {
+  border: 1px solid red;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
+}
+.EditBlue {
+  border: 1px solid #b1b1b1 !important;
+}
+.EditBlue:focus {
+  border: 1px solid #1890ff !important;
+  box-shadow: 0 0 5px rgba(7, 62, 114, 0.302);
+}
+.EditBlue:hover {
+  border: 1px solid #1890ff !important;
 }

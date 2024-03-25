@@ -5,18 +5,32 @@ import About from "../Screen/About";
 import CourseDetails from "../Screen/CourseDetails";
 import QuizMain from "../Screen/QuizMain";
 import PTEScreen from "../Screen/PTEScreen";
+import Login from "../Screen/auth/Login";
+import Registration from "../Screen/auth/Registration";
+import Forget from "../Screen/auth/Forget";
+import AdminLogin from "../Screen/Admin/AdminScreen/AdminLogin";
 
 export const MainRoutes = () => {
   const authRouts = [
     {
       path: "/login",
-      component: "MainLoginPage",
+      component: Login,
       name: "Login",
     },
     {
+      path: "/registration",
+      component: Registration,
+      name: "Registration",
+    },
+    {
       path: "/forget",
-      component: "Forget",
+      component: Forget,
       name: "Forget",
+    },
+    {
+      path: "/admin/login",
+      component: AdminLogin,
+      name: "Admin login",
     },
   ];
   const unprotectedRouts = [
@@ -24,11 +38,6 @@ export const MainRoutes = () => {
       path: "/",
       component: Home,
       name: "Home",
-    },
-    {
-      path: "/HA",
-      component: About,
-      name: "About",
     },
     {
       path: "/pte",
@@ -51,16 +60,16 @@ export const MainRoutes = () => {
   return (
     <Router>
       <Routes>
-        {/* <Route>
+        <Route>
           {authRouts.map((auth, index) => (
             <Route
               key={index}
               path={auth.path}
               name={auth.name}
-              element={auth.component}
+              element={<auth.component />}
             />
           ))}
-        </Route> */}
+        </Route>
         {/* <Route> */}
         {unprotectedRouts.map((rout, index) => (
           <Route

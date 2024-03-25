@@ -8,7 +8,7 @@ import Footer from "../components/ReUsable/Footer";
 const Home = () => {
   return (
     <Parents>
-      <NavBar />
+      <NavBar pageName={"Home"} />
       <ContainerBox>
         {/* <Banner /> */}
         <Courses />

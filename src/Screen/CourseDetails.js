@@ -18,7 +18,7 @@ const CourseDetails = () => {
   if (!currentCourse) return <div>404 error page! No course found</div>;
   return (
     <Parents>
-      <NavBar />
+      <NavBar pageName={'Home'} />
       <ContainerBox>
         {/* <Banner /> */}
         <CourseDetailsPage path={path} />
