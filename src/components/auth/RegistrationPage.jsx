@@ -18,7 +18,11 @@ const RegistrationPage = () => {
         </div>
         <div className="w-full flex p-3 sm:p-5 flex-col md:flex-row">
           <div className="w-full flex justify-center flex-col items-center">
-            <img src={Study} alt="welcome" className="hidden md:block w-[150px] md:w-[350px]" />
+            <img
+              src={Study}
+              alt="welcome"
+              className="hidden md:block w-[150px] md:w-[350px]"
+            />
             <p className="text-[25px] text-[var(--colB1)] font-[900]">
               Welcome To QuizNet !
             </p>
@@ -29,7 +33,7 @@ const RegistrationPage = () => {
 
           <div className="flex gap-3 flex-col w-full h-full p-3">
             <form>
-            <TextInput
+              <TextInput
                 label={"UserName"}
                 error={true}
                 type={"text"}
@@ -61,7 +65,7 @@ const RegistrationPage = () => {
                 value={"ramrup"}
                 // handleChange={handleChange}
               />
-               <TextInput
+              <TextInput
                 label={"Conform-Password"}
                 error={true}
                 type={"password"}
@@ -69,6 +73,15 @@ const RegistrationPage = () => {
                 value={"ramrup"}
                 // handleChange={handleChange}
               />
+              <div className="flex items-center gap-2 py-2 mt-2">
+                <input type="checkbox" />
+                <p className=" text-gray-500 text-[12px]  ">
+                  I agree to{" "}
+                  <span className="cursor-pointer text-[var(--colB1)] text-[14px] hover:underline">
+                    Term & conditions
+                  </span>{" "}
+                </p>
+              </div>
             </form>
             <div className="w-full">
               <button

@@ -9,6 +9,7 @@ import Login from "../Screen/auth/Login";
 import Registration from "../Screen/auth/Registration";
 import Forget from "../Screen/auth/Forget";
 import AdminLogin from "../Screen/Admin/AdminScreen/AdminLogin";
+import Dashboard from "../Screen/Admin/DashboardScreen/Dashboard";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -55,6 +56,11 @@ export const MainRoutes = () => {
       path: "/:path/:quizpath",
       component: QuizMain,
       name: "quiz",
+    },
+    {
+      path: "/admin/dashboard",
+      component: Dashboard,
+      name: "Dashboard",
     },
   ];
   return (

@@ -136,3 +136,6 @@
 .EditBlue:hover {
   border: 1px solid #1890ff !important;
 }
+.select{
+  background-color: var(--colB5) !important;
+}
