@@ -139,3 +139,20 @@
 .select{
   background-color: var(--colB5) !important;
 }
+.scrollBar {
+  margin: 10px;
+  height: 85%;
+  /* Hide scrollbar for Chrome, Safari, and Opera */
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.imgShadow { 
+  -webkit-filter: drop-shadow(5px 10px 10px #222);
+  filter:         drop-shadow(5px 10px 10px #222); 
+}

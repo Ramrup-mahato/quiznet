@@ -268,7 +268,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'a',
+          yourAnswer: "a",
           correctAnswer: "a",
         },
         {
@@ -283,7 +283,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -299,7 +299,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -314,7 +314,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -329,7 +329,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'c',
+          yourAnswer: "c",
           correctAnswer: "a",
         },
         {
@@ -344,7 +344,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -366,7 +366,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -381,7 +381,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -397,7 +397,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -412,7 +412,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -427,7 +427,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -442,7 +442,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -464,7 +464,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -479,7 +479,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -495,7 +495,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -510,7 +510,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -525,7 +525,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -540,7 +540,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -562,7 +562,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -577,7 +577,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -593,7 +593,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -608,7 +608,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -623,7 +623,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -638,7 +638,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -660,7 +660,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -675,7 +675,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -691,7 +691,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -706,7 +706,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -721,7 +721,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -736,7 +736,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -758,7 +758,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -773,7 +773,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -789,7 +789,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -804,7 +804,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -819,7 +819,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -834,7 +834,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -856,7 +856,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -871,7 +871,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -887,7 +887,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -902,7 +902,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -917,7 +917,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -932,7 +932,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -954,7 +954,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -969,7 +969,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -985,7 +985,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -1000,7 +1000,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -1015,7 +1015,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -1030,7 +1030,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
@@ -1052,7 +1052,7 @@ export const topicsName = {
             { que: "fixes up the directions of all other lines ", name: "c" },
             { que: "all of the above ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -1067,7 +1067,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "quell of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "c",
         },
         {
@@ -1083,7 +1083,7 @@ export const topicsName = {
             { que: "location surveys ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "b",
         },
         {
@@ -1098,7 +1098,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
         {
@@ -1113,7 +1113,7 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "a",
         },
         {
@@ -1128,10 +1128,41 @@ export const topicsName = {
             { que: "three dimensions  ", name: "c" },
             { que: "all of these ", name: "d" },
           ],
-          yourAnswer:'',
+          yourAnswer: "",
           correctAnswer: "d",
         },
       ],
     },
   ],
 };
+
+export const employeeDetails = [
+  {
+    id: 1,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
+    name: "Ramrup Mahato",
+    email: "ramrupmahato@gmail.com",
+    phone: "9865347634",
+    topicAssign: "Driving Licenses for vehicle",
+    status: "pending",
+  },
+  {
+    id: 2,
+    image: "",
+    name: "Ganesh Thakur ",
+    email: "ganeshthakur@gmail.com",
+    phone: "9865347634",
+    topicAssign: "computer",
+    status: "pending",
+  },
+  {
+    id: 2,
+    image:
+      "https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg",
+    name: "Pooja Kumari Singh ",
+    email: "ganeshthakur@gmail.com",
+    phone: "9865347634",
+    topicAssign: "computer",
+    status: "pending",
+  },
+];

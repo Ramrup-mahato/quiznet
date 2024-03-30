@@ -3,6 +3,8 @@ import { FaPeopleGroup } from "react-icons/fa6";
 import { IoBookSharp } from "react-icons/io5";
 import { RiContactsLine } from "react-icons/ri";
 import { MdReportProblem } from "react-icons/md";
+import { BiSolidBookAdd } from "react-icons/bi";
+import { FaQuestionCircle } from "react-icons/fa";
 
 export const navRoute = [
   {
@@ -48,6 +50,11 @@ export const adminSideBarRoute = [
     icon: IoBookSharp,
   },
   {
+    name: "Add Course",
+    path: "/admin/addCourse",
+    icon: BiSolidBookAdd,
+  },
+  {
     name: "Contact user",
     path: "/admin/contact",
     icon: RiContactsLine,
@@ -56,5 +63,10 @@ export const adminSideBarRoute = [
     name: "Report Question",
     path: "/admin/report",
     icon: MdReportProblem,
+  },
+  {
+    name: "FAQ",
+    path: "/admin/faq",
+    icon: FaQuestionCircle,
   },
 ];

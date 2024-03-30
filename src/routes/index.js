@@ -10,6 +10,7 @@ import Registration from "../Screen/auth/Registration";
 import Forget from "../Screen/auth/Forget";
 import AdminLogin from "../Screen/Admin/AdminScreen/AdminLogin";
 import Dashboard from "../Screen/Admin/DashboardScreen/Dashboard";
+import Employee from "../Screen/Admin/EmployeeScreen/Employee";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -61,6 +62,11 @@ export const MainRoutes = () => {
       path: "/admin/dashboard",
       component: Dashboard,
       name: "Dashboard",
+    },
+    {
+      path: "/admin/employees",
+      component: Employee,
+      name: "Employees",
     },
   ];
   return (

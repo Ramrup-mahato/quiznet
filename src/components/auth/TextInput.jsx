@@ -12,6 +12,7 @@ const TextInput = ({
   handleChange,
   OTP,
   disable,
+  classStyle,
 }) => {
   const [password, setPassword] = useState(false);
   const handleChangePasswordType = () => {
@@ -20,10 +21,12 @@ const TextInput = ({
   return (
     <div className="w-full flex flex-col inputMainField">
       <div className=" flex py-2 flex-row justify-between items-center">
-        <p className="text-[15px] font-bold text-gray-600 dark:text-[var(--colW2)]" >
-          {label}
-          <span className="text-red-500">*</span>
-        </p>
+        {label && (
+          <p className="text-[15px] font-bold text-gray-600 dark:text-[var(--colW2)]">
+            {label}
+            <span className="text-red-500">*</span>
+          </p>
+        )}
         {error == true && (
           <span className="text-red-500 text-[12px]">{errorMessage}</span>
         )}
@@ -34,9 +37,9 @@ const TextInput = ({
           placeholder={placeholder}
           value={value}
           disabled={disable}
-          className={`w-full h-[35px] text-[14px] text-gray-600 dark:bg-gray-600 EditInput ${
+          className={`w-full h-[35px] text-[14px] text-gray-600 dark:text-gray-50 dark:bg-gray-600 placeholder:dark:text-gray-400 EditInput ${classStyle} ${
             error == true ? "EditRed" : "EditBlue"
-          } ${OTP==true? "text-center":''}`}
+          } ${OTP == true ? "text-center" : ""} `}
           onChange={(e) => handleChange(e.target.value, label)}
         />
         {type === "password" &&

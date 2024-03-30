@@ -8,6 +8,8 @@ import { RxHamburgerMenu } from "react-icons/rx";
 import { navRoute } from "../routes/NavigationRoute";
 
 const NavBar = ({ pageName }) => {
+  const userName="Ramrup"
+  // const avatar=""
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [visibleTop, setVisibleTop] = useState(false);
@@ -66,12 +68,23 @@ const NavBar = ({ pageName }) => {
           </div>
           {/* <RxHamburgerMenu className="w-6 h-6 mx-2 sm:hidden  cursor-pointer" /> */}
           <div className="w-10 overflow-hidden relative cursor-pointer  flex justify-center items-center ">
-            <img
-              src={avatar}
-              alt="Avatar"
-              className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
-              onClick={() => handleNavMenu()}
-            />
+          {avatar ? (
+                <img
+                  src={avatar}
+                  alt="Avatar"
+                  className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
+                    onClick={() => handleNavMenu()}
+                />
+              ) : (
+                <div className="">
+                  <p className="w-10 h-10 rounded-full border-white border-2 imageAvatar flex justify-center items-center font-bold 
+                   bg-[#512Dab] text-[var(--colW2)] text-[25px]" 
+                   onClick={() => handleNavMenu()}
+                   >
+                    {userName[0].toUpperCase()}
+                  </p>
+                </div>
+              )}
             {/* <p className="text-[0.7rem] text-center w-full absolute bottom-[-14px]">
               Rahul
             </p> */}

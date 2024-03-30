@@ -22,7 +22,7 @@ const ForgetService = () => {
   };
   useEffect(() => {
     if (stage === "finish") {
-      setTimeout(() => navigation(-1), 2500);
+      setTimeout(() => navigation(-1), 3000);
     }
   }, [stage]);
   return {

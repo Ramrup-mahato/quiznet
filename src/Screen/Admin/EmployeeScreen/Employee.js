@@ -2,23 +2,22 @@ import React from "react";
 import Parents from "../../../components/ReUsable/Parents";
 import ContainerBox from "../../../components/ReUsable/ContainerBox";
 import AdminSideBar from "../../../components/Admin/AdminSideBar/AdminSideBar";
-import avatar from "../../../assets/image/ramrup pic.JPG";
-import DashboardPage from "../../../components/Admin/Dashboard/DashboardPage";
+import EmployeePage from "../../../components/Admin/Employee/EmployeePage";
 
-const Dashboard = () => {
+const Employee = () => {
   return (
     <Parents>
       <ContainerBox>
         <AdminSideBar
-          selected={"Dashboard"}
+          selected={"Employees"}
           avatar={""}
-          userName={"ramrup mahato"}
+          userName={"niku singh"}
         >
-          <DashboardPage />
+          <EmployeePage />
         </AdminSideBar>
       </ContainerBox>
     </Parents>
   );
 };
 
-export default Dashboard;
+export default Employee;

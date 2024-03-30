@@ -1,12 +1,12 @@
 import React from "react";
 import logo from "../../../assets/image/quizNet2.png";
-import avatar from "../../../assets/image/ramrup pic.JPG";
+// import avatar from "../../../assets/image/ramrup pic.JPG";
 import ToggleButton from "../../ToggleButton";
 import { RxDashboard } from "react-icons/rx";
 import { adminSideBarRoute } from "../../../routes/NavigationRoute";
 import { NavLink } from "react-router-dom";
 
-const AdminSideBar = ({ children, selected }) => {
+const AdminSideBar = ({ children, selected, avatar, userName }) => {
   return (
     <div className="w-full p-2 h-[100vh] ">
       <div
@@ -27,7 +27,7 @@ const AdminSideBar = ({ children, selected }) => {
               className="sm:w-48 w-32  cursor-pointer"
             />
           </div>
-          <div className="w-full  p-3 py-5 flex flex-col gap-1 ">
+          <div className="w-full  p-3 py-5 flex flex-col gap-1 text-gray-700 dark:text-gray-100 ">
             {adminSideBarRoute?.map((Ele, i) => (
               <NavLink
                 to={Ele?.path}
@@ -52,18 +52,26 @@ const AdminSideBar = ({ children, selected }) => {
               <ToggleButton />
             </div>
             <div className="w-10 overflow-hidden relative cursor-pointer  flex justify-center items-center ">
-              <img
-                src={avatar}
-                alt="Avatar"
-                className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
-                //   onClick={() => handleNavMenu()}
-              />
+              {avatar ? (
+                <img
+                  src={avatar}
+                  alt="Avatar"
+                  className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
+                  //   onClick={() => handleNavMenu()}
+                />
+              ) : (
+                <div className="">
+                  <p className="w-10 h-10 rounded-full border-white border-2 imageAvatar flex justify-center items-center font-bold  bg-[#512Dab] text-[var(--colW2)] text-[25px]">
+                    {userName[0].toUpperCase()}
+                  </p>
+                </div>
+              )}
               <p className="text-[0.7rem] text-center w-full absolute bottom-[-14px] z-10">
                 Rahul
               </p>
             </div>
           </d>
-          <div>{children}</div>
+          <div className="scrollBar">{children}</div>
         </div>
       </div>
     </div>
