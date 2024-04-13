@@ -12,6 +12,7 @@ const Home = () => {
       <ContainerBox>
         {/* <Banner /> */}
         <Courses />
+       
       </ContainerBox>
       <Footer />
     </Parents>

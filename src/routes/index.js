@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../Screen/Home";
-import About from "../Screen/About";
 import CourseDetails from "../Screen/CourseDetails";
 import QuizMain from "../Screen/QuizMain";
 import PTEScreen from "../Screen/PTEScreen";
@@ -11,6 +10,11 @@ import Forget from "../Screen/auth/Forget";
 import AdminLogin from "../Screen/Admin/AdminScreen/AdminLogin";
 import Dashboard from "../Screen/Admin/DashboardScreen/Dashboard";
 import Employee from "../Screen/Admin/EmployeeScreen/Employee";
+import Faq from "../Screen/Admin/FAQScreen/Faq";
+import Report from "../Screen/Admin/ReportScreen/Report";
+import Contact from "../Screen/Admin/ContactScreen/Contact";
+import CourseMaterial from "../Screen/Admin/CourseMaterialScreen/CourseMaterial";
+import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -67,6 +71,31 @@ export const MainRoutes = () => {
       path: "/admin/employees",
       component: Employee,
       name: "Employees",
+    },
+    {
+      path: "/admin/course",
+      component: CourseMaterial,
+      name: "Course Material",
+    },
+    {
+      path: "/admin/addCourse",
+      component: AddCourse,
+      name: "Add course",
+    },
+    {
+      path: "/admin/contact",
+      component: Contact,
+      name: "Contact",
+    },
+    {
+      path: "/admin/report",
+      component: Report,
+      name: "Report",
+    },
+    {
+      path: "/admin/faq",
+      component: Faq,
+      name: "FAQ",
     },
   ];
   return (

@@ -5,7 +5,7 @@ import { MdDelete } from "react-icons/md";
 import { FaHandshakeSimple } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import Modal from "../../Modal/Modal";
-import TextInput from "../../auth/TextInput";
+import TextInput from "../../ReUsable/TextInput";
 
 const EmployeePage = () => {
   let {

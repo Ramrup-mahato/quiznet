@@ -1,7 +1,7 @@
 import React from "react";
-import TextInput from "./TextInput";
 import Study from "../../assets/image/study3.png";
 import RegistrationService from "../../service/AuthService/registrationService";
+import TextInput from "../ReUsable/TextInput";
 const RegistrationPage = () => {
   const { handleSigIn } = RegistrationService();
   return (

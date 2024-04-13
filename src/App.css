@@ -18,20 +18,17 @@
   --colW1: #f4f9fd;
   --colW2: #e9f1fa;
   --colW3: #ffffff;
-  --colG1: #005D5D;
-  --colG2: #7654F6;
+  --colG1: #005d5d;
+  --colG2: #7654f6;
   --colG3: #304074;
-
-
 }
-.yourAnswer{
+.yourAnswer {
   background-color: var(--colB1) !important;
   color: var(--colW2);
 }
-.selectedQuestion{
+.selectedQuestion {
   background-color: var(--colG1) !important;
   color: var(--colW2);
-
 }
 
 .text {
@@ -80,21 +77,24 @@
   );
 }
 
-.testShadow{
-  text-shadow: #00d2ff8a 0px 5px 20px ;
+.testShadow {
+  text-shadow: #00d2ff8a 0px 5px 20px;
 }
-.img { 
+.sw{
+  box-shadow:#000 5px 5px 10px
+}
+.img {
   -webkit-filter: drop-shadow(5px 5px 15px #3040749f);
-  filter:         drop-shadow(5px 5px 15px #3040749f); 
+  filter: drop-shadow(5px 5px 15px #3040749f);
 }
 
 .no-select {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome and Opera */
 }
 
@@ -136,7 +136,7 @@
 .EditBlue:hover {
   border: 1px solid #1890ff !important;
 }
-.select{
+.select {
   background-color: var(--colB5) !important;
 }
 .scrollBar {
@@ -152,7 +152,45 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
-.imgShadow { 
+.imgShadow {
   -webkit-filter: drop-shadow(5px 10px 10px #222);
-  filter:         drop-shadow(5px 10px 10px #222); 
+  filter: drop-shadow(5px 10px 10px #222);
 }
+
+.accordion-content {
+  overflow: hidden;
+}
+
+.accordion-content-enter {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.accordion-content-enter-active {
+  max-height: 500px; /* adjust as needed */
+  opacity: 1;
+}
+
+.accordion-content-exit {
+  max-height: 500px; /* adjust as needed */
+  opacity: 1;
+  transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.accordion-content-exit-active {
+  max-height: 0;
+  opacity: 0;
+}
+.kGckkd{
+  background-color: var(--colW2) !important;
+  padding-bottom: 10px;
+
+}
+.mHisf{
+  background-color: rgba(0, 0, 0, 0.12) !important;
+}
+.roundedInput{
+  border-radius: 100px !important;
+}
+

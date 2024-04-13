@@ -1,8 +1,8 @@
 import React from "react";
-import TextInput from "./TextInput";
 import Study from "../../assets/image/study3.png";
 import LoginService from '../../service/AuthService/loginService'
 import { FaArrowLeftLong } from "react-icons/fa6";
+import TextInput from "../ReUsable/TextInput";
 
 const LoginPage = () => {
   const { handleForgetRegister } = LoginService();

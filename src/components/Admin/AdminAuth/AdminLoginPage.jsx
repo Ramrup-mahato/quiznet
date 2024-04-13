@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import engineer from "../../../assets/image/engineer.png";
-import TextInput from "../../auth/TextInput";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import TextInput from "../../ReUsable/TextInput";
 
 const AdminLoginPage = () => {
   const navigation = useNavigate();
@@ -19,7 +19,11 @@ const AdminLoginPage = () => {
           className="flex bg-[var(--colB5)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
     font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-3 gap-4 rounded-tr-3xl"
         >
-          <FaArrowLeftLong size={25} className="cursor-pointer" onClick={()=>handleAdminLogin('/')}   />
+          <FaArrowLeftLong
+            size={25}
+            className="cursor-pointer"
+            onClick={() => handleAdminLogin("/")}
+          />
 
           <p>Admin Login Account!</p>
         </div>

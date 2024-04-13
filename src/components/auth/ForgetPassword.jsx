@@ -1,7 +1,7 @@
 import React from "react";
-import TextInput from "./TextInput";
 import Study from "../../assets/image/study3.png";
 import ForgetService from "../../service/AuthService/forgetService";
+import TextInput from "../ReUsable/TextInput";
 
 const ForgetPassword = () => {
   const { handleForgetRegister, stage,handleSubmit } = ForgetService();
