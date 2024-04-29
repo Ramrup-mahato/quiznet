@@ -1,11 +1,21 @@
 import React from "react";
 import Study from "../../assets/image/study3.png";
-import LoginService from '../../service/AuthService/loginService'
+import LoginService from "../../service/AuthService/loginService";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import TextInput from "../ReUsable/TextInput";
+import GoogleLoginButton from "../ReUsable/GoogleLoginButton";
 
 const LoginPage = () => {
-  const { handleForgetRegister } = LoginService();
+  const {
+    errors,
+    values,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    handleForgetRegister,
+    handleGoogleSuccess,
+  } = LoginService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
       <div
@@ -16,7 +26,11 @@ const LoginPage = () => {
           className="flex bg-[var(--colB5)] gap-4 dark:bg-gray-950 text-black dark:text-[var(--colW2)]
     font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-3 rounded-tr-3xl "
         >
-          <FaArrowLeftLong size={25} className="cursor-pointer" onClick={()=>handleForgetRegister('')}   />
+          <FaArrowLeftLong
+            size={25}
+            className="cursor-pointer"
+            onClick={() => handleForgetRegister("")}
+          />
           <p>Login to your Account!</p>
         </div>
         <div className="w-full flex p-3 sm:p-5 flex-col md:flex-row">
@@ -34,36 +48,43 @@ const LoginPage = () => {
             <form>
               <TextInput
                 label={"Email"}
-                error={false}
+                name={"email"}
+                error={errors.email && touched.email}
                 type={"text"}
-                errorMessage={"This field is required"}
-                // value={"ramrup majhat"}
-                // handleChange={handleChange}
+                errorMessage={errors.email}
+                value={values.email}
+                handleChange={handleChange}
+                onBlur={handleBlur}
+                autoComplete={false}
               />
-              <TextInput
-                label={"Phone"}
-                error={false}
-                type={"text"}
-                errorMessage={"This field is required"}
-                // value={"ramrup majhat"}
-                // handleChange={handleChange}
-              />
+
               <TextInput
                 label={"Password"}
-                error={true}
+                autoComplete={false}
+                error={errors.password && touched.password}
                 type={"password"}
-                errorMessage={"This field is required"}
-                value={"ramrup"}
-                // handleChange={handleChange}
+                name="password"
+                errorMessage={errors.password}
+                value={values.password}
+                handleChange={handleChange}
+                onBlur={handleBlur}
               />
             </form>
             <div className="w-full">
               <button
                 className="w-full bg-[var(--colB1)] rounded-full cursor-pointer h-[35px] flex 
               justify-center items-center text-[var(--colW2)] font-medium hover:opacity-[0.9] "
+                type="submit"
+                onClick={handleSubmit}
               >
                 Login Account
               </button>
+            </div>
+            <div className="w-full flex justify-center items-center">
+              <GoogleLoginButton
+                handleGoogleSuccess={handleGoogleSuccess}
+                text={"signin"}
+              />
             </div>
 
             <div className="pl-5 text-[13px] text-gray-500">

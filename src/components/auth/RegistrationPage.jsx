@@ -2,8 +2,20 @@ import React from "react";
 import Study from "../../assets/image/study3.png";
 import RegistrationService from "../../service/AuthService/registrationService";
 import TextInput from "../ReUsable/TextInput";
+import GoogleLoginButton from "../ReUsable/GoogleLoginButton";
 const RegistrationPage = () => {
-  const { handleSigIn } = RegistrationService();
+  const {
+    errors,
+    values,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    regDetails,
+    handleSelectRadio,
+    handleTermCondition,
+    handleSigIn,
+  } = RegistrationService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
       <div
@@ -17,7 +29,7 @@ const RegistrationPage = () => {
           <p>Join Us!!</p>
         </div>
         <div className="w-full flex p-3 sm:p-5 flex-col md:flex-row">
-          <div className="w-full flex justify-center flex-col items-center">
+          <div className="w-full hidden md:flex justify-center flex-col items-center">
             <img
               src={Study}
               alt="welcome"
@@ -32,49 +44,89 @@ const RegistrationPage = () => {
           </div>
 
           <div className="flex gap-3 flex-col w-full h-full p-3">
+            <div className="flex gap-10 justify-center">
+              <div className="flex justify-center items-center h-8">
+                <input
+                  type="radio"
+                  id="Student"
+                  className="reg"
+                  checked={regDetails.radioSelect === "student" ? true : false}
+                  onChange={handleSelectRadio}
+                  name="student"
+                />
+                <label
+                  htmlFor="Student"
+                  className="px-5 text-[14px] font-bold text-slate-600 dark:text-slate-100 cursor-pointer"
+                >
+                  I am Student
+                </label>
+              </div>
+              <div>
+                <input
+                  id="Expert"
+                  type="radio"
+                  className="reg"
+                  checked={regDetails.radioSelect === "expert" ? true : false}
+                  onChange={handleSelectRadio}
+                  name="expert"
+                />
+                <label
+                  htmlFor="Expert"
+                  className="px-5 text-[14px] font-bold text-slate-600 dark:text-slate-100 cursor-pointer"
+                >
+                  I am Expert
+                </label>
+              </div>
+            </div>
             <form>
               <TextInput
-                label={"UserName"}
-                error={true}
+                label={"Full Name"}
+                error={errors.fullname && touched.fullname}
                 type={"text"}
-                errorMessage={"please enter user name"}
-                // value={"ramrup majhat"}
-                // handleChange={handleChange}
+                name={"fullname"}
+                errorMessage={errors.fullname}
+                value={values.fullname}
+                handleChange={handleChange}
+                onBlur={handleBlur}
+                autoComplete={true}
               />
               <TextInput
                 label={"Email"}
-                error={false}
+                error={errors.email && touched.email}
                 type={"text"}
-                errorMessage={"This field is required"}
-                // value={"ramrup majhat"}
-                // handleChange={handleChange}
-              />
-              <TextInput
-                label={"Phone"}
-                error={false}
-                type={"text"}
-                errorMessage={"This field is required"}
-                // value={"ramrup majhat"}
-                // handleChange={handleChange}
+                name={"email"}
+                errorMessage={errors.email}
+                value={values.email}
+                handleChange={handleChange}
+                onBlur={handleBlur}
+                autoComplete={false}
               />
               <TextInput
                 label={"Password"}
-                error={true}
+                error={errors.password && touched.password}
                 type={"password"}
-                errorMessage={"This field is required"}
-                value={"ramrup"}
-                // handleChange={handleChange}
+                errorMessage={errors.password}
+                value={values.password}
+                handleChange={handleChange}
+                onBlur={handleBlur}
+                name={"password"}
               />
               <TextInput
                 label={"Conform-Password"}
-                error={true}
+                error={errors.conformPassword && touched.conformPassword}
                 type={"password"}
-                errorMessage={"This field is required"}
-                value={"ramrup"}
-                // handleChange={handleChange}
+                errorMessage={errors.conformPassword}
+                value={values.conformPassword}
+                handleChange={handleChange}
+                onBlur={handleBlur}
+                name={"conformPassword"}
               />
               <div className="flex items-center gap-2 py-2 mt-2">
-                <input type="checkbox" />
+                <input
+                  type="checkbox"
+                  onChange={handleTermCondition}
+                  checked={regDetails.termCondition}
+                />
                 <p className=" text-gray-500 text-[12px]  ">
                   I agree to{" "}
                   <span className="cursor-pointer text-[var(--colB1)] text-[14px] hover:underline">
@@ -87,10 +139,14 @@ const RegistrationPage = () => {
               <button
                 className="w-full bg-[var(--colB1)] rounded-full cursor-pointer h-[35px] flex 
               justify-center items-center text-[var(--colW2)] font-medium hover:opacity-[0.9] "
+                type="submit"
+                onClick={handleSubmit}
               >
                 Register Account
               </button>
             </div>
+
+            <GoogleLoginButton text={"continue_with"} />
 
             <div className="pl-5 text-[13px] text-gray-500">
               <p>

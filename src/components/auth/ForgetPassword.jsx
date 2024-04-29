@@ -4,7 +4,17 @@ import ForgetService from "../../service/AuthService/forgetService";
 import TextInput from "../ReUsable/TextInput";
 
 const ForgetPassword = () => {
-  const { handleForgetRegister, stage,handleSubmit } = ForgetService();
+  const {
+    errors,
+    values,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    stage,
+    handleForgetRegister,
+    handleSubmitStage,
+  } = ForgetService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
       <div
@@ -107,7 +117,8 @@ const ForgetPassword = () => {
                 <button
                   className="w-full bg-[var(--colB1)] rounded-full cursor-pointer h-[35px] flex 
             justify-center items-center text-[var(--colW2)] font-medium hover:opacity-[0.9] "
-            onClick={()=>handleSubmit(stage)}
+                  type="submit"
+                  onClick={() => handleSubmitStage(stage)}
                 >
                   Submit {stage}
                 </button>

@@ -1,13 +1,12 @@
 import React from "react";
-import AddCourseService from "../../../service/AddCourse/AddCourseService";
 import { MdOutlineDelete } from "react-icons/md";
-import { FaFolderOpen, FaPlus } from "react-icons/fa6";
+import { FaFolderOpen } from "react-icons/fa6";
 import { FaUsers, FaFolderPlus } from "react-icons/fa";
 import { FaCameraRotate } from "react-icons/fa6";
 import AccordionFolder from "./AccordionFolder";
+import AddFolderModal from "./AddFolderModal";
 
-const AddCoursePage = () => {
-  let { courseData, CourseDetails } = AddCourseService();
+const AddCoursePage = ({ courseData, handleModalMain, handleOpenSubject }) => {
   return (
     <div className=" p-4">
       <div
@@ -27,7 +26,7 @@ const AddCoursePage = () => {
           <FaFolderPlus
             size={35}
             color="#D89F57"
-            // onClick={() => handleModal("", "add")}
+            onClick={() => handleModalMain("main")}
             className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
           />
         </div>
@@ -58,7 +57,7 @@ const AddCoursePage = () => {
                   <FaFolderPlus
                     size={25}
                     color="#D89F57"
-                    // onClick={() => handleModal("", "add")}
+                    onClick={() => handleModalMain("subFolder", course?.id)}
                     className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
                   />
                   <MdOutlineDelete
@@ -82,7 +81,12 @@ const AddCoursePage = () => {
 
                 <div className="w-full ">
                   {course?.fields.map((field, i) => (
-                    <AccordionFolder key={i} field={field} />
+                    <AccordionFolder
+                      key={i}
+                      field={field}
+                      handleModalMain={handleModalMain}
+                      handleOpenSubject={handleOpenSubject}
+                    />
                   ))}
                 </div>
               </div>

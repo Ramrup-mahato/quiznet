@@ -9,13 +9,16 @@ const TextInput = ({
   value,
   errorMessage,
   error,
-  handleChange,
+  handleChange = () => {},
+  onBlur = () => {},
   OTP,
   disable,
   classStyle,
   textarea,
   RoundFull,
   require,
+  name,
+  autoComplete,
 }) => {
   const [password, setPassword] = useState(false);
   const handleChangePasswordType = () => {
@@ -25,7 +28,7 @@ const TextInput = ({
     <div className="w-full flex flex-col inputMainField">
       {label && (
         <div className=" flex py-2 flex-row justify-between items-center">
-          <p className="text-[15px] font-bold text-gray-600 dark:text-[var(--colW2)]">
+          <p className="text-[14px] font-bold text-gray-600 dark:text-[var(--colW2)]">
             {label}
             {require && <span className="text-red-500">*</span>}
           </p>
@@ -40,24 +43,30 @@ const TextInput = ({
             type={password == true ? "text" : type}
             placeholder={placeholder}
             value={value}
+            name={name}
+            autoComplete={autoComplete === true ? "on" : "off"}
             disabled={disable}
             className={`w-full min-h-[100px] text-[14px] text-gray-600 dark:text-gray-50 dark:bg-gray-600 placeholder:dark:text-gray-400 EditInput ${classStyle} ${
               error == true ? "EditRed" : "EditBlue"
             } ${OTP == true ? "text-center" : ""} $ `}
-            onChange={(e) => handleChange(e.target.value, label)}
+            onChange={handleChange}
+            onBlur={onBlur}
           />
         ) : (
           <input
             type={password == true ? "text" : type}
             placeholder={placeholder}
             value={value}
+            name={name}
             disabled={disable}
             className={`w-full h-[35px] text-[14px] text-gray-600 dark:text-gray-50 dark:bg-gray-600 placeholder:dark:text-gray-400 EditInput ${classStyle} ${
               error == true ? "EditRed" : "EditBlue"
             } ${OTP == true ? "text-center" : ""} ${
               RoundFull === true ? "roundedInput" : ""
             } `}
-            onChange={(e) => handleChange(e.target.value, label)}
+            autoComplete={autoComplete === true ? "on" : "off"}
+            onChange={handleChange}
+            onBlur={onBlur}
           />
         )}
 

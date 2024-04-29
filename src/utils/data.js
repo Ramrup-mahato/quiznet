@@ -1428,6 +1428,7 @@ export const newCorseData = [
         id: 1,
         course: "लोक सेवा (Lok Sewa - Public Service)",
         image: engineer,
+        path: "HA",
         fields: [
           {
             id: 1,
@@ -1451,6 +1452,24 @@ export const newCorseData = [
                 ],
                 yourAnswer: "a",
                 correctAnswer: "a",
+              },
+              {
+                id: 2,
+                question: "A check line in a chain surveying ?",
+                option: [
+                  { que: "checks the accuracy of the framework ", name: "a" },
+                  {
+                    que: "enables the surveyor to locate the interior details which are far away from the main chain lines ",
+                    name: "b",
+                  },
+                  {
+                    que: "fixes up the directions of all other lines ",
+                    name: "c",
+                  },
+                  { que: "all of the above ", name: "d" },
+                ],
+                yourAnswer: "",
+                correctAnswer: "b",
               },
             ],
           },
@@ -1477,6 +1496,24 @@ export const newCorseData = [
                 yourAnswer: "a",
                 correctAnswer: "a",
               },
+              {
+                id: 2,
+                question: "A check line in a chain surveying ?",
+                option: [
+                  { que: "checks the accuracy of the framework ", name: "a" },
+                  {
+                    que: "enables the surveyor to locate the interior details which are far away from the main chain lines ",
+                    name: "b",
+                  },
+                  {
+                    que: "fixes up the directions of all other lines ",
+                    name: "c",
+                  },
+                  { que: "all of the above ", name: "d" },
+                ],
+                yourAnswer: "",
+                correctAnswer: "b",
+              },
             ],
           },
         ],
@@ -1485,6 +1522,7 @@ export const newCorseData = [
         id: 2,
         course: "(Lok Sewa - Public Service)",
         image: engineer,
+        path: "staff-nurse",
         fields: [
           {
             id: 1,

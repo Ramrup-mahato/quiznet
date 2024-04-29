@@ -8,19 +8,19 @@ import {
 import {
   FaCameraRotate,
   FaFolderOpen,
+  FaFolderPlus,
   FaMinus,
   FaPlus,
   FaUsers,
 } from "react-icons/fa6";
+import { LuImport } from "react-icons/lu";
 
-const AccordionFolder = ({ field, content, id }) => {
+const AccordionFolder = ({ field, handleModalMain, handleOpenSubject }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
     setIsOpen(!isOpen);
   };
-
-  console.log("field", field);
   return (
     <div className="w-full dark:bg-slate-800">
       <div
@@ -37,6 +37,12 @@ const AccordionFolder = ({ field, content, id }) => {
               <FaUsers size={15} className="text-[var(--colB1)]" />{" "}
               <span>220</span>
             </p>
+            <FaFolderPlus
+              size={20}
+              color="#D89F57"
+              onClick={() => handleModalMain("subject", field?.id)}
+              className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
+            />
             {isOpen ? (
               <FaMinus
                 size={30}
@@ -84,16 +90,25 @@ const AccordionFolder = ({ field, content, id }) => {
 
             <div className="w-full ">
               {field?.fields.map((field, i) => (
-                <div className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer">
+                <div
+                  key={i}
+                  className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer"
+                >
                   <div className="flex justify-center items-center gap-1">
                     <FaFolderOpen size={20} color="#D89F57" />
                     <p className="">{field?.field}</p>
                   </div>
 
                   <div className="flex gap-2 justify-center items-center">
-                    <FaPlus
+                    <LuImport
                       size={30}
                       // onClick={() => handleModal("", "add")}
+                      className="w-10 h-10 text-[#FEB019] bg-[#fbf3e1] p-2 shadow-lg rounded-full cursor-pointer hover:bg-blue-100  "
+                      title="Download CSV"
+                    />
+                    <FaPlus
+                      size={30}
+                      onClick={() => handleOpenSubject(field)}
                       className="w-8 h-8 text-[var(--colB1)] bg-[#E7F4FF] p-2 shadow-xl rounded-full cursor-pointer hover:bg-blue-100 "
                     />
 
