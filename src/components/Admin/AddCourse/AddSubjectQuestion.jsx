@@ -7,10 +7,10 @@ import { LuImport } from "react-icons/lu";
 import QuestionDetails from "./QuestionDetails";
 
 const AddSubjectQuestion = ({
-  subjectInfo,
+  chapterInfo,
   handleGoBack,
   handleEditSubjectQuestion,
-  CourseDetails,
+  QuestionDetails,
   handleCancelEditQuestion,
 }) => {
   return (
@@ -30,7 +30,7 @@ const AddSubjectQuestion = ({
             className="font-medium text-[18px] text-gray-600  p-1 
                     rounded-full flex justify-center items-center "
           >
-            <span className="font-bold">{subjectInfo?.field}</span>
+            <span className="font-bold">{chapterInfo?.field}</span>
           </h1>
         </div>
 
@@ -79,12 +79,12 @@ const AddSubjectQuestion = ({
         </div>
       </div>
       <div className=" flex flex-col gap-2 mt-5">
-        {subjectInfo?.questions?.map((ele, i) => (
+        {chapterInfo?.questions?.map((ele, i) => (
           <QuestionDetails
             key={i}
             question={ele}
             handleEditSubjectQuestion={handleEditSubjectQuestion}
-            CourseDetails={CourseDetails}
+            QuestionDetails={QuestionDetails}
             handleCancelEditQuestion={handleCancelEditQuestion}
           />
         ))}

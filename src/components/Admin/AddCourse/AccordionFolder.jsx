@@ -14,8 +14,18 @@ import {
   FaUsers,
 } from "react-icons/fa6";
 import { LuImport } from "react-icons/lu";
+import img from "../../../assets/image/study1.png";
+import { FaEdit } from "react-icons/fa";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { IoEye } from "react-icons/io5";
 
-const AccordionFolder = ({ field, handleModalMain, handleOpenSubject }) => {
+const AccordionFolder = ({
+  subject,
+  handleModalMain,
+  handleOpenSubject,
+  handleEditFolder,
+  handleModal,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleAccordion = () => {
@@ -29,7 +39,7 @@ const AccordionFolder = ({ field, handleModalMain, handleOpenSubject }) => {
         <div className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer">
           <div className="flex justify-center items-center gap-1">
             <FaFolderOpen size={20} color="#D89F57" />
-            <p className="">{field?.course}</p>
+            <p className="">{subject?.subjectTitle}</p>
           </div>
 
           <div className="flex gap-2 justify-center items-center">
@@ -37,31 +47,43 @@ const AccordionFolder = ({ field, handleModalMain, handleOpenSubject }) => {
               <FaUsers size={15} className="text-[var(--colB1)]" />{" "}
               <span>220</span>
             </p>
+            <FaEdit
+              size={20}
+              color="#7654f6"
+              title="Edit"
+              onClick={() => handleEditFolder("Subject", subject)}
+              className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
+            />
             <FaFolderPlus
               size={20}
               color="#D89F57"
-              onClick={() => handleModalMain("subject", field?.id)}
+              onClick={() => handleModalMain("Chapter", subject)}
               className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
+              title="Add Chapter in this subject folder"
             />
             {isOpen ? (
-              <FaMinus
+              <IoIosArrowUp
                 size={30}
                 onClick={toggleAccordion}
+                title="Close Subject"
                 // onClick={() => handleModal("", "add")}
-                className="w-8 h-8 text-[var(--colB1)] bg-[#E7F4FF] p-2 shadow-xl rounded-full cursor-pointer hover:bg-blue-100 "
+                className="w-8 h-8 text-[var(--colB1)] bg-[#ffffff] p-2 shadow-xl rounded-full cursor-pointer hover:bg-blue-100 "
               />
             ) : (
-              <FaPlus
+              <IoIosArrowDown
                 size={30}
                 onClick={toggleAccordion}
+                title="View All Chapter of this Subject"
                 // onClick={() => handleModal("", "add")}
-                className="w-8 h-8 text-[var(--colB1)] bg-[#E7F4FF] p-2 shadow-xl rounded-full cursor-pointer hover:bg-blue-100 "
+                className="w-8 h-8 text-[var(--colB1)] bg-[#ffffff] p-2 shadow-xl rounded-full cursor-pointer hover:bg-blue-100 "
               />
             )}
 
             <MdOutlineDelete
               className="text-red-500 cursor-pointer drop-shadow-xl shadow-xl bg-[#E7F4FF] w-8 h-8 p-2 rounded-full hover:bg-[#ffe9e7]"
               size={20}
+              title="Delete"
+              onClick={() => handleModal("Subject", subject?.subjectPath)}
             />
           </div>
         </div>
@@ -77,44 +99,66 @@ const AccordionFolder = ({ field, handleModalMain, handleOpenSubject }) => {
         >
           <div className="flex flex-row p-3 sm:p-5 gap-3">
             <div className="w-[120px] h-[90px] justify-center items-center flex overflow-hidden relative bg-[var(--colW2)] rounded-xl">
-              <img
-                src={field?.image}
-                alt="course ..."
-                className="w-full h-full object-cover"
-              />
+              {subject?.subjectImage ? (
+                <img
+                  src={subject?.subjectImage}
+                  alt="course ..."
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <img
+                  src={img}
+                  alt="course ..."
+                  className="w-full h-full object-cover"
+                />
+              )}
+
               <FaCameraRotate
                 size={25}
                 className="absolute top-0 right-0 m-1 cursor-pointer text-[var(--colB1)]"
+                onClick={() => handleEditFolder("Subject", subject)}
               />
             </div>
 
             <div className="w-full ">
-              {field?.fields.map((field, i) => (
+              {subject?.chapters?.map((chapter, i) => (
                 <div
                   key={i}
-                  className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer"
+                  className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer p-2"
                 >
                   <div className="flex justify-center items-center gap-1">
                     <FaFolderOpen size={20} color="#D89F57" />
-                    <p className="">{field?.field}</p>
+                    <p className="">{chapter?.chapterTitle}</p>
                   </div>
 
                   <div className="flex gap-2 justify-center items-center">
                     <LuImport
-                      size={30}
+                      size={10}
                       // onClick={() => handleModal("", "add")}
-                      className="w-10 h-10 text-[#FEB019] bg-[#fbf3e1] p-2 shadow-lg rounded-full cursor-pointer hover:bg-blue-100  "
+                      className="w-8 h-8 text-[#FEB019] bg-[#fbf3e1] p-2 shadow-lg rounded-full cursor-pointer hover:bg-blue-100  "
                       title="Download CSV"
                     />
-                    <FaPlus
+                    <FaEdit
+                      size={20}
+                      color="#7654f6"
+                      title="Edit"
+                      onClick={() => handleEditFolder("Chapter", chapter)}
+                      className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
+                    />
+                    <IoEye
                       size={30}
-                      onClick={() => handleOpenSubject(field)}
+                      title="View All question of this chapter"
+                      onClick={() => handleOpenSubject(chapter)}
                       className="w-8 h-8 text-[var(--colB1)] bg-[#E7F4FF] p-2 shadow-xl rounded-full cursor-pointer hover:bg-blue-100 "
                     />
 
                     <MdOutlineDelete
                       className="text-red-500 cursor-pointer drop-shadow-xl shadow-xl bg-[#E7F4FF] w-8 h-8 p-2 rounded-full hover:bg-[#ffe9e7]"
                       size={20}
+                      title="Delete Chapter"
+                      onClick={() =>
+                        handleModal("Chapter", chapter?.chapterPath)
+                      }
                     />
                   </div>
                 </div>

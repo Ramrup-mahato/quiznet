@@ -28,7 +28,7 @@ const TextInput = ({
     <div className="w-full flex flex-col inputMainField">
       {label && (
         <div className=" flex py-2 flex-row justify-between items-center">
-          <p className="text-[14px] font-bold text-gray-600 dark:text-[var(--colW2)]">
+          <p className="text-[13px] font-bold text-gray-600 dark:text-[var(--colW2)]">
             {label}
             {require && <span className="text-red-500">*</span>}
           </p>

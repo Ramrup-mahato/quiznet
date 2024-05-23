@@ -12,8 +12,12 @@ const ForgetPassword = () => {
     handleChange,
     handleSubmit,
     stage,
+    forget,
+    time,
     handleForgetRegister,
     handleSubmitStage,
+    handleEnterOtp,
+    handleResendOtp,
   } = ForgetService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
@@ -49,50 +53,61 @@ const ForgetPassword = () => {
               {stage === "email" && (
                 <TextInput
                   label={"Email"}
-                  error={false}
+                  error={errors.email && touched.email}
+                  name={"email"}
                   placeholder={"Enter Your Email here."}
                   type={"text"}
-                  errorMessage={"This field is required"}
-
-                  // value={"123"}
-                  // handleChange={handleChange}
+                  require
+                  errorMessage={errors.email}
+                  onBlur={handleBlur}
+                  value={values.email}
+                  handleChange={handleChange}
                 />
               )}
               {stage === "otp" && (
-                <TextInput
-                  label={"OTP"}
-                  error={false}
-                  placeholder={"Enter OTP."}
-                  type={"text"}
-                  errorMessage={"This field is required"}
-                  OTP={true}
-                  // disable={true}
-                  // value={"123"}
-                  // handleChange={handleChange}
-                />
+                <>
+                  <TextInput
+                    label={"OTP"}
+                    placeholder={"Enter OTP."}
+                    error={forget?.errorOtp}
+                    errorMessage={forget?.errorOtp}
+                    type={"text"}
+                    OTP={true}
+                    require
+                    value={forget.otp}
+                    handleChange={handleEnterOtp}
+                  />
+                  <div className="w-full flex justify-between items-center pt-4">
+                    <div  className="text-[13px] "> <button onClick={handleResendOtp} className={`${time==0?'text-[var(--colB1)]':'text-gray-500'}`}>Resend OTP</button></div>
+                    <div className="text-[13px]"><p>{`00:${time<10?"0"+time:time}`}</p></div>
+                  </div>
+                </>
               )}
               {stage === "password" && (
                 <>
                   <TextInput
                     label={"New Password"}
-                    error={false}
+                    error={errors.password && touched.password}
                     placeholder={"Enter New Password."}
                     type={"password"}
-                    errorMessage={"This field is required"}
-                    // disable={true}
-                    // value={"123"}
-                    // handleChange={handleChange}
+                    name={"password"}
+                    errorMessage={errors.password}
+                    value={values.password}
+                    require
+                    handleChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   <TextInput
                     label={"Conform-password"}
-                    error={false}
+                    error={errors.conformPassword && touched.conformPassword}
                     placeholder={"Enter Conform-password."}
                     type={"password"}
-                    errorMessage={"This field is required"}
-
-                    // disable={true}
-                    // value={"123"}
-                    // handleChange={handleChange}
+                    require
+                    name={"conformPassword"}
+                    errorMessage={errors.conformPassword}
+                    value={values.conformPassword}
+                    handleChange={handleChange}
+                    onBlur={handleBlur}
                   />
                 </>
               )}

@@ -15,6 +15,8 @@ import Report from "../Screen/Admin/ReportScreen/Report";
 import Contact from "../Screen/Admin/ContactScreen/Contact";
 import CourseMaterial from "../Screen/Admin/CourseMaterialScreen/CourseMaterial";
 import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
+import AuthGard from "../components/AuthGard/AuthGard";
+import AdminAuthGard from "../components/AuthGard/AdminAuthGard";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -51,17 +53,8 @@ export const MainRoutes = () => {
       name: "PTE",
     },
   ];
-  const protectedRouts = [
-    {
-      path: "/:path",
-      component: CourseDetails,
-      name: "Quiz",
-    },
-    {
-      path: "/:path/:quizpath",
-      component: QuizMain,
-      name: "quiz",
-    },
+
+  const adminProtectedRouts = [
     {
       path: "/admin/dashboard",
       component: Dashboard,
@@ -98,6 +91,18 @@ export const MainRoutes = () => {
       name: "FAQ",
     },
   ];
+  const protectedRouts = [
+    {
+      path: "/:path",
+      component: CourseDetails,
+      name: "Quiz",
+    },
+    {
+      path: "/:path/:quizpath",
+      component: QuizMain,
+      name: "quiz",
+    },
+  ];
   return (
     <Router>
       <Routes>
@@ -127,7 +132,17 @@ export const MainRoutes = () => {
               key={index}
               path={rout.path}
               name={rout.name}
-              element={<rout.component />}
+              element={<AuthGard element={rout.component} />}
+            />
+          ))}
+        </Route>
+        <Route>
+          {adminProtectedRouts.map((rout, index) => (
+            <Route
+              key={index}
+              path={rout.path}
+              name={rout.name}
+              element={<AdminAuthGard element={rout.component} />}
             />
           ))}
         </Route>

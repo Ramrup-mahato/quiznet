@@ -1,14 +1,52 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import engineer from "../../../assets/image/engineer.png";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import TextInput from "../../ReUsable/TextInput";
+import { useFormik } from "formik";
+import { LoginSchema } from "../../../Schema";
+import ContextStore from "../../../context/Context";
+import { apiResponse } from "../../../utils/Helper";
+import { postData } from "../../AuthGard/LogGard";
 
+const initialValues = {
+  email: "",
+  password: "",
+};
 const AdminLoginPage = () => {
+  const { setIsLoader } = useContext(ContextStore);
   const navigation = useNavigate();
+  const { errors, values, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: LoginSchema,
+      onSubmit: async (values, action) => {
+        ApiCall(values);
+      },
+    });
+  const [state, setState] = useState({});
   const handleAdminLogin = (path) => {
     navigation(`${path}`);
   };
+
+  // -----------------------------Api call for login and verify OTP=--------------------------
+  const ApiCall = async (values) => {
+    try {
+      setIsLoader(true);
+      const loginRes = await apiResponse(
+        await postData("/admin/login", values)
+      );
+      if (loginRes) setIsLoader(false);
+      localStorage.setItem("quizNetToken", JSON.stringify(loginRes.data));
+      setTimeout(() => {
+        window.location.href = "/admin/dashboard";
+      }, 1500);
+    } catch (error) {
+      await apiResponse(error);
+      if (error) setIsLoader(false);
+    }
+  };
+
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
       <div
@@ -46,27 +84,35 @@ const AdminLoginPage = () => {
             <form>
               <TextInput
                 label={"Email"}
-                error={false}
+                error={errors.email && touched.email}
                 type={"text"}
-                errorMessage={"This field is required"}
-                // value={"ramrup majhat"}
-                // handleChange={handleChange}
+                errorMessage={errors.email}
+                placeholder={"Please enter email."}
+                name={"email"}
+                value={values.email}
+                handleChange={handleChange}
+                onBlur={handleBlur}
               />
               <TextInput
                 label={"Password"}
-                error={true}
+                error={errors.password && touched.password}
                 type={"password"}
-                errorMessage={"This field is required"}
-                value={"ramrup"}
-                // handleChange={handleChange}
+                placeholder={"Please enter password."}
+                errorMessage={errors.password}
+                name={"password"}
+                value={values.password}
+                handleChange={handleChange}
+                onBlur={handleBlur}
               />
             </form>
             <div className="w-full">
               <button
                 className="w-full bg-[var(--colB1)] rounded-full cursor-pointer h-[35px] flex 
               justify-center items-center text-[var(--colW2)] font-medium hover:opacity-[0.9] "
+              type="submit"
+              onClick={handleSubmit}
               >
-                Login Account
+                Login Admin Account
               </button>
             </div>
 

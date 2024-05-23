@@ -4,6 +4,8 @@ import LoginService from "../../service/AuthService/loginService";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import TextInput from "../ReUsable/TextInput";
 import GoogleLoginButton from "../ReUsable/GoogleLoginButton";
+import Modal from "../Modal/Modal";
+import Loader from "../ReUsable/Loader";
 
 const LoginPage = () => {
   const {
@@ -13,8 +15,17 @@ const LoginPage = () => {
     handleBlur,
     handleChange,
     handleSubmit,
+    activate,
+    time,
+    ActOtp,
+    openModal,
     handleForgetRegister,
     handleGoogleSuccess,
+    handleResendOtp,
+    handleEnterOtp,
+    handleModal,
+    handleCancel,
+    handleActivate,
   } = LoginService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
@@ -45,31 +56,74 @@ const LoginPage = () => {
           </div>
 
           <div className="flex gap-3 flex-col w-full h-full p-3">
-            <form>
-              <TextInput
-                label={"Email"}
-                name={"email"}
-                error={errors.email && touched.email}
-                type={"text"}
-                errorMessage={errors.email}
-                value={values.email}
-                handleChange={handleChange}
-                onBlur={handleBlur}
-                autoComplete={false}
-              />
+            {activate === true ? (
+              <p className="text-[25px] text-gray-500 font-[900]">
+                <span className="text-[var(--colB1)]">Activate </span> your
+                Account!
+              </p>
+            ) : (
+              <p className="text-[25px] text-gray-500 font-[900]">
+                <span className="text-[var(--colB1)]">Login </span>to your
+                Account!
+              </p>
+            )}
+            {activate === true ? (
+              <>
+                <TextInput
+                  label={"OTP"}
+                  placeholder={"Enter OTP."}
+                  // error={forget?.errorOtp}
+                  // errorMessage={forget?.errorOtp}
+                  type={"text"}
+                  OTP={true}
+                  require
+                  value={ActOtp}
+                  handleChange={handleEnterOtp}
+                />
+                <div className="w-full flex justify-between items-center pt-4">
+                  <div className="text-[13px] ">
+                    {" "}
+                    <button
+                      onClick={handleResendOtp}
+                      className={`${
+                        time == 0 ? "text-[var(--colB1)]" : "text-gray-500"
+                      }`}
+                    >
+                      Resend OTP
+                    </button>
+                  </div>
+                  <div className="text-[13px]">
+                    <p>{`00:${time < 10 ? "0" + time : time}`}</p>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <form>
+                <TextInput
+                  label={"Email"}
+                  name={"email"}
+                  error={errors.email && touched.email}
+                  type={"text"}
+                  errorMessage={errors.email}
+                  value={values.email}
+                  handleChange={handleChange}
+                  onBlur={handleBlur}
+                  autoComplete={false}
+                />
 
-              <TextInput
-                label={"Password"}
-                autoComplete={false}
-                error={errors.password && touched.password}
-                type={"password"}
-                name="password"
-                errorMessage={errors.password}
-                value={values.password}
-                handleChange={handleChange}
-                onBlur={handleBlur}
-              />
-            </form>
+                <TextInput
+                  label={"Password"}
+                  autoComplete={false}
+                  error={errors.password && touched.password}
+                  type={"password"}
+                  name="password"
+                  errorMessage={errors.password}
+                  value={values.password}
+                  handleChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </form>
+            )}
             <div className="w-full">
               <button
                 className="w-full bg-[var(--colB1)] rounded-full cursor-pointer h-[35px] flex 
@@ -108,6 +162,12 @@ const LoginPage = () => {
               </p>
             </div>
           </div>
+          <VerifyOTP
+            openModal={openModal}
+            handleModal={handleModal}
+            handleCancel={handleCancel}
+            handleActivate={handleActivate}
+          />
         </div>
       </div>
     </div>
@@ -115,3 +175,39 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+const VerifyOTP = ({
+  openModal,
+  handleModal,
+  handleCancel,
+  handleActivate,
+}) => {
+  return (
+    <Modal open={openModal} onClose={handleModal}>
+      <div className="max-w-[400px]  bg-[var(--colW2)] dark:bg-slate-800 p-3  rounded-xl ">
+        <div>
+          <p className="text-[20px] text-gray-500 font-[900]">
+            Do you want to
+            <span className="text-[var(--colB1)]"> activate </span> your
+            account?
+          </p>
+        </div>
+        <div className="flex justify-around items-center p-5">
+          <button
+            className="w-[100px] border-[2px] border-[var(--colB1)] text-[var(--colB1)] rounded-md p-2 "
+            onClick={() => handleCancel()}
+          >
+            {" "}
+            Cancel
+          </button>
+          <button
+            className="w-[100px] bg-[var(--colB1)] rounded-md p-2 text-white "
+            onClick={() => handleActivate()}
+          >
+            Activate
+          </button>
+        </div>
+      </div>
+    </Modal>
+  );
+};
