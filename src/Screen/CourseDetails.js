@@ -11,11 +11,11 @@ const CourseDetails = () => {
   const { path } = useParams();
   console.log("path", path);
 
-  const currentCourse = courseName.find((course) =>
-    course.fields.some((field) => field.path === path)
-  );
-  console.log("currentCourse", currentCourse);
-  if (!currentCourse) return <div>404 error page! No course found</div>;
+  // const currentCourse = courseName.find((course) =>
+  //   course.fields.some((field) => field.path === path)
+  // );
+  // console.log("currentCourse", currentCourse);
+  // if (!currentCourse) return <div>404 error page! No course found</div>;
   return (
     <Parents>
       <NavBar pageName={'Home'} />

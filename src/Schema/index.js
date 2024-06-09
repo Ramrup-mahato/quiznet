@@ -2,7 +2,7 @@ import * as Yup from "yup";
 
 const FullName = /^[A-Za-z. ]{3,30}$/;
 const path = /^[a-z-]+$/;
-
+const phoneValidation = /^[789]\d{9}$/;
 const Password =
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/;
 export const LoginSchema = Yup.object({
@@ -55,3 +55,10 @@ export const folderSchema = Yup.object({
       "Please Give valid path, only lower case letter is required."
     ),
 });
+
+export const contactSchema=Yup.object({
+  username:Yup.string().required("Please Enter Your FullName..").matches(FullName,"Please Give valid name"),
+email:Yup.string().email().required("Please Enter email (ex:-john@gmail.com)"),
+phone:Yup.string().matches(phoneValidation,"Give valid phone").required("Please Enter a phone number"),
+message:Yup.string().required("Please Enter Your FullName.."),
+})

@@ -17,6 +17,7 @@ import CourseMaterial from "../Screen/Admin/CourseMaterialScreen/CourseMaterial"
 import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
 import AuthGard from "../components/AuthGard/AuthGard";
 import AdminAuthGard from "../components/AuthGard/AdminAuthGard";
+import NotFound from "../components/ReUsable/NotFound ";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -146,6 +147,7 @@ export const MainRoutes = () => {
             />
           ))}
         </Route>
+        <Route path="*" element={<NotFound />} />
         {/* <Route exact path="/" element={<Home />} /> */}
         {/* <Route exact path="/About" element={<About />} /> */}
       </Routes>

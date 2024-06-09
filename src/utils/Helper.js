@@ -2,9 +2,32 @@ import { toastSuccess, toastWarning } from "./tostify";
 import ImageKit from "imagekit-javascript";
 
 export const Capitalized = (str) => {
-  return str.replace(/\b\w/g, function (char) {
-    return char.toUpperCase();
-  });
+  if (str) {
+    return str.replace(/\b\w/g, function (char) {
+      return char.toUpperCase();
+    });
+  }
+};
+
+export const CorrectAnswer = (option, correctAnswer) => {
+  if (option === correctAnswer) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const filterQuestion = (data, search) => {
+  if (!search) return data;
+
+  const searchLowerCase = search.trim().toLowerCase();
+
+  const filtered = data.filter((item) =>
+    item.question.trim().toLowerCase().includes(searchLowerCase)
+  );
+
+  console.log("filtered", filtered);
+  return filtered;
 };
 
 export const apiResponse = (data) => {
@@ -59,4 +82,3 @@ export const ImageUpload = async (file, folderPath) => {
       });
   });
 };
-

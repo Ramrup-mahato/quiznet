@@ -7,9 +7,12 @@ export const Context = ({ children }) => {
   const [theme, setTheme] = useState("light");
   const [token, setToken] = useState("");
   const [role, setRole] = useState("");
+  const [userDetails,setUserDetails]=useState('')
 
   const [isLoader, setIsLoader] = useState(false);
-  const [loading, setLoading] = useState(true); // Introduce loading state
+  const [loaderInFolder, setLoaderInFolder] = useState(false);
+
+  const [loading, setLoading] = useState(true); 
   console.log("tokenContext", token);
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
@@ -32,6 +35,7 @@ export const Context = ({ children }) => {
         setToken(getToken?.token);
         if (getToken?.role) {
           setRole(getToken?.role);
+          setUserDetails(getToken.user)
         }
       } else {
         setToken("");
@@ -53,7 +57,7 @@ export const Context = ({ children }) => {
   return (
     <>
       <ContextStore.Provider
-        value={{ theme, toggleTheme, token, setIsLoader, isLoader, role }}
+        value={{ theme, toggleTheme, token, setIsLoader, isLoader, role,setLoaderInFolder,loaderInFolder,userDetails }}
       >
         {children}
       </ContextStore.Provider>

@@ -43,8 +43,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
           </div>
         </div>
         <div className="w-full h-full">
-          <d
-            iv
+          <div
             className="w-full h-[72px] bg-[var(--colB2)] dark:bg-gray-900 flex justify-end items-center gap-3 rounded-tr-3xl pr-5 shadow-md shadow-[var(--colG3)] 
     dark:shadow-gray-700 "
           >
@@ -62,7 +61,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
               ) : (
                 <div className="">
                   <p className="w-10 h-10 rounded-full border-white border-2 imageAvatar flex justify-center items-center font-bold  bg-[#512Dab] text-[var(--colW2)] text-[25px]">
-                    {userName[0].toUpperCase()}
+                    {userName&&userName[0]?.toUpperCase()}
                   </p>
                 </div>
               )}
@@ -70,7 +69,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
                 Rahul
               </p>
             </div>
-          </d>
+          </div>
           <div className="scrollBar">{children}</div>
         </div>
       </div>

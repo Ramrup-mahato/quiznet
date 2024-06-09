@@ -3,15 +3,26 @@ import { courseName, faqDetails } from "../../utils/data";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseService from "../../service/CourseService";
 import Accordion from "../Admin/FAQ/Accordion";
-import ContactUs from "./ContactUs";
 import contactImage from "../../assets/image/studyBanner.png";
+import TextInput from "../ReUsable/TextInput";
 
 const Courses = () => {
-  const { handleSelectCourse } = CourseService();
+  const {
+    errors,
+    values,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    handleSelectCourse,
+    handlePhoneChange,
+    faqQuestion,
+    course,
+  } = CourseService();
   return (
     <div className="w-full h-full flex flex-col items-center">
       <div className="w-full h-full grid lg:grid-cols-2 sm:grid-cols-1 px-6 sm:px-5 gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
-        {courseName?.map((course, index) => (
+        {course?.map((ele, index) => (
           <div
             key={index}
             className="w-full h-full flex flex-col bg-[var(--colW3)] dark:bg-gray-900 shadow-xl shadow-[var(--colG3)]
@@ -21,25 +32,26 @@ const Courses = () => {
               className="bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
           font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-2 rounded-tr-3xl"
             >
-              <h3>{course?.course}</h3>
+              <h3>{ele?.courseTitle}</h3>
             </div>
             <div className="flex flex-row p-3 sm:p-5 gap-3">
               <div className="justify-center items-center hidden sm:flex h-full overflow-hidden p-4">
                 <img
-                  src={course?.image}
-                  alt="course image..."
+                  src={ele?.courseImage}
+                  alt="ele image..."
                   className="w-[300px] h-[200px]"
                 />
               </div>
               <div className="w-full ">
-                {course?.fields.map((field, i) => (
+                {ele?.subjects.map((sub, i) => (
                   <div
                     key={i}
                     className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950 rounded-full text-[14px] 
                 hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
-                    onClick={() => handleSelectCourse(field.path)}
+                    onClick={() => handleSelectCourse(sub.subjectPath
+                    )}
                   >
-                    <p className="">{field?.field}</p>
+                    <p className="">{sub?.subjectTitle}</p>
                     <IoIosArrowForward />
                   </div>
                 ))}
@@ -53,7 +65,7 @@ const Courses = () => {
           {" "}
           FAQ’S RELATED TO MCQ QUERY
         </h1>
-        {faqDetails?.map((ele, i) => (
+        {faqQuestion?.map((ele, i) => (
           <Accordion
             key={i}
             title={ele?.question}
@@ -70,7 +82,59 @@ const Courses = () => {
           <img src={contactImage} alt="contact Image ..." />
         </div>
         <div id="contactUs" className="w-full md:w-[55%] md:pt-10 ">
-          <ContactUs />
+          <div>
+            <TextInput
+              label={"Your Name"}
+              require={true}
+              placeholder={"Enter Your Name..."}
+              error={errors.username && touched.username}
+              errorMessage={errors.username}
+              name={"username"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              value={values.username}
+            />
+            <TextInput
+              label={"Your Email"}
+              require={true}
+              placeholder={"Enter Your Email..."}
+              error={errors.email && touched.email}
+              errorMessage={errors.email}
+              name={"email"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              value={values.email}
+            />
+            <TextInput
+              label={"Your Phone"}
+              require={true}
+              placeholder={"Enter Your Phone..."}
+              error={errors.phone && touched.phone}
+              errorMessage={errors.phone}
+              name={"phone"}
+              handleChange={handlePhoneChange}
+              onBlur={handleBlur}
+              value={values.phone}
+            />
+            <TextInput
+              label={"Your Message"}
+              require={true}
+              textarea={true}
+              placeholder={"Enter message..."}
+              error={errors.message && touched.message}
+              errorMessage={errors.message}
+              name={"message"}
+              handleChange={handleChange}
+              onBlur={handleBlur}
+              value={values.message}
+            />
+            <div className="flex justify-end items-center gap-2 py-2">
+              <button  className="border-[3px] rounded mt-3 py-2 px-4 border-[var(--colB1)] bg-[var(--colB1)] text-[15px] font-bold text-white cursor-pointer"
+              type="submit"
+              onClick={handleSubmit}
+              >Submit</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

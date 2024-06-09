@@ -1,21 +1,22 @@
-import React from "react";
+import React, { useContext } from "react";
 import Parents from "../../../components/ReUsable/Parents";
 import ContainerBox from "../../../components/ReUsable/ContainerBox";
 import AdminSideBar from "../../../components/Admin/AdminSideBar/AdminSideBar";
-import ReportPage from "../../../components/Admin/Report/ReportPage";
 import ContactPage from "../../../components/Admin/Contact/ContactPage";
+import ContextStore from "../../../context/Context";
+import Loader from "../../../components/ReUsable/Loader";
 
 const Contact = () => {
+  const { loaderInFolder, userDetails } = useContext(ContextStore);
   return (
     <Parents>
       <ContainerBox>
         <AdminSideBar
           selected={"Contact user"}
           avatar={""}
-          userName={"niku singh"}
+          userName={userDetails?.username}
         >
-          {/* <ReportPage /> */}
-          <ContactPage />
+           <ContactPage />
         </AdminSideBar>
       </ContainerBox>
     </Parents>

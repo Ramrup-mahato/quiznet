@@ -20,6 +20,7 @@ const RegistrationPage = () => {
     handleEnterOTP,
     handleSubmitOTP,
     handleResendOtp,
+    handlePhoneChange,
   } = RegistrationService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
@@ -143,7 +144,7 @@ const RegistrationPage = () => {
                     placeholder={"Enter your phone"}
                     errorMessage={errors.phone}
                     value={values.phone}
-                    handleChange={handleChange}
+                    handleChange={handlePhoneChange}
                     onBlur={handleBlur}
                     autoComplete={false}
                   />

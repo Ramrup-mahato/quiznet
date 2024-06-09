@@ -7,10 +7,21 @@ import {
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 import entrance from "../../assets/image/study3.png";
+import QuestionShow from "./QuestionShow";
+import { VscDebugRestart } from "react-icons/vsc";
 
-const SubmitQuiz = ({ quizData, test, quiz,handleNextQuiz }) => {
+const SubmitQuiz = ({
+  quizData,
+  test,
+  quiz,
+  handleNextQuiz,
+  handleAgainQuiz,
+}) => {
+  const totalQuestions = quiz?.totalQuestion || 0;
+  const correctAnswers = quiz?.correctAnswer || 0;
+  const percentage = ((correctAnswers / totalQuestions) * 100).toFixed(2);
   return (
-    <div className="w-full  min-h-[calc(100vh-115px)] lg:min-h-[100vh]  px-6 sm:px-5 gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
+    <div className="w-full  min-h-[calc(100vh-115px)] lg:min-h-[100vh] px-1 sm:px-6  gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
       <div
         className="w-full h-full  flex flex-col bg-[var(--colW3)] dark:bg-gray-900 shadow-xl shadow-[var(--colG3)]
      dark:shadow-gray-700 text-black dark:text-white rounded-bl-3xl rounded-tr-3xl "
@@ -39,16 +50,16 @@ const SubmitQuiz = ({ quizData, test, quiz,handleNextQuiz }) => {
                   <p className="font-extrabold sm:font-semibold   text-[12px] sm:text-[15px]  text-red-600">
                     Wrong Answer:{quiz?.wrongAnswer}
                   </p>
-                  <p className="font-extrabold sm:font-semibold   text-[12px] sm:text-[15px]  text-[var(--colB1)]">
+                  {/* <p className="font-extrabold sm:font-semibold   text-[12px] sm:text-[15px]  text-[var(--colB1)]">
                     Time Taken:{quiz?.time}min
-                  </p>
+                  </p> */}
                 </div>
 
                 <div>
                   <CircularProgressbarWithChildren
-                    value={quiz?.correctAnswer}
-                    text={`${quiz?.correctAnswer}/${quiz?.totalQuestion}`}
-                    maxValue={quiz?.totalQuestion}
+                    value={percentage}
+                    text={`${percentage}%`}
+                    maxValue={100}
                     className="w-[100px] md:w-[150px] h-[100px] md:h-[150px]"
                     styles={buildStyles({
                       pathColor: "#00abe4",
@@ -58,53 +69,105 @@ const SubmitQuiz = ({ quizData, test, quiz,handleNextQuiz }) => {
                   />
                 </div>
               </div>
+              <div className="w-full flex justify-end gap-2 p-2">
+                <button
+                  onClick={() => handleAgainQuiz()}
+                  className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer flex justify-center items-center gap-1"
+                >
+                  Again
+                  <VscDebugRestart />
+                </button>
+                <button
+                  onClick={() => handleNextQuiz()}
+                  className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"
+                >
+                  Next Quiz
+                </button>
+              </div>
             </div>
-            {quizData?.questions?.map((que, i) => (
+            {quizData?.questions?.map((question, i) => (
               <div
-                className={` sm:p-5 bg-[var(--colW2)] dark:bg-gray-800 ${
+                className={`p-1 sm:p-5 bg-[var(--colW2)] dark:bg-gray-800 ${
                   i === 0 && "rounded-t-3xl"
                 } ${i == quizData?.questions?.length - 1 && "rounded-b-3xl"}`}
                 key={i}
               >
                 <p className="p-2 no-select ">
-                  {i + 1}. {que?.question}
+                  {i + 1}. {question?.question}
                 </p>
-                <div className="py-2  sm:pl-10 ">
-                  {que?.option?.map((ans, i) => (
-                    <div
-                      key={i}
-                      className={` px-2 py-1 sm:py-2 m-1 flex items-center gap-3 rounded-full 
-                          ${
-                            que?.yourAnswer == que?.correctAnswer
-                              ? que?.yourAnswer == ans?.name &&
-                                "bg-green-700 text-[var(--colW2)]"
-                              : `${
-                                  que?.yourAnswer == ans?.name &&
-                                  "bg-red-300 dark:bg-red-900 "
-                                } ${
-                                  que?.correctAnswer == ans?.name &&
-                                  "bg-green-300 dark:bg-lime-900 "
-                                }`
-                          } `}
-                    >
-                      <p className="text-[14px] no-select w-full flex gap-2  pl-4 items-center pl-2 sm:pl-5 ">
-                        {ans?.que}{" "}
-                        {que?.yourAnswer == que?.correctAnswer
-                          ? que?.yourAnswer == ans?.name && (
-                              <GiCheckMark
-                                size={20}
-                                className="text-[var(--colB3)] "
-                              />
-                            )
-                          : null}
-                      </p>
-                    </div>
-                  ))}
+                <div className=" ">
+                  <QuestionShow
+                    // question={question}
+                    answerTitle={question.a}
+                    correctAns={question.correctAnswer}
+                    yourAns={question?.yourAnswer}
+                    answerNo={"a"}
+                    answerResult={
+                      question?.yourAnswer === "a"
+                        ? question.correctAnswer === question?.yourAnswer
+                          ? "correct"
+                          : "wrong"
+                        : null
+                    }
+                    questionId={question?._id}
+                    img={question.aImg}
+                  />
+                  <QuestionShow
+                    // question={question}
+                    answerTitle={question.b}
+                    correctAns={question.correctAnswer}
+                    answerNo={"b"}
+                    img={question.bImg}
+                    yourAns={question?.yourAnswer}
+                    questionId={question?._id}
+                    answerResult={
+                      question?.yourAnswer === "b"
+                        ? question.correctAnswer === question?.yourAnswer
+                          ? "correct"
+                          : "wrong"
+                        : null
+                    }
+                  />
+                  <QuestionShow
+                    // question={question}
+                    answerTitle={question.c}
+                    correctAns={question.correctAnswer}
+                    answerNo={"c"}
+                    img={question.cImg}
+                    yourAns={question?.yourAnswer}
+                    questionId={question?._id}
+                    answerResult={
+                      question?.yourAnswer === "c"
+                        ? question.correctAnswer === question?.yourAnswer
+                          ? "correct"
+                          : "wrong"
+                        : null
+                    }
+                  />
+                  <QuestionShow
+                    // question={question}
+                    answerTitle={question.d}
+                    correctAns={question.correctAnswer}
+                    answerNo={"d"}
+                    img={question.dImg}
+                    yourAns={question?.yourAnswer}
+                    questionId={question?._id}
+                    answerResult={
+                      question?.yourAnswer === "d"
+                        ? question.correctAnswer === question?.yourAnswer
+                          ? "correct"
+                          : "wrong"
+                        : null
+                    }
+                  />
                 </div>
               </div>
             ))}
             <div className="w-full flex justify-end gap-2 p-2">
-              <button onClick={()=>handleNextQuiz()} className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer">
+              <button
+                onClick={() => handleNextQuiz()}
+                className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"
+              >
                 Next Quiz
               </button>
             </div>

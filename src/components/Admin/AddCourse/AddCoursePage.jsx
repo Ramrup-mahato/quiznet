@@ -5,9 +5,17 @@ import { FaUsers, FaFolderPlus, FaEdit } from "react-icons/fa";
 import { FaCameraRotate } from "react-icons/fa6";
 import AccordionFolder from "./AccordionFolder";
 import AddFolderModal from "./AddFolderModal";
-import img from '../../../assets/image/study1.png'
+import img from "../../../assets/image/study1.png";
+import ToggleButton from "react-toggle-button";
 
-const AddCoursePage = ({ courseData, handleModalMain, handleOpenSubject ,handleEditFolder, handleModal }) => {
+const AddCoursePage = ({
+  courseData,
+  handleModalMain,
+  handleOpenSubject,
+  handleEditFolder,
+  handleModal,
+  handlePublishCourse,
+}) => {
   return (
     <div className=" p-4">
       <div
@@ -52,17 +60,22 @@ const AddCoursePage = ({ courseData, handleModalMain, handleOpenSubject ,handleE
                   <h3>{course?.courseTitle}</h3>
                 </div>
                 <div className="flex gap-2 justify-center items-center">
+                  <ToggleButton
+                    value={course?.publish}
+                    onToggle={(value) => handlePublishCourse(value,course?._id)}
+                  />
+
                   <p className="font-medium text-[14px] text-[#00E396] bg-[#e4fff6] px-2 rounded-full flex justify-center items-center gap-1">
                     <FaUsers size={20} className="text-[var(--colB1)]" />{" "}
                     <span>40</span>
                   </p>
-                  <FaEdit 
-                  size={25}
-                  color="#fff"
-                  onClick={() => handleEditFolder("Course", course)}
-                  className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
-                  title="Edit"
-                   />
+                  <FaEdit
+                    size={25}
+                    color="#fff"
+                    onClick={() => handleEditFolder("Course", course)}
+                    className=" cursor-pointer hover:text-blue-100 drop-shadow-xl "
+                    title="Edit"
+                  />
                   <FaFolderPlus
                     size={25}
                     color="#D89F57"
@@ -74,7 +87,7 @@ const AddCoursePage = ({ courseData, handleModalMain, handleOpenSubject ,handleE
                     className="text-red-500 cursor-pointer drop-shadow-xl shadow-xl bg-[#E7F4FF] w-8 h-8 p-2 rounded-full hover:bg-[#ffe9e7]"
                     size={20}
                     title="Delete"
-                    onClick={()=>handleModal("Course",course?.coursePath)}
+                    onClick={() => handleModal("Course", course?.coursePath)}
                   />
                 </div>
               </div>

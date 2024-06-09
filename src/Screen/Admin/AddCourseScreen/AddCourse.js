@@ -8,6 +8,8 @@ import AddFolderModal from "../../../components/Admin/AddCourse/AddFolderModal";
 import AddSubjectQuestion from "../../../components/Admin/AddCourse/AddSubjectQuestion";
 import Loader from "../../../components/ReUsable/Loader";
 import DeleteFolderModal from "../../../components/Admin/AddCourse/DeleteFolderModal";
+import AddQuestionModal from "../../../components/Admin/AddCourse/AddQuestionModal";
+import { filterQuestion } from "../../../utils/Helper";
 
 const AddCourse = () => {
   let {
@@ -23,6 +25,8 @@ const AddCourse = () => {
     handleSubmit,
     values,
     deleteFolder,
+    allQuestion,
+    questionModal,
     handleModalMain,
     handleModelSave,
     handleOpenSubject,
@@ -35,6 +39,19 @@ const AddCourse = () => {
     handleCloseDeleteModal,
     handleDeleteFolder,
     handleModal,
+    handleQuestionModal,
+    handleRadioAnswer,
+    handleQuestionAnswer,
+    handleSelectQuestionImage,
+    handleCancelQuestionModal,
+    handleSubmitQuestion,
+    handleDeleteQuestion,
+    handleEditQuestion,
+    handleUpdateQuestion,
+    handleUnSelectImage,
+    handleUploadCsv,
+    handleSearchQuestion,
+    handlePublishCourse,
   } = AddCourseService();
 
   return (
@@ -55,9 +72,14 @@ const AddCourse = () => {
                 <AddSubjectQuestion
                   chapterInfo={QuestionDetails?.chapterInfo}
                   handleGoBack={handleGoBack}
-                  handleEditSubjectQuestion={handleEditSubjectQuestion}
-                  QuestionDetails={QuestionDetails}
+                  handleEditQuestion={handleEditQuestion}
+                  QuestionDetail={QuestionDetails}
+                  allQuestion={filterQuestion(allQuestion,QuestionDetails.search)}
                   handleCancelEditQuestion={handleCancelEditQuestion}
+                  handleQuestionModal={handleQuestionModal}
+                  handleDeleteQuestion={handleDeleteQuestion}
+                  handleUploadCsv={handleUploadCsv}
+                  handleSearchQuestion={handleSearchQuestion}
                 />
               ) : (
                 <AddCoursePage
@@ -66,6 +88,7 @@ const AddCourse = () => {
                   handleOpenSubject={handleOpenSubject}
                   handleEditFolder={handleEditFolder}
                   handleModal={handleModal}
+                  handlePublishCourse={handlePublishCourse}
                 />
               )}
             </>
@@ -84,12 +107,24 @@ const AddCourse = () => {
             handleSelectImage={handleSelectImage}
             handleCancelModal={handleCancelModal}
           />
-          <DeleteFolderModal 
-          openClose={deleteFolder.modalOpen}
-          handleCloseDeleteModal={handleCloseDeleteModal}
-          handleDeleteFolder={handleDeleteFolder}
-          handleModal={handleModal}
-           />
+          <DeleteFolderModal
+            openClose={deleteFolder.modalOpen}
+            handleCloseDeleteModal={handleCloseDeleteModal}
+            handleDeleteFolder={handleDeleteFolder}
+            handleModal={handleModal}
+          />
+          <AddQuestionModal
+            questionModal={questionModal}
+            handleQuestionModal={handleQuestionModal}
+            handleRadioAnswer={handleRadioAnswer}
+            handleQuestionAnswer={handleQuestionAnswer}
+            handleSelectQuestionImage={handleSelectQuestionImage}
+            handleCancelQuestionModal={handleCancelQuestionModal}
+            handleSubmitQuestion={handleSubmitQuestion}
+            loader={loader}
+            handleUpdateQuestion={handleUpdateQuestion}
+            handleUnSelectImage={handleUnSelectImage}
+          />
         </AdminSideBar>
       </ContainerBox>
     </Parents>

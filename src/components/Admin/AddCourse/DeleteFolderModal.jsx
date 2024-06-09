@@ -16,7 +16,7 @@ const DeleteFolderModal = ({
             {" "}
             Delete{" "}
           </span>{" "}
-          this folder
+          this Item
         </p>
 
         <div className="w-full flex justify-center items-center gap-2 p-3">

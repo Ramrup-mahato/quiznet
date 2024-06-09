@@ -27,7 +27,7 @@ const RegistrationService = () => {
   });
   const [time, setTime] = useState(0);
   console.log("regDetails", regDetails);
-  const { errors, values, touched, handleBlur, handleChange, handleSubmit } =
+  const { errors, values, touched, handleBlur, handleChange, handleSubmit ,setFieldValue} =
     useFormik({
       initialValues: initialValues,
       validationSchema: RegisterSchema,
@@ -136,6 +136,13 @@ const RegistrationService = () => {
     console.log(res);
     if(res) setIsLoader(false)
   };
+// ------------------only enter number----------------------
+const handlePhoneChange = (e) => {
+  const { name, value } = e.target;
+  if (/^\d*$/.test(value)) {
+    setFieldValue(name, value);
+  }
+};
   useEffect(() => {
     if (time !== 0) {
       const timer = setTimeout(() => setTime(time - 1), 1000);
@@ -157,6 +164,7 @@ const RegistrationService = () => {
     handleEnterOTP,
     handleSubmitOTP,
     handleResendOtp,
+    handlePhoneChange,
   };
 };
 

@@ -11,7 +11,8 @@ import {
 import ContextStore from "../../context/Context";
 import { useFormik } from "formik";
 import { folderSchema } from "../../Schema";
-import { toastWarning } from "../../utils/tostify";
+import { toastError, toastWarning } from "../../utils/tostify";
+import csvToJson from "csvtojson";
 
 const AddCourseService = () => {
   const { token, setIsLoader } = useContext(ContextStore);
@@ -26,14 +27,18 @@ const AddCourseService = () => {
     chapterInfo: {},
     EditQuestion: "",
     editFolder: false,
+    search: "",
   });
-  console.log("QuestionDetails", QuestionDetails);
-  console.log("allQuestion", allQuestion);
 
   const [loader, setLoader] = useState({
     imageKit: false,
     allData: false,
     allQuestion: false,
+    AImage: false,
+    BImage: false,
+    CImage: false,
+    DImage: false,
+    QueImage: false,
   });
 
   const [modal, setModal] = useState({
@@ -44,6 +49,22 @@ const AddCourseService = () => {
     folderImage: "",
     mainFolderDetails: {},
     editId: "",
+  });
+
+  const [questionModal, setQuestionModal] = useState({
+    openCloseModal: false,
+    correctAnswer: "",
+    Que: "",
+    A: "",
+    B: "",
+    C: "",
+    D: "",
+    QueImage: "",
+    AImage: "",
+    BImage: "",
+    CImage: "",
+    DImage: "",
+    _id: "",
   });
 
   const [deleteFolder, setDeleteFolder] = useState({
@@ -217,6 +238,17 @@ const AddCourseService = () => {
       };
     });
   };
+  // ---------------------------close Delete-----------------------------
+  const handleDeleteQuestion = (course, id) => {
+    setDeleteFolder((old) => {
+      return {
+        ...old,
+        modalOpen: !deleteFolder?.modalOpen,
+        folderPath: id ? id : "",
+        folderType: course ? course : "",
+      };
+    });
+  };
 
   // ------------------------Delete Api Call----------------------------
   const handleDeleteFolder = async () => {
@@ -284,6 +316,28 @@ const AddCourseService = () => {
             };
           });
         }
+      } else if (deleteFolder?.folderType === "Question") {
+        let json = {
+          _id: deleteFolder?.folderPath,
+        };
+        console.log("(json==>", json);
+
+        setIsLoader(true);
+        let folder = await apiResponse(
+          await postData("/delete-question", json, token)
+        );
+        if (folder.success) {
+          handleGetQuestion();
+          setIsLoader(false);
+          setDeleteFolder((old) => {
+            return {
+              ...old,
+              modalOpen: false,
+              folderPath: "",
+              folderType: "",
+            };
+          });
+        }
       }
     } catch (error) {
       toastWarning(
@@ -293,7 +347,7 @@ const AddCourseService = () => {
       setIsLoader(false);
     }
   };
-  // -------------------------------select image for upload--------------------------------
+  // ------------------------Delete Api Call----------------------------
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];
@@ -640,6 +694,369 @@ const AddCourseService = () => {
       }
     }
   };
+
+  // ----------------------Open Close Question Modal-------------------------------
+
+  const handleQuestionModal = () => {
+    if (questionModal._id) {
+      handleCancelQuestionModal();
+      setQuestionModal((old) => {
+        return {
+          ...old,
+          openCloseModal: !questionModal.openCloseModal,
+        };
+      });
+    } else {
+      setQuestionModal((old) => {
+        return {
+          ...old,
+          openCloseModal: !questionModal.openCloseModal,
+        };
+      });
+    }
+  };
+  // -----------------------Select Correct  Answer---------------------------
+  const handleRadioAnswer = (e) => {
+    let corr = e.target.name;
+    setQuestionModal((old) => {
+      return {
+        ...old,
+        correctAnswer: corr,
+      };
+    });
+  };
+  // -----------------------Select Correct  Answer---------------------------
+  const handleQuestionAnswer = (e) => {
+    setQuestionModal((old) => {
+      return {
+        ...old,
+        [e.target.name]: e.target.value,
+      };
+    });
+  };
+
+  //------------------------handle Select image--------------------------------------
+  const handleSelectQuestionImage = async (e) => {
+    const file = e.target.files[0];
+
+    setLoader((old) => {
+      return {
+        ...old,
+        [e.target.name]: true,
+      };
+    });
+    let imageKitResponse = await ImageUpload(file, "question");
+    console.log("imageKitResponse", imageKitResponse);
+    if (imageKitResponse) {
+      setQuestionModal((old) => {
+        return {
+          ...old,
+          [e.target.name]: imageKitResponse,
+        };
+      });
+      setLoader((old) => {
+        return {
+          ...old,
+          [e.target.name]: false,
+        };
+      });
+    }
+  };
+  // ---------------------Cancel Question Modal----------------------
+  const handleCancelQuestionModal = () => {
+    setQuestionModal((old) => {
+      return {
+        ...old,
+        correctAnswer: "",
+        Que: "",
+        A: "",
+        B: "",
+        C: "",
+        D: "",
+        QueImage: "",
+        AImage: "",
+        BImage: "",
+        CImage: "",
+        DImage: "",
+        _id: "",
+      };
+    });
+  };
+  //-----------------------------------handle Submit Question--------------------------------
+  const isValidOption = (option, optionImg) => option || optionImg;
+  const handleSubmitQuestion = async () => {
+    try {
+      if (
+        !isValidOption(questionModal.A, questionModal.AImage) ||
+        !isValidOption(questionModal.B, questionModal.BImage) ||
+        !isValidOption(questionModal.C, questionModal.CImage) ||
+        !isValidOption(questionModal.D, questionModal.DImage) ||
+        !questionModal.Que ||
+        !questionModal.correctAnswer
+      ) {
+        if (!questionModal.Que) {
+          toastWarning("Please Enter Question ");
+        } else if (!questionModal.correctAnswer) {
+          toastWarning("Please select correctAnswer");
+        } else {
+          toastWarning(
+            "Please fill a proper Value or image or select correctAnswer"
+          );
+        }
+      } else {
+        setIsLoader(true);
+        let json = {
+          chapterId: QuestionDetails.chapterInfo?.chapterPath,
+          question: questionModal.Que,
+          questionsImg: questionModal.QueImage,
+          correctAnswer: questionModal.correctAnswer.toLocaleLowerCase(),
+          a: questionModal.A,
+          b: questionModal.B,
+          c: questionModal.C,
+          d: questionModal.D,
+          aImg: questionModal.AImage,
+          bImg: questionModal.BImage,
+          cImg: questionModal.CImage,
+          dImg: questionModal.DImage,
+        };
+        console.log("step");
+
+        let folder = await apiResponse(
+          await postData("/questions", json, token)
+        );
+        console.log("step2");
+        if (folder.success) {
+          setQuestionModal((old) => {
+            return {
+              ...old,
+              openCloseModal: false,
+              correctAnswer: "",
+              Que: "",
+              A: "",
+              B: "",
+              C: "",
+              D: "",
+              QueImage: "",
+              AImage: "",
+              BImage: "",
+              CImage: "",
+              DImage: "",
+            };
+          });
+          handleGetQuestion();
+          setIsLoader(false);
+        }
+      }
+    } catch (error) {
+      if (error) {
+        console.log(error);
+        toastWarning(error.data.message);
+        setIsLoader(false);
+      }
+    }
+  };
+  // --------------------Edit Question----------------------------
+  const handleEditQuestion = (question) => {
+    setQuestionModal((old) => {
+      return {
+        ...old,
+        openCloseModal: !questionModal.openCloseModal,
+        _id: question?._id,
+        correctAnswer: question?.correctAnswer.toUpperCase(),
+        Que: question?.question,
+        A: question?.a,
+        B: question?.b,
+        C: question?.c,
+        D: question?.d,
+        QueImage: question?.questionsImg,
+        AImage: question?.aImg,
+        BImage: question?.bImg,
+        CImage: question?.cImg,
+        DImage: question?.dImg,
+      };
+    });
+  };
+  // ---------------------------Update Question---------------------------------------
+  const handleUpdateQuestion = async () => {
+    try {
+      if (
+        !isValidOption(questionModal.A, questionModal.AImage) ||
+        !isValidOption(questionModal.B, questionModal.BImage) ||
+        !isValidOption(questionModal.C, questionModal.CImage) ||
+        !isValidOption(questionModal.D, questionModal.DImage) ||
+        !questionModal.Que ||
+        !questionModal.correctAnswer
+      ) {
+        if (!questionModal.Que) {
+          toastWarning("Please Enter Question ");
+        } else if (!questionModal.correctAnswer) {
+          toastWarning("Please select correctAnswer");
+        } else {
+          toastWarning("Please fill a  Value or image");
+        }
+      } else {
+        setIsLoader(true);
+        let json = {
+          question: questionModal.Que,
+          questionsImg: questionModal.QueImage,
+          correctAnswer: questionModal.correctAnswer.toLocaleLowerCase(),
+          a: questionModal.A,
+          b: questionModal.B,
+          c: questionModal.C,
+          d: questionModal.D,
+          aImg: questionModal.AImage,
+          bImg: questionModal.BImage,
+          cImg: questionModal.CImage,
+          dImg: questionModal.DImage,
+          _id: questionModal._id,
+        };
+
+        let folder = await apiResponse(
+          await updateData("/questions", json, token)
+        );
+        console.log("folder", folder);
+        if (folder.success) {
+          handleGetQuestion();
+          setIsLoader(false);
+          setQuestionModal((old) => {
+            return {
+              ...old,
+              openCloseModal: false,
+              correctAnswer: "",
+              Que: "",
+              A: "",
+              B: "",
+              C: "",
+              D: "",
+              QueImage: "",
+              AImage: "",
+              BImage: "",
+              CImage: "",
+              DImage: "",
+              _id: "",
+            };
+          });
+        }
+      }
+    } catch (error) {
+      toastWarning(
+        error.message || "An error occurred while creating the folder."
+      );
+    } finally {
+      setIsLoader(false);
+    }
+  };
+  // -----------------------Remove Image from Modal--------------------------
+  const handleUnSelectImage = (val) => {
+    setQuestionModal((old) => {
+      return {
+        ...old,
+        [val]: "",
+      };
+    });
+  };
+
+  // ------------------handle Upload Csv-------------------
+  const handleUploadCsv = async (e) => {
+    const fileReader = new FileReader();
+    const file = e.target?.files[0];
+    if (file && file.type === "text/csv") {
+      fileReader.onload = async (event) => {
+        const text = event.target.result;
+        const json = await csvToJson().fromString(text);
+        // setSelectedFile(json);
+        await handleArrayOfQuestion(json);
+      };
+      fileReader.readAsText(file);
+    }
+  };
+
+  // ------------post  Array of Question -------------
+  const handleArrayOfQuestion = async (array) => {
+    try {
+      const isValidOption = (option, optionImg) => option || optionImg;
+      const questions = array.map((value) => {
+        if (!isValidOption(value?.Question, value?.Question_Image)) {
+          toastWarning(`Add Question or Question Image`);
+        }
+        if (!value?.Correct_Answer) {
+          toastWarning(
+            `Add correct Answer of "${value?.Question ? value?.Question : ""}"`
+          );
+        }
+
+        if (
+          !isValidOption(value?.Option_A, value?.Option_A_Image) ||
+          !isValidOption(value?.Option_B, value?.Option_B_Image) ||
+          !isValidOption(value?.Option_C, value?.Option_C_Image) ||
+          !isValidOption(value?.Option_D, value?.Option_D_Image)
+        ) {
+          toastWarning(`Add all Option of this Question`);
+        }
+
+        return {
+          _id: value?.Id && value?.Id ? value?.Id : "",
+          chapterId: QuestionDetails.chapterInfo?.chapterPath,
+          question: value?.Question,
+          correctAnswer: value?.Correct_Answer,
+          a: value?.Option_A,
+          b: value?.Option_B,
+          c: value?.Option_C,
+          d: value?.Option_D,
+          aImg: value?.Option_A_Image,
+          bImg: value?.Option_B_Image,
+          cImg: value?.Option_C_Image,
+          dImg: value?.Option_D_Image,
+          questionsImg: value?.Question_Image,
+        };
+      });
+      console.log("questions", questions);
+      let Question = await apiResponse(
+        await postData("/questions/csv", { questionsOfArray: questions }, token)
+      );
+      if (Question.success) {
+        handleGetQuestion();
+      }
+    } catch (error) {
+      console.log(error);
+      toastError(error?.data?.message);
+    }
+  };
+  const handleSearchQuestion = (e) => {
+    setQuestionDetails((old) => {
+      return {
+        ...old,
+        search: e.target.value,
+      };
+    });
+  };
+  // ----------------------------publish Course ------------------------------
+  const handlePublishCourse = async (value,id) => {
+    console.log("publish", value);
+    try {
+      setIsLoader(true);
+      let json = {
+        _id: id,
+        publish:!value
+      };
+
+      let folder = await apiResponse(
+        await updateData("/course/publish", json, token)
+      );
+      console.log("publish", folder);
+      if (folder.success) {
+        handleGetAllCourse();
+        setIsLoader(false);
+      }
+    } catch (error) {
+      toastWarning(
+        error.message || "An error occurred while creating the folder."
+      );
+    } finally {
+      setIsLoader(false);
+    }
+  };
+
   useEffect(() => {
     handleGetAllCourse();
   }, []);
@@ -661,6 +1078,8 @@ const AddCourseService = () => {
     modal,
     loader,
     deleteFolder,
+    allQuestion,
+    questionModal,
     handleModalMain,
     handleModelSave,
     handleOpenSubject,
@@ -673,46 +1092,20 @@ const AddCourseService = () => {
     handleDeleteFolder,
     handleModal,
     handleCancelModal,
+    handleQuestionModal,
+    handleRadioAnswer,
+    handleQuestionAnswer,
+    handleSelectQuestionImage,
+    handleCancelQuestionModal,
+    handleSubmitQuestion,
+    handleDeleteQuestion,
+    handleEditQuestion,
+    handleUpdateQuestion,
+    handleUnSelectImage,
+    handleUploadCsv,
+    handleSearchQuestion,
+    handlePublishCourse,
   };
 };
 
 export default AddCourseService;
-
-// import csvToJson from "csvtojson";
-// const handleSelectFile = async (e) => {
-//   e.preventDefault();
-//   const fileReader = new FileReader();
-//   const file = e.target?.files[0];
-//  if (file && file.type === "text/csv") {
-//     setFileName(file?.name);
-//     setIsDisable(true);
-//     fileReader.onload = async (event) => {
-//       const text = event.target.result;
-//       const json = await csvToJson().fromString(text);
-//       // console.log('json',json)
-//       const productData = json.map((value) => {
-//         return {
-//           categories: JSON.parse(value.categories),
-//           image: JSON.parse(value.image),
-//           barcode: value.barcode,
-//           tag: JSON.parse(value.tag),
-//           variants: JSON.parse(value.variants),
-//           status: value.status,
-//           prices: JSON.parse(value.prices),
-//           isCombination: JSON.parse(value.isCombination),
-//           title: JSON.parse(value.title),
-//           productId: value.productId,
-//           slug: value.slug,
-//           sku: value.sku,
-//           category: JSON.parse(value.category),
-//           stock: JSON.parse(value.stock),
-//           description: JSON.parse(value.description),
-//         };
-//       });
-
-//       setSelectedFile(productData);
-//     };
-
-//     fileReader.readAsText(file);
-//   }
-// };

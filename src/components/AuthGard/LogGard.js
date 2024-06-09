@@ -24,7 +24,7 @@ export const postData = async (URL, data, token) => {
           } else {
             reject({
               success: false,
-              message: "An unknown error occurred",
+              message: "Something went wrong. Please check your internet connection",
             });
           }
         });
@@ -88,7 +88,7 @@ export const updateData = async (URL, data, token) => {
           } else {
             reject({
               success: false,
-              message: "An unknown error occurred",
+              message: "Something went wrong. ",
             });
           }
         });
