@@ -105,7 +105,7 @@ export const MainRoutes = () => {
     },
   ];
   return (
-    <Router>
+    <Router basename="/">
       <Routes>
         <Route>
           {authRouts.map((auth, index) => (
