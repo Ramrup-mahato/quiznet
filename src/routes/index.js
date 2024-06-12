@@ -1,5 +1,5 @@
 import React from "react";
-import {HashRouter, BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "../Screen/Home";
 import CourseDetails from "../Screen/CourseDetails";
 import QuizMain from "../Screen/QuizMain";
@@ -105,7 +105,7 @@ export const MainRoutes = () => {
     },
   ];
   return (
-    <HashRouter  basename="/">
+    <Router basename="/">
       <Routes>
         <Route>
           {authRouts.map((auth, index) => (
@@ -151,6 +151,6 @@ export const MainRoutes = () => {
         {/* <Route exact path="/" element={<Home />} /> */}
         {/* <Route exact path="/About" element={<About />} /> */}
       </Routes>
-    </HashRouter >
+    </Router>
   );
 };
