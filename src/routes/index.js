@@ -43,11 +43,11 @@ export const MainRoutes = () => {
     },
   ];
   const unprotectedRouts = [
-    // {
-    //   path: "/",
-    //   component: Home,
-    //   name: "Home",
-    // },
+    {
+      path: "/",
+      component: Home,
+      name: "Home",
+    },
     {
       path: "/pte",
       component: PTEScreen,
@@ -105,13 +105,11 @@ export const MainRoutes = () => {
     },
   ];
   return (
-    <Router basename="/React">
+    <Router>
       <Routes>
         <Route>
-          <Route exact path="/" element={<Home />} />
           {authRouts.map((auth, index) => (
             <Route
-            
               key={index}
               path={auth.path}
               name={auth.name}
