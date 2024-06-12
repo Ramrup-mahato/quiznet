@@ -105,11 +105,12 @@ export const MainRoutes = () => {
     },
   ];
   return (
-    <Router>
+    <Router basename="/React">
       <Routes>
         <Route>
           {authRouts.map((auth, index) => (
             <Route
+            
               key={index}
               path={auth.path}
               name={auth.name}
