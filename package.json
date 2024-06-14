@@ -2,6 +2,7 @@
   "name": "quiznet",
   "version": "0.1.0",
   "private": true,
+  "homepage": " https://www.andreasreiterer.at/react-app/",
   "engines": {
     "node": "20.x",
     "npm": "10.x"
