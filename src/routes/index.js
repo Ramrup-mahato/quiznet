@@ -107,16 +107,15 @@ export const MainRoutes = () => {
   return (
     <Router basename="/">
       <Routes>
-        <Route>
-          {authRouts.map((auth, index) => (
-            <Route
-              key={index}
-              path={auth.path}
-              name={auth.name}
-              element={<auth.component />}
-            />
-          ))}
-        </Route>
+        {authRouts.map((auth, index) => (
+          <Route
+            key={index}
+            path={auth.path}
+            name={auth.name}
+            element={<auth.component />}
+          />
+        ))}
+
         {/* <Route> */}
         {unprotectedRouts.map((rout, index) => (
           <Route
@@ -127,26 +126,25 @@ export const MainRoutes = () => {
           />
         ))}
         {/* </Route> */}
-        <Route>
-          {protectedRouts.map((rout, index) => (
-            <Route
-              key={index}
-              path={rout.path}
-              name={rout.name}
-              element={<AuthGard element={rout.component} />}
-            />
-          ))}
-        </Route>
-        <Route>
-          {adminProtectedRouts.map((rout, index) => (
-            <Route
-              key={index}
-              path={rout.path}
-              name={rout.name}
-              element={<AdminAuthGard element={rout.component} />}
-            />
-          ))}
-        </Route>
+
+        {protectedRouts.map((rout, index) => (
+          <Route
+            key={index}
+            path={rout.path}
+            name={rout.name}
+            element={<AuthGard element={rout.component} />}
+          />
+        ))}
+
+        {adminProtectedRouts.map((rout, index) => (
+          <Route
+            key={index}
+            path={rout.path}
+            name={rout.name}
+            element={<AdminAuthGard element={rout.component} />}
+          />
+        ))}
+
         <Route path="*" element={<NotFound />} />
         {/* <Route exact path="/" element={<Home />} /> */}
         {/* <Route exact path="/About" element={<About />} /> */}
