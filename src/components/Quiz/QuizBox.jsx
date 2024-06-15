@@ -15,7 +15,7 @@ const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
         </div>
         <BsThreeDotsVertical
           className="cursor-pointer "
-          size={15}
+          size={20}
           onClick={() => handleReportQuestion(question?._id)}
         />
       </div>

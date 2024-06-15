@@ -30,7 +30,7 @@ const QuizService = () => {
   // console.log("quizData", quizData);
   const { quizpath, path } = useParams();
   const navigation = useNavigate();
-  const { token, setIsLoader, setLoaderInFolder, loaderInFolder } =
+  const { token, setIsLoader, setLoaderInFolder, loaderInFolder,userDetails } =
     useContext(ContextStore);
   // console.log("quizpath", quizpath);
   const handleSelectQuestion = (i) => {
