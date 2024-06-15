@@ -32,7 +32,7 @@ const TextInput = ({
             {label}
             {require && <span className="text-red-500">*</span>}
           </p>
-          {error == true && (
+          {error === true && (
             <span className="text-red-500 text-[12px]">{errorMessage}</span>
           )}
         </div>
@@ -40,28 +40,28 @@ const TextInput = ({
       <div className="relative flex justify-center items-center">
         {textarea ? (
           <textarea
-            type={password == true ? "text" : type}
+            type={password === true ? "text" : type}
             placeholder={placeholder}
             value={value}
             name={name}
             autoComplete={autoComplete === true ? "on" : "off"}
             disabled={disable}
             className={`w-full min-h-[100px] text-[14px] text-gray-600 dark:text-gray-50 dark:bg-gray-600 placeholder:dark:text-gray-400 EditInput ${classStyle} ${
-              error == true ? "EditRed" : "EditBlue"
-            } ${OTP == true ? "text-center" : ""} $ `}
+              error === true ? "EditRed" : "EditBlue"
+            } ${OTP === true ? "text-center" : ""} $ `}
             onChange={handleChange}
             onBlur={onBlur}
           />
         ) : (
           <input
-            type={password == true ? "text" : type}
+            type={password === true ? "text" : type}
             placeholder={placeholder}
             value={value}
             name={name}
             disabled={disable}
             className={`w-full h-[35px] text-[14px] text-gray-600 dark:text-gray-50 dark:bg-gray-600 placeholder:dark:text-gray-400 EditInput ${classStyle} ${
-              error == true ? "EditRed" : "EditBlue"
-            } ${OTP == true ? "text-center" : ""} ${
+              error === true ? "EditRed" : "EditBlue"
+            } ${OTP === true ? "text-center" : ""} ${
               RoundFull === true ? "roundedInput" : ""
             } `}
             autoComplete={autoComplete === true ? "on" : "off"}

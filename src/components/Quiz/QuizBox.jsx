@@ -1,5 +1,4 @@
 import React from "react";
-import Answers from "../Admin/AddCourse/Answers";
 import QuestionShow from "./QuestionShow";
 import { BsThreeDotsVertical } from "react-icons/bs";
 

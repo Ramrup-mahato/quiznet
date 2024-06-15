@@ -1,5 +1,5 @@
 import React from "react";
-import { courseName, faqDetails } from "../../utils/data";
+// import { courseName, faqDetails } from "../../utils/data";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseService from "../../service/CourseService";
 import Accordion from "../Admin/FAQ/Accordion";
@@ -38,7 +38,7 @@ const Courses = () => {
               <div className="justify-center items-center hidden sm:flex h-full overflow-hidden p-4">
                 <img
                   src={ele?.courseImage}
-                  alt="ele image..."
+                  alt="course..."
                   className="w-[300px] h-[200px]"
                 />
               </div>
@@ -79,7 +79,7 @@ const Courses = () => {
           <h1 className="w-full font-extrabold  text-[25px] items-center dark:text-slate-50">
             We Love to connect, Help,Receive feedback just tell us...
           </h1>
-          <img src={contactImage} alt="contact Image ..." />
+          <img src={contactImage} alt="contact ..." />
         </div>
         <div id="contactUs" className="w-full md:w-[55%] md:pt-10 ">
           <div>

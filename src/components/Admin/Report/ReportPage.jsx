@@ -1,12 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import DataTable from "react-data-table-component";
-import { dataReport } from "../../../utils/data";
-import { IoSearch } from "react-icons/io5";
 import TextInput from "../../ReUsable/TextInput";
 import ReportService from "../../../service/ReportService/ReportService";
 import Modal from "../../Modal/Modal";
-import QuizBox from "../../Quiz/QuizBox";
-import { GiCheckMark } from "react-icons/gi";
 import Status from "../../ReUsable/Status";
 import Loader from "../../ReUsable/Loader";
 import Answers from "../AddCourse/Answers";

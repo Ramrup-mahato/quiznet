@@ -5,7 +5,6 @@ import { FaArrowLeftLong } from "react-icons/fa6";
 import TextInput from "../ReUsable/TextInput";
 import GoogleLoginButton from "../ReUsable/GoogleLoginButton";
 import Modal from "../Modal/Modal";
-import Loader from "../ReUsable/Loader";
 
 const LoginPage = () => {
   const {
@@ -86,7 +85,7 @@ const LoginPage = () => {
                     <button
                       onClick={handleResendOtp}
                       className={`${
-                        time == 0 ? "text-[var(--colB1)]" : "text-gray-500"
+                        time === 0 ? "text-[var(--colB1)]" : "text-gray-500"
                       }`}
                     >
                       Resend OTP

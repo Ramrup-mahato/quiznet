@@ -1,6 +1,5 @@
 import React from "react";
 import { FaRegEdit } from "react-icons/fa";
-import TextInput from "../../ReUsable/TextInput";
 import Answers from "./Answers";
 import { MdOutlineDelete } from "react-icons/md";
 

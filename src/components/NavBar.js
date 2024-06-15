@@ -1,20 +1,18 @@
 import React, { useEffect, useState } from "react";
-import logo from "../assets/image/QuizNet.png";
 import logo1 from "../assets/image/quizNet2.png";
 import avatar from "../assets/image/ramrup pic.JPG";
 import ToggleButton from "./ToggleButton";
 import { NavLink } from "react-router-dom";
-import { RxHamburgerMenu } from "react-icons/rx";
 import { navRoute } from "../routes/NavigationRoute";
 
 const NavBar = ({ pageName }) => {
-  const userName="Ramrup"
+  const userName = "Ramrup";
   // const avatar=""
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [visibleTop, setVisibleTop] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
-
+  console.log(visibleTop);
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const isScrollingDown = currentScrollPos > prevScrollPos;
@@ -68,23 +66,24 @@ const NavBar = ({ pageName }) => {
           </div>
           {/* <RxHamburgerMenu className="w-6 h-6 mx-2 sm:hidden  cursor-pointer" /> */}
           <div className="w-10 overflow-hidden relative cursor-pointer  flex justify-center items-center ">
-          {avatar ? (
-                <img
-                  src={avatar}
-                  alt="Avatar"
-                  className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
-                    onClick={() => handleNavMenu()}
-                />
-              ) : (
-                <div className="">
-                  <p className="w-10 h-10 rounded-full border-white border-2 imageAvatar flex justify-center items-center font-bold 
-                   bg-[#512Dab] text-[var(--colW2)] text-[25px]" 
-                   onClick={() => handleNavMenu()}
-                   >
-                    {userName[0].toUpperCase()}
-                  </p>
-                </div>
-              )}
+            {avatar ? (
+              <img
+                src={avatar}
+                alt="Avatar"
+                className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
+                onClick={() => handleNavMenu()}
+              />
+            ) : (
+              <div className="">
+                <p
+                  className="w-10 h-10 rounded-full border-white border-2 imageAvatar flex justify-center items-center font-bold 
+                   bg-[#512Dab] text-[var(--colW2)] text-[25px]"
+                  onClick={() => handleNavMenu()}
+                >
+                  {userName[0].toUpperCase()}
+                </p>
+              </div>
+            )}
             {/* <p className="text-[0.7rem] text-center w-full absolute bottom-[-14px]">
               Rahul
             </p> */}
@@ -100,7 +99,7 @@ const NavBar = ({ pageName }) => {
                     <NavLink key={index} to={name?.path}>
                       <li
                         className={`px-3 py-2 w-full hover:bg-[var(--colB6)] hover:text-black rounded-md  ${
-                          pageName == name?.name
+                          pageName === name?.name
                             ? "bg-[var(--colB5)] text-black"
                             : ""
                         }`}
@@ -112,7 +111,7 @@ const NavBar = ({ pageName }) => {
                   <NavLink to={"/setting"}>
                     <li
                       className={`px-3 py-2 w-full hover:bg-[var(--colB6)] hover:text-black rounded-md  ${
-                        pageName == "setting"
+                        pageName === "setting"
                           ? "bg-[var(--colB5)] text-black"
                           : ""
                       }`}

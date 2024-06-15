@@ -5,7 +5,6 @@ import ContainerBox from "../components/ReUsable/ContainerBox";
 import Footer from "../components/ReUsable/Footer";
 import CourseDetailsPage from "../components/CourseDetails/CourseDetailsPage";
 import { useParams } from "react-router-dom";
-import { courseName } from "../utils/data";
 
 const CourseDetails = () => {
   const { path } = useParams();

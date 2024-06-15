@@ -25,19 +25,19 @@ const Status = ({ selector, title, state, handleSelectOption }) => {
         >
           <p>{Capitalized(state)}</p>
 
-          {menu == true ? (
+          {menu === true ? (
             <MdKeyboardArrowUp size={25} />
           ) : (
             <MdKeyboardArrowDown size={25} />
           )}
         </div>
-        {menu == true && (
+        {menu === true && (
           <div className="absolute top-8 bg-[var(--colW2)] dark:bg-slate-700  shadow-2xl flex-col gap-1 rounded w-[100px]">
             {selector.map((ele, i) => (
               <div
                 key={i}
                 className={` p-1 m-1 rounded-sm hover:bg-gray-200 dark:hover:bg-slate-500 hover:text-gray-900 dark:hover:text-white cursor-pointer ${
-                  state == ele ? "bg-[var(--colB1)] text-white " : ""
+                  state === ele ? "bg-[var(--colB1)] text-white " : ""
                 }`}
                 onClick={()=>handleSelectStatus(ele)}
               >

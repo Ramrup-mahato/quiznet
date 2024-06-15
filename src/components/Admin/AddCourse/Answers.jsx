@@ -1,5 +1,4 @@
 import React from "react";
-import TextInput from "../../ReUsable/TextInput";
 import { CorrectAnswer } from "../../../utils/Helper";
 
 const Answers = ({

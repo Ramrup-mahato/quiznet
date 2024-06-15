@@ -4,7 +4,6 @@ import { FaFolderOpen } from "react-icons/fa6";
 import { FaUsers, FaFolderPlus, FaEdit } from "react-icons/fa";
 import { FaCameraRotate } from "react-icons/fa6";
 import AccordionFolder from "./AccordionFolder";
-import AddFolderModal from "./AddFolderModal";
 import img from "../../../assets/image/study1.png";
 import ToggleButton from "react-toggle-button";
 

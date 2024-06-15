@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { faqDetails } from "../../utils/data";
 import { toastWarning } from "../../utils/tostify";
 import { apiGetResponse, apiResponse } from "../../utils/Helper";

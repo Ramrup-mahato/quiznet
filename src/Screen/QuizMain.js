@@ -10,7 +10,6 @@ import "react-circular-progressbar/dist/styles.css";
 import Loader from "../components/ReUsable/Loader";
 import NotFound from "../components/ReUsable/NotFound ";
 import Modal from "../components/Modal/Modal";
-import { FaFolderOpen } from "react-icons/fa6";
 import TextInput from "../components/ReUsable/TextInput";
 
 const QuizMain = () => {
@@ -37,7 +36,7 @@ const QuizMain = () => {
     <Parents>
       <NavBar pageName={"Home"} />
       <ContainerBox>
-        {quiz?.result == false ? (
+        {quiz?.result === false ? (
           <>
             {loaderInFolder ? (
               <div className="w-full  min-h-[calc(100vh-115px)] lg:min-h-[100vh]  px-3 sm:px-6  gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">

@@ -2,7 +2,6 @@ import React from "react";
 import { FaPlus } from "react-icons/fa6";
 import EmployeeService from "../../../service/EmployeeService/EmployeeService";
 import { MdDelete } from "react-icons/md";
-import { FaHandshakeSimple } from "react-icons/fa6";
 import { FaRegEdit } from "react-icons/fa";
 import Modal from "../../Modal/Modal";
 import TextInput from "../../ReUsable/TextInput";
@@ -48,7 +47,7 @@ const EmployeePage = () => {
             {emp?.image ? (
               <img
                 src={emp?.image}
-                alt="employee image"
+                alt="employee..."
                 className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
                   shadow-2xl shadow-slate-500 dark:shadow-slate-400"
               />
@@ -127,13 +126,11 @@ const EmployeeModal = ({
   handleSelectEmployee,
   handleAddNewEmployee,
 }) => {
-  const avatar = "";
-  const name = "rahul";
   return (
     <>
       <Modal open={openModal} onClose={handleModal}>
         <div className="w-[500px] min-h-[500px] bg-[var(--colW2)] dark:bg-slate-800 p-3  rounded-xl ">
-          {addEditModal == "add" ? (
+          {addEditModal === "add" ? (
             <div className="w-full h-full relative  ">
               <TextInput
                 placeholder={"Search New Team"}
@@ -155,7 +152,7 @@ const EmployeeModal = ({
                       {ele?.image ? (
                         <img
                           src={ele?.image}
-                          alt="employee image"
+                          alt="employee..."
                           className="w-10 h-10 object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)]  "
                         />
                       ) : (
@@ -184,7 +181,7 @@ const EmployeeModal = ({
               {modalData[0]?.image ? (
                 <img
                   src={modalData[0]?.image}
-                  alt="employee image"
+                  alt="employee..."
                   className="w-[150px] h-[150px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
                   shadow-2xl shadow-slate-500 dark:shadow-slate-400"
                 />

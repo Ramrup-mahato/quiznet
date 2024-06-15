@@ -3,8 +3,6 @@ import Modal from "../../Modal/Modal";
 import { FaCameraRotate, FaFolderOpen } from "react-icons/fa6";
 import TextInput from "../../ReUsable/TextInput";
 import Loader from "../../ReUsable/Loader";
-import Study from "../../../assets/image/study3.png";
-import sample from "../../../assets/image/sample.png";
 import { GrPowerReset } from "react-icons/gr";
 import { MdOutlineCancel } from "react-icons/md";
 

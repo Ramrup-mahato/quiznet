@@ -21,7 +21,6 @@ const AddCourse = () => {
     touched,
     handleBlur,
     handleChange,
-    handleReset,
     handleSubmit,
     values,
     deleteFolder,
@@ -31,7 +30,6 @@ const AddCourse = () => {
     handleModelSave,
     handleOpenSubject,
     handleGoBack,
-    handleEditSubjectQuestion,
     handleCancelEditQuestion,
     handleSelectImage,
     handleEditFolder,
@@ -74,7 +72,10 @@ const AddCourse = () => {
                   handleGoBack={handleGoBack}
                   handleEditQuestion={handleEditQuestion}
                   QuestionDetail={QuestionDetails}
-                  allQuestion={filterQuestion(allQuestion,QuestionDetails.search)}
+                  allQuestion={filterQuestion(
+                    allQuestion,
+                    QuestionDetails.search
+                  )}
                   handleCancelEditQuestion={handleCancelEditQuestion}
                   handleQuestionModal={handleQuestionModal}
                   handleDeleteQuestion={handleDeleteQuestion}

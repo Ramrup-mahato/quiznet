@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import ContextStore from "../context/Context";
 // import "../index.css";
@@ -8,7 +8,6 @@ const ToggleButton = () => {
   return (
     <DarkModeSwitch
       style={{
-        marginBottom: "2rem",
         color: theme === "dark" ? "#FDB813" : "#fff",
         marginBottom: 0,
         padding: 10,

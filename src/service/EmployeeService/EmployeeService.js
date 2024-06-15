@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { employeeDetails } from "../../utils/data";
 
 const EmployeeService = () => {
@@ -10,7 +10,7 @@ const EmployeeService = () => {
   const [addEditModal, setAddEditModal] = useState("");
 
   const handleModal = (data, type) => {
-    if (type == "edit") {
+    if (type === "edit") {
       setModalData([data]);
     } else {
       setModalData([]);
@@ -18,8 +18,6 @@ const EmployeeService = () => {
     setOpenModal(!openModal);
     setAddEditModal(type);
   };
-  const avatar = "";
-  const name = "rahul";
   const handleSelectEmployee = (ele) => {
     setModalData([ele]);
     setSearchText("");

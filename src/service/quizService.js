@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { topicsName } from "../utils/data";
 import { toastError } from "../utils/tostify";
 import ContextStore from "../context/Context";
 import { apiGetResponse, apiResponse } from "../utils/Helper";
@@ -52,7 +51,7 @@ const QuizService = () => {
       if (ele?._id === questionId) {
         if (ele.yourAnswer === "") {
           ele.yourAnswer = ans;
-          if (ele?.correctAnswer == ans) {
+          if (ele?.correctAnswer === ans) {
             setQuiz((oldEle) => {
               return {
                 ...oldEle,

@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 import {
-  MdKeyboardArrowDown,
-  MdKeyboardArrowUp,
   MdOutlineDelete,
 } from "react-icons/md";
 import {
   FaCameraRotate,
   FaFolderOpen,
   FaFolderPlus,
-  FaMinus,
-  FaPlus,
   FaUsers,
 } from "react-icons/fa6";
 import { LuImport } from "react-icons/lu";

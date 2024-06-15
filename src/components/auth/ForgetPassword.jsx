@@ -10,7 +10,6 @@ const ForgetPassword = () => {
     touched,
     handleBlur,
     handleChange,
-    handleSubmit,
     stage,
     forget,
     time,
@@ -78,7 +77,7 @@ const ForgetPassword = () => {
                     handleChange={handleEnterOtp}
                   />
                   <div className="w-full flex justify-between items-center pt-4">
-                    <div  className="text-[13px] "> <button onClick={handleResendOtp} className={`${time==0?'text-[var(--colB1)]':'text-gray-500'}`}>Resend OTP</button></div>
+                    <div  className="text-[13px] "> <button onClick={handleResendOtp} className={`${time===0?'text-[var(--colB1)]':'text-gray-500'}`}>Resend OTP</button></div>
                     <div className="text-[13px]"><p>{`00:${time<10?"0"+time:time}`}</p></div>
                   </div>
                 </>
@@ -116,7 +115,7 @@ const ForgetPassword = () => {
                   <img
                     src="https://js.pngtree.com/a4/static/l03b0s.d57ca31e.gif"
                     className="absolute top-0 border-[5px ] w-full h-full z-0"
-                    alt="gif image"
+                    alt="gif.."
                   />
                   <p className="text-[35px] text-[var(--colB1)] font-[900]">
                     Congratulations! 🙂

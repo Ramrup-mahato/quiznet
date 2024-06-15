@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EmailScheme, NewPasswordScheme } from "../../Schema";
 import { toastError, toastSuccess } from "../../utils/tostify";
@@ -56,14 +56,14 @@ const ForgetService = () => {
         } else {
           handleApiCall();
         }
-      } else if (stage == "password") {
+      } else if (stage === "password") {
         handleSubmit();
       }
     }, 1000);
   };
   const handleApiCall = async (value) => {
     try {
-      if (stage == "email") {
+      if (stage === "email") {
         let json = {
           email: value.email,
         };
@@ -80,7 +80,7 @@ const ForgetService = () => {
             };
           });
         }
-      } else if (stage == "otp") {
+      } else if (stage === "otp") {
         let json = {
           email: forget.email,
           OTP: forget.otp,
@@ -91,7 +91,7 @@ const ForgetService = () => {
           setIsLoader(false)
           setStage("password");
         }
-      } else if (stage == "password") {
+      } else if (stage === "password") {
         let json = {
           otp: forget.otp,
           email: forget.email,

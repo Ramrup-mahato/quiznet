@@ -1,13 +1,13 @@
 import React from "react";
-import { courseName, topicsName } from "../../utils/data";
+// import { courseName, topicsName } from "../../utils/data";
 import { IoIosArrowForward } from "react-icons/io";
 import { FaFolderOpen } from "react-icons/fa6";
 import CourseDetailsService from "../../service/courseDetailsService";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import Loader from "../ReUsable/Loader";
 import NotFound from "../ReUsable/NotFound ";
 
-const CourseDetailsPage = ({}) => {
+const CourseDetailsPage = () => {
   const { path, subject, loaderInFolder, handleSelectTopic } =
     CourseDetailsService();
   return (
@@ -32,7 +32,7 @@ const CourseDetailsPage = ({}) => {
                 <div className="justify-center items-center hidden sm:flex h-full overflow-hidden p-4">
                   <img
                     src={subject?.subjectImage}
-                    alt="course image..."
+                    alt="course..."
                     className="w-[300px] h-[200px]"
                   />
                 </div>

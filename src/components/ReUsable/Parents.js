@@ -1,5 +1,5 @@
 import React from "react";
-import { Bounce, ToastContainer, toast } from "react-toastify";
+import { Bounce, ToastContainer } from "react-toastify";
 import ContextStore from "../../context/Context";
 import { useContext } from "react";
 import "react-toastify/dist/ReactToastify.css";

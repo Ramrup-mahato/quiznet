@@ -1,5 +1,5 @@
 import React from "react";
-import { CorrectAnswer } from "../../utils/Helper";
+// import { CorrectAnswer } from "../../utils/Helper";
 import { GiCheckMark } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 

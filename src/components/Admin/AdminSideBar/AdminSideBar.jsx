@@ -1,8 +1,6 @@
 import React from "react";
 import logo from "../../../assets/image/quizNet2.png";
-// import avatar from "../../../assets/image/ramrup pic.JPG";
 import ToggleButton from "../../ToggleButton";
-import { RxDashboard } from "react-icons/rx";
 import { adminSideBarRoute } from "../../../routes/NavigationRoute";
 import { NavLink } from "react-router-dom";
 
@@ -34,7 +32,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
                 key={i}
                 className={`flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-2 rounded hover:bg-slate-200\
                  dark:hover:bg-gray-700 
-                 ${selected == Ele?.name ? "select text-black" : ""}`}
+                 ${selected === Ele?.name ? "select text-black" : ""}`}
               >
                 <Ele.icon size={20} />
                 <p className="text-[14px]">{Ele?.name}</p>

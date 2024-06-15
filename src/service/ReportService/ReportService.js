@@ -196,9 +196,9 @@ const ReportService = () => {
         <>
           <div
             className={`px-3 py-2 w-[80px] rounded-full flex justify-center items-center
-           ${row?.status == "resolve" && "text-[#00E396] bg-[#e4fff6]"}
-            ${row?.status == "pending" && "text-[#FEB019] bg-[#fbf3e1]"} ${
-              row?.status == "reject" && "text-rose-500 bg-red-100"
+           ${row?.status === "resolve" && "text-[#00E396] bg-[#e4fff6]"}
+            ${row?.status === "pending" && "text-[#FEB019] bg-[#fbf3e1]"} ${
+              row?.status === "reject" && "text-rose-500 bg-red-100"
             }`}
           >
             <p className="text-[12px] font-bold">{Capitalized(row?.status)}</p>

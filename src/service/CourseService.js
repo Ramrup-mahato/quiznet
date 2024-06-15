@@ -1,8 +1,8 @@
 import { useFormik } from "formik";
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { contactSchema } from "../Schema";
-import { toastError, toastSuccess, toastWarning } from "../utils/tostify";
+import { toastError, toastWarning } from "../utils/tostify";
 import { apiGetResponse, apiResponse } from "../utils/Helper";
 import { getData, postData } from "../components/AuthGard/LogGard";
 import ContextStore from "../context/Context";
@@ -15,7 +15,7 @@ const initialValue = {
 };
 
 const CourseService = () => {
-  const { token, setIsLoader, setLoaderInFolder } = useContext(ContextStore);
+  const { token, setIsLoader } = useContext(ContextStore);
   const navigation = useNavigate();
   const [faqQuestion, setFaqQuestion] = useState([]);
   const [course, setCourse] = useState([]);

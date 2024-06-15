@@ -3,7 +3,6 @@ import Study from "../../assets/image/study3.png";
 import RegistrationService from "../../service/AuthService/registrationService";
 import TextInput from "../ReUsable/TextInput";
 import GoogleLoginButton from "../ReUsable/GoogleLoginButton";
-import Loader from "../ReUsable/Loader";
 const RegistrationPage = () => {
   const {
     errors,
@@ -63,10 +62,22 @@ const RegistrationPage = () => {
                   handleChange={handleEnterOTP}
                   autoComplete={false}
                 />
-                  <div className="w-full flex justify-between items-center pt-4">
-                    <div  className="text-[13px] "> <button onClick={handleResendOtp} className={`${time==0?'text-[var(--colB1)]':'text-gray-500'}`}>Resend OTP</button></div>
-                    <div className="text-[13px]"><p>{`00:${time<10?"0"+time:time}`}</p></div>
+                <div className="w-full flex justify-between items-center pt-4">
+                  <div className="text-[13px] ">
+                    {" "}
+                    <button
+                      onClick={handleResendOtp}
+                      className={`${
+                        time === 0 ? "text-[var(--colB1)]" : "text-gray-500"
+                      }`}
+                    >
+                      Resend OTP
+                    </button>
                   </div>
+                  <div className="text-[13px]">
+                    <p>{`00:${time < 10 ? "0" + time : time}`}</p>
+                  </div>
+                </div>
               </>
             ) : (
               <>
@@ -215,12 +226,12 @@ const RegistrationPage = () => {
             <div className="pl-5 text-[13px] text-gray-500">
               <p>
                 Already have an account?{" "}
-                <a
+                <button
                   onClick={() => handleSigIn("login")}
-                  className="font-bold cursor-pointer text-[var(--colB1)] text-[14px] hover:underline  "
+                  className="font-bold cursor-pointer text-[var(--colB1)] text-[14px] hover:underline bg-transparent border-none p-0"
                 >
                   Sign In
-                </a>
+                </button>
               </p>
             </div>
           </div>

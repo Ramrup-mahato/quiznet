@@ -1,8 +1,6 @@
 import React from "react";
 import QuizBox from "./QuizBox";
-import { useNavigate } from "react-router-dom";
 import {
-  CircularProgressbar,
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
@@ -19,11 +17,7 @@ const Quiz = ({
   handleSeeResult,
   handleReportQuestion,
 }) => {
-  const navigate = useNavigate();
 
-  const goBack = () => {
-    navigate(-1);
-  };
   return (
     <div className="w-full  min-h-[calc(100vh-115px)] lg:min-h-[100vh]  px-3 sm:px-6  gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
       <div
@@ -37,7 +31,7 @@ const Quiz = ({
           <h3>{quizData?.chapterTitle}</h3>
           {test === true && <p>0:20:16</p>}
         </div>
-        <div className="flex gap-3  flex-col sm:flex-row  h-full p-3  max-h-[100vh] ">
+        <div className="flex gap-3  flex-col sm:flex-row  p-3  min-h-[80vh] sm:h-full">
           <div className=" sm:w-[150px] md:w-[250px] lg:w-[400px] bg-[var(--colW2)] dark:bg-slate-800 rounded-md rounded-bl-2xl p-2 ">
             <div className="flex   justify-between items-center gap-3">
               <div>
@@ -97,8 +91,8 @@ const Quiz = ({
               handleSelectAnswers={handleSelectAnswers}
               handleReportQuestion={handleReportQuestion}
             />
-            <div className="w-full flex justify-end gap-2">
-              {quiz?.questionNumber == 0 ? (
+            <div className="w-full flex justify-end gap-2 py-2 sm:py-3">
+              {quiz?.questionNumber === 0 ? (
                 ""
               ) : (
                 <button
@@ -109,7 +103,7 @@ const Quiz = ({
                 </button>
               )}
 
-              {quiz?.questionNumber + 1 == quizData?.questions?.length ? (
+              {quiz?.questionNumber + 1 === quizData?.questions?.length ? (
                 <button
                   onClick={() => handleSeeResult()}
                   className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"

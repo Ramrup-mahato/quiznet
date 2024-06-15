@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFolderPlus, FaPlus, FaUpload } from "react-icons/fa6";
+import { FaPlus } from "react-icons/fa6";
 import { MdQuiz } from "react-icons/md";
 import { IoMdArrowRoundBack, IoMdCloudUpload } from "react-icons/io";
 import TextInput from "../../ReUsable/TextInput";
@@ -59,7 +59,12 @@ const AddSubjectQuestion = ({
           </div>
 
           <div className="flex gap-2 justify-center items-center w-[60%]">
-            <TextInput placeholder={"Search..."} RoundFull={true} value={QuestionDetail.search} handleChange={(e)=>handleSearchQuestion(e)} />
+            <TextInput
+              placeholder={"Search..."}
+              RoundFull={true}
+              value={QuestionDetail.search}
+              handleChange={(e) => handleSearchQuestion(e)}
+            />
             <div
               className="flex justify-center items-center py-1 px-3 gap-1 bg-[var(--colB1)] rounded-full"
               title="Total Question & Answer"

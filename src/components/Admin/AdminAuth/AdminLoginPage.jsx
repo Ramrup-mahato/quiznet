@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import engineer from "../../../assets/image/engineer.png";
 import { FaArrowLeftLong } from "react-icons/fa6";
@@ -24,7 +24,6 @@ const AdminLoginPage = () => {
         ApiCall(values);
       },
     });
-  const [state, setState] = useState({});
   const handleAdminLogin = (path) => {
     navigation(`${path}`);
   };

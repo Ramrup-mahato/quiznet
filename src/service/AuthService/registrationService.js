@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterSchema } from "../../Schema";
-import { toastError, toastSuccess, toastWarning } from "../../utils/tostify";
+import {  toastSuccess, toastWarning } from "../../utils/tostify";
 import { postData } from "../../components/AuthGard/LogGard";
 import { apiResponse } from "../../utils/Helper";
 import ContextStore from "../../context/Context";

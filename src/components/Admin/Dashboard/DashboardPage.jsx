@@ -21,7 +21,7 @@ const DashboardPage = () => {
         <div>
           <img
             src={icon}
-            alt="study image ."
+            alt="study..."
             className="w-[200px] imgShadow "
           />
         </div>

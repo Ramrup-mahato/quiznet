@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const DashboardService = () => {
@@ -81,8 +81,6 @@ const DashboardService = () => {
         x: {
           format: "dd/MM/yy HH:mm",
         },
-      },
-      tooltip: {
         enabled: true,
         fillSeriesColor: true,
       },
@@ -165,8 +163,6 @@ const DashboardService = () => {
         x: {
           format: "dd/MM/yy HH:mm",
         },
-      },
-      tooltip: {
         enabled: true,
         fillSeriesColor: true,
       },
@@ -191,6 +187,8 @@ const DashboardService = () => {
     registerUser,
     commaSeparated,
     handleNavigate,
+    setRegisterUser,
+    setActiveInactive,
   };
 };
 

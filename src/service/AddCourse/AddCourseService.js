@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { courseName, newCorseData } from "../../utils/data";
+// import { courseName, newCorseData } from "../../utils/data";
 import image from "../../assets/image/study3.png";
 import image2 from "../../assets/image/study1.png";
 import { ImageUpload, apiGetResponse, apiResponse } from "../../utils/Helper";
@@ -116,7 +116,6 @@ const AddCourseService = () => {
         folderType: "",
         folderImage: "",
         mainFolderDetails: {},
-        folderType: "",
       };
     });
     setQuestionDetails((old) => {
@@ -351,7 +350,7 @@ const AddCourseService = () => {
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];
-    const result = URL.createObjectURL(file);
+    // const result = URL.createObjectURL(file);
     // let img = document.getElementById(id);
     //   img.src = result;
 
@@ -465,7 +464,7 @@ const AddCourseService = () => {
                 folderType: "",
                 folderImage: "",
                 mainFolderDetails: {},
-                folderType: "",
+              
               };
             });
             handleReset();
@@ -496,7 +495,7 @@ const AddCourseService = () => {
                 folderType: "",
                 folderImage: "",
                 mainFolderDetails: {},
-                folderType: "",
+               
               };
             });
             handleReset();
@@ -525,7 +524,7 @@ const AddCourseService = () => {
               folderType: "",
               folderImage: "",
               mainFolderDetails: {},
-              folderType: "",
+             
             };
           });
           handleReset();
@@ -1072,6 +1071,7 @@ const AddCourseService = () => {
     handleChange,
     handleReset,
     handleSubmit,
+    setEditValue,
     values,
     courseData,
     QuestionDetails,

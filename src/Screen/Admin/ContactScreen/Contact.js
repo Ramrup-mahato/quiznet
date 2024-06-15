@@ -4,10 +4,9 @@ import ContainerBox from "../../../components/ReUsable/ContainerBox";
 import AdminSideBar from "../../../components/Admin/AdminSideBar/AdminSideBar";
 import ContactPage from "../../../components/Admin/Contact/ContactPage";
 import ContextStore from "../../../context/Context";
-import Loader from "../../../components/ReUsable/Loader";
 
 const Contact = () => {
-  const { loaderInFolder, userDetails } = useContext(ContextStore);
+  const { userDetails } = useContext(ContextStore);
   return (
     <Parents>
       <ContainerBox>
@@ -16,7 +15,7 @@ const Contact = () => {
           avatar={""}
           userName={userDetails?.username}
         >
-           <ContactPage />
+          <ContactPage />
         </AdminSideBar>
       </ContainerBox>
     </Parents>

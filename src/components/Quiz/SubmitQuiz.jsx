@@ -1,8 +1,5 @@
 import React from "react";
-import QuizBox from "./QuizBox";
-import { GiCheckMark } from "react-icons/gi";
 import {
-  CircularProgressbar,
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
@@ -89,7 +86,7 @@ const SubmitQuiz = ({
               <div
                 className={`p-1 sm:p-5 bg-[var(--colW2)] dark:bg-gray-800 ${
                   i === 0 && "rounded-t-3xl"
-                } ${i == quizData?.questions?.length - 1 && "rounded-b-3xl"}`}
+                } ${i === quizData?.questions?.length - 1 && "rounded-b-3xl"}`}
                 key={i}
               >
                 <p className="p-2 no-select ">
