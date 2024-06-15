@@ -8,12 +8,16 @@ import Modal from "../../Modal/Modal";
 import QuizBox from "../../Quiz/QuizBox";
 import { GiCheckMark } from "react-icons/gi";
 import Status from "../../ReUsable/Status";
+import Loader from "../../ReUsable/Loader";
+import Answers from "../AddCourse/Answers";
 
 const ReportPage = () => {
   const {
     columns,
     openModal,
     report,
+    loaderInFolder,
+    reportAllData,
     handleModal,
     handleSelectStatus,
     handleSelectAnswer,
@@ -23,69 +27,75 @@ const ReportPage = () => {
   console.log("question ", report?.reportData?.question);
   return (
     <div className="p-4">
-      <div className="bg-[var(--colW2)] dark:bg-slate-800 p-2 rounded-md rounded-t-3xl ">
-        <div className="flex justify-between items-center pb-3  ">
-          <div className="w-[60%]">
-            <TextInput
-              classStyle={"border-none "}
-              RoundFull={true}
-              placeholder={"Search ..."}
+      {loaderInFolder ? (
+        <Loader folderLoader={true} />
+      ) : (
+        <>
+          <div className="bg-[var(--colW2)] dark:bg-slate-800 p-2 rounded-md rounded-t-3xl ">
+            <div className="flex justify-between items-center pb-3  ">
+              <div className="w-[60%]">
+                <TextInput
+                  classStyle={"border-none "}
+                  RoundFull={true}
+                  placeholder={"Search ..."}
+                />
+              </div>
+
+              <div className="flex justify-center items-center bg-white dark:bg-slate-700 rounded-full p-1">
+                <div
+                  className={`w-[70px] flex justify-center items-center p-2  font-bold rounded-full cursor-pointer
+               ${
+                 report?.reportStatus === "pending" &&
+                 " text-[#FEB019] bg-[#fbf3e1] shadow-xl"
+               }`}
+                  onClick={() => handleSelectStatus("pending")}
+                >
+                  <p className="text-[12px]">Pending</p>
+                </div>
+                <div
+                  className={`p-2 w-[70px] flex justify-center items-center  font-bold rounded-full cursor-pointer 
+                ${
+                  report?.reportStatus === "resolve" &&
+                  "  text-[#00E396] bg-[#e4fff6] shadow-xl"
+                }`}
+                  onClick={() => handleSelectStatus("resolve")}
+                >
+                  <p className="text-[12px]">Resolve</p>
+                </div>
+                <div
+                  className={`p-2 w-[70px] flex justify-center items-center font-bold rounded-full cursor-pointer  ${
+                    report?.reportStatus === "reject" &&
+                    " text-rose-500 bg-red-100 shadow-xl"
+                  }`}
+                  onClick={() => handleSelectStatus("reject")}
+                >
+                  <p className="text-[12px]">Reject</p>
+                </div>
+              </div>
+            </div>
+            <DataTable
+              //   title="Contact List"
+              columns={columns}
+              data={reportAllData}
+              defaultSortField="name"
+              striped
+              // pagination
+              subHeader={false}
+
+              // subHeaderComponent={subHeaderComponent}
             />
           </div>
-
-          <div className="flex justify-center items-center bg-white dark:bg-slate-700 rounded-full p-1">
-            <div
-              className={`w-[70px] flex justify-center items-center p-2  font-bold rounded-full cursor-pointer
-             ${
-               report?.reportStatus === "pending" &&
-               " text-[#FEB019] bg-[#fbf3e1] shadow-xl"
-             }`}
-              onClick={() => handleSelectStatus("pending")}
-            >
-              <p className="text-[12px]">Pending</p>
-            </div>
-            <div
-              className={`p-2 w-[70px] flex justify-center items-center  font-bold rounded-full cursor-pointer 
-              ${
-                report?.reportStatus === "resolve" &&
-                "  text-[#00E396] bg-[#e4fff6] shadow-xl"
-              }`}
-              onClick={() => handleSelectStatus("resolve")}
-            >
-              <p className="text-[12px]">Resolve</p>
-            </div>
-            <div
-              className={`p-2 w-[70px] flex justify-center items-center font-bold rounded-full cursor-pointer  ${
-                report?.reportStatus === "reject" &&
-                " text-rose-500 bg-red-100 shadow-xl"
-              }`}
-              onClick={() => handleSelectStatus("reject")}
-            >
-              <p className="text-[12px]">Reject</p>
-            </div>
-          </div>
-        </div>
-        <DataTable
-          //   title="Contact List"
-          columns={columns}
-          data={report?.reportData}
-          defaultSortField="name"
-          striped
-          // pagination
-          subHeader={false}
-
-          // subHeaderComponent={subHeaderComponent}
-        />
-      </div>
-      <ReportModal
-        report={report}
-        openModal={openModal}
-        handleModal={handleModal}
-        question={report?.reportQuestion?.questions}
-        handleSelectAnswer={handleSelectAnswer}
-        handleSelectOption={handleSelectOption}
-        handleModelSave={handleModelSave}
-      />
+          <ReportModal
+            report={report}
+            openModal={openModal}
+            handleModal={handleModal}
+            question={report?.reportQuestion?.questions}
+            handleSelectAnswer={handleSelectAnswer}
+            handleSelectOption={handleSelectOption}
+            handleModelSave={handleModelSave}
+          />
+        </>
+      )}
       <div></div>
     </div>
   );
@@ -102,68 +112,65 @@ const ReportModal = ({
   return (
     <>
       <Modal open={openModal} onClose={handleModal}>
-        <div className="w-[500px] min-h-[500px] bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500 rounded-tr-3xl rounded-bl-3xl ">
+        <div className="w-[500px]  max-h-[600px] bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500 rounded-tr-3xl rounded-bl-3xl">
           <div
             className="flex justify-between bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
       font-semibold text-base  dark:shadow-gray-900 p-3 rounded-tr-3xl"
           >
             <h3>Report Question</h3>
           </div>
-          {question?.map((que, i) => (
-            <div
-              className={` sm:p-5 bg-[var(--colW2)] dark:bg-gray-800 ${
-                i === 0 && "rounded-t-3xl"
-              } ${i == question?.length - 1 && "rounded-b-3xl"}`}
-              key={i}
-            >
-              <p className="p-2 no-select ">Q. {que?.question}</p>
-              <div className="py-2  sm:pl-10 ">
-                {que?.option?.map((ans, i) => (
-                  <div
-                    key={i}
-                    className={` px-2 py-1 sm:py-2 m-1 flex items-center gap-3 rounded-full 
-                          ${
-                            que?.yourAnswer == que?.correctAnswer
-                              ? que?.yourAnswer == ans?.name &&
-                                "bg-green-700 text-[var(--colW2)]"
-                              : `${
-                                  que?.yourAnswer == ans?.name &&
-                                  "bg-red-300 dark:bg-red-900 "
-                                } ${
-                                  que?.correctAnswer == ans?.name &&
-                                  "bg-green-300 dark:bg-lime-900 "
-                                }`
-                          } `}
-                  >
-                    <p className="text-[14px] no-select w-full flex gap-2   items-center ">
-                      {que?.yourAnswer == que?.correctAnswer ? (
-                        que?.yourAnswer == ans?.name && (
-                          <GiCheckMark
-                            size={20}
-                            className="text-[var(--colB3)] "
-                          />
-                        )
-                      ) : (
-                        <>
-                          {ans?.name == que?.correctAnswer ? (
-                            <span className="p-2 bg-slate-300 dark:bg-slate-500 text-[12px] font-bold rounded-full ">
-                              Answer
-                            </span>
-                          ) : null}
-                          {ans?.name == que?.yourAnswer ? (
-                            <span className="p-2 bg-slate-300 dark:bg-slate-500 text-[12px] font-bold rounded-full ">
-                              user Answer
-                            </span>
-                          ) : null}
-                        </>
-                      )}{" "}
-                      {ans?.que}
-                    </p>
-                  </div>
-                ))}
+
+          <div className="w-full max-h-[400px] overflow-scroll">
+            <div className="flex justify-between items-center px-2">
+              <div className="flex justify-start items-center gap-1 w-full">
+                <p className="p-2 no-select ">
+                  Q. {report?.reportQuestion?.[0]?.qsId?.question}
+                </p>
               </div>
             </div>
-          ))}
+            {report?.reportQuestion?.[0]?.qsId?.questionsImg ? (
+              <div className="px-4 py-2 border-[2px] rounded-lg">
+                <img
+                  src={report?.reportQuestion?.[0]?.qsId?.questionsImg}
+                  alt="course"
+                  className=" max-h-[200px] rounded-lg object-cover mb-2 "
+                />
+              </div>
+            ) : (
+              ""
+            )}
+
+            <div className="sm:pl-10 ">
+              <Answers
+                answerTitle={report?.reportQuestion?.[0]?.qsId?.a}
+                correctAns={report?.reportQuestion?.[0]?.qsId?.correctAnswer}
+                answerNo={"a"}
+                img={report?.reportQuestion?.[0]?.qsId?.aImg}
+                userAnswer={report?.reportQuestion?.[0]?.userAnswer}
+              />
+              <Answers
+                answerTitle={report?.reportQuestion?.[0]?.qsId?.b}
+                correctAns={report?.reportQuestion?.[0]?.qsId?.correctAnswer}
+                answerNo={"b"}
+                img={report?.reportQuestion?.[0]?.qsId?.bImg}
+                userAnswer={report?.reportQuestion?.[0]?.userAnswer}
+              />
+              <Answers
+                answerTitle={report?.reportQuestion?.[0]?.qsId?.c}
+                correctAns={report?.reportQuestion?.[0]?.qsId?.correctAnswer}
+                answerNo={"c"}
+                img={report?.reportQuestion?.[0]?.qsId?.cImg}
+                userAnswer={report?.reportQuestion?.[0]?.userAnswer}
+              />
+              <Answers
+                answerTitle={report?.reportQuestion?.[0]?.qsId?.d}
+                correctAns={report?.reportQuestion?.[0]?.qsId?.correctAnswer}
+                answerNo={"d"}
+                img={report?.reportQuestion?.[0]?.qsId?.dImg}
+                userAnswer={report?.reportQuestion?.[0]?.userAnswer}
+              />
+            </div>
+          </div>
           <div className="p-3">
             <Status
               selector={["pending", "resolve", "reject"]}

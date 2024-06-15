@@ -14,7 +14,7 @@ const Status = ({ selector, title, state, handleSelectOption }) => {
 
   }
   return (
-    <div className="w-full flex justify-between items-center p-4 rounded-full shadow-xl bg-white dark:bg-slate-700">
+    <div className="w-full flex justify-between items-center p-4 rounded-full shadow bg-white dark:bg-slate-700">
       <div>
         <p>{title}</p>
       </div>

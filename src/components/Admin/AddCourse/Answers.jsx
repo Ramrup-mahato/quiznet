@@ -3,11 +3,10 @@ import TextInput from "../../ReUsable/TextInput";
 import { CorrectAnswer } from "../../../utils/Helper";
 
 const Answers = ({
-  QuestionDetail,
   answerTitle,
   correctAns,
-  question,
   img,
+  userAnswer,
   answerNo,
 }) => {
   const isCorrect = CorrectAnswer(answerNo, correctAns);
@@ -22,14 +21,14 @@ const Answers = ({
         <p
           className={`font-extrabold rounded-full  border-[3px] px-2 ${
             isCorrect ? "yourAnswer" : ""
-          } `}
+          } ${userAnswer===answerNo?'correctAns':''}`}
         >
           {answerNo.toUpperCase()}
         </p>
       </div>
       <div
         className={`min-w-[285px] sm:min-w-[300px] m-1 text-[14px] sm:text-[15px] hover:shadow-lg  flex items-start gap-3 flex-col border-[3px] px-2 rounded-lg
-        } ${isCorrect ? "yourAnswer" : ""}  `}
+        } ${isCorrect ? "yourAnswer" : ""}  ${userAnswer===answerNo?'correctAns':''} `}
       >
         <p className="p-2 no-select ">{answerTitle}</p>
         {img ? (

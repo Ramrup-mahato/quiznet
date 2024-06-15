@@ -1,10 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { FaEye } from "react-icons/fa";
-import { Capitalized } from "../../utils/Helper";
-import { dataReport } from "../../utils/data";
+import {
+  Capitalized,
+  DateConverter,
+  apiGetResponse,
+  apiResponse,
+} from "../../utils/Helper";
+import { toastError } from "../../utils/tostify";
+import ContextStore from "../../context/Context";
+import {
+  getData,
+  updateData,
+} from "../../components/AuthGard/LogGard";
 
 const ReportService = () => {
-  const [reportAllData,setReportAllData]=useState(dataReport)
+  const { token, setLoaderInFolder, loaderInFolder, setIsLoader } =
+    useContext(ContextStore);
+  const [reportAllData, setReportAllData] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [report, setReport] = useState({
     reportStatus: "pending",
@@ -13,11 +25,9 @@ const ReportService = () => {
     reportStatusOption: "pending",
     modelId: "",
   });
+  console.log("report", report);
 
-  //   const filteredItems = dataReport.filter(
-  //     (item) => item.name && item.name.includes(filterText)
-  //   );
-  // select Status
+  // -----------select Status
   const handleSelectStatus = (status) => {
     setReport((oldData) => {
       return {
@@ -27,7 +37,7 @@ const ReportService = () => {
     });
   };
 
-  // module  open true or false
+  //-------------- module  open true or false
   const handleModal = (question, status, id) => {
     setReport((oldData) => {
       return {
@@ -49,7 +59,7 @@ const ReportService = () => {
     // setQuizData({ ...arr });
   };
 
-  // set date option from
+  //-------------- set date option from
   const handleSelectOption = (ele) => {
     setReport((oldData) => {
       return {
@@ -58,36 +68,31 @@ const ReportService = () => {
       };
     });
   };
-  // Model Save
-  const handleModelSave = () => {
-    let data=[...reportAllData];
-    data.forEach((ele,i)=>{
-      if (ele && report && ele.id === report.modelId) {
-        let status = report.reportStatusOption;
-        ele.status = status;
+  //------------- Model Save
+  const handleModelSave = async () => {
+    try {
+      setIsLoader(true);
+      let json = {
+        _id: report?.modelId,
+        status: report?.reportStatusOption,
+        qsId: report?.reportQuestion?.[0]?.qsId?._id,
+        correctAnswer: report?.reportQuestion?.[0]?.userAnswer,
+      };
+      let res = await apiResponse(await updateData("/report", json, token));
+      if(res.success){
+        setIsLoader(false);
+        getAPIData()
+        handleModal();
       }
-    })
-    setReportAllData([...data])
-    handleModal();
+    } catch (error) {
+      setIsLoader(false);
+
+      toastError(error.message);
+      console.log(error);
+    }
   };
-  // columns data create for dataTable
+  //-------------- columns data create for dataTable
   const columns = [
-    {
-      name: "Report No",
-      selector: (item) => item?.id,
-      sortable: true,
-      hide: "lg",
-      //   hide: "md",
-      //   button: true,
-      grow: 0,
-      cell: (row) => (
-        <>
-          <div>
-            <p>{row?.id}</p>
-          </div>
-        </>
-      ),
-    },
     {
       name: "User",
       selector: (e) => e.username,
@@ -95,41 +100,53 @@ const ReportService = () => {
       //   hide: "lg",
       grow: 2,
 
-      cell: (row) => (
+      cell: (row, i) => (
         <>
           <div className="flex justify-center items-center gap-2 p-2">
-            <img
-              src={row?.userImage}
-              className="w-10 h-10 rounded-full"
-              alt="image ..."
-            />
-            <p>{Capitalized(row?.username)}</p>
+            <p className="font-semibold">{`${i + 1}.`}</p>
+            {row?.userId?.avatar ? (
+              <img
+                src={row?.userId?.avatar}
+                alt="Avatar"
+                className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
+              />
+            ) : (
+              <div className="">
+                <p
+                  className="w-10 h-10 rounded-full border-white border-2  flex justify-center items-center font-bold 
+                   bg-[#512Dab] text-[var(--colW2)] text-[25px] imageAvatar"
+                >
+                  {row?.userId?.username?.slice(0, 1).toUpperCase()}
+                </p>
+              </div>
+            )}
+            <p>{Capitalized(row?.userId?.username)}</p>
           </div>
         </>
       ),
     },
     {
       name: "Phone",
-      selector: (e) => e.userPhone,
+      selector: (e) => e?.userId?.phone,
       sortable: true,
       hide: "lg",
 
       cell: (row) => (
         <>
           <div className=" ">
-            <p>{row?.userPhone}</p>
+            <p>{row?.userId?.phone}</p>
           </div>
         </>
       ),
     },
     {
       name: "Report Date",
-      selector: (e) => e.date,
+      selector: (e) => e.createdOn,
       sortable: true,
       cell: (row) => (
         <>
           <div className=" ">
-            <p>{row?.date}</p>
+            <p>{DateConverter(row?.createdOn)}</p>
           </div>
         </>
       ),
@@ -163,7 +180,9 @@ const ReportService = () => {
             <FaEye
               size={20}
               className="cursor-pointer text-[var(--colB1)]"
-              onClick={() => handleModal(row?.question, row?.status, row?.id)}
+              onClick={() =>
+                handleModal(row?.questionDetail, row?.status, row?._id)
+              }
             />
           </div>
         </>
@@ -171,7 +190,7 @@ const ReportService = () => {
     },
     {
       name: "Status",
-      selector: (item) => item.status,
+      selector: (item) => item?.status,
       sortable: true,
       cell: (row) => (
         <>
@@ -189,22 +208,32 @@ const ReportService = () => {
     },
   ];
 
-  // filter Data
-  const FilterReport = (data, condition) =>
-    data?.filter((ele) => ele?.status == condition);
+  // --------------------fetching Data--------------------
+  const getAPIData = async () => {
+    try {
+      setLoaderInFolder(true);
+      let res = await apiGetResponse(
+        await getData(`/report?query=${report?.reportStatus}`, token)
+      );
+      if (res?.success) {
+        setLoaderInFolder(false);
+        setReportAllData(res?.data);
+      }
+    } catch (error) {
+      setLoaderInFolder(false);
+      console.log(error);
+      toastError(error?.message || "something went wrong!");
+    }
+  };
   useEffect(() => {
-    const data = FilterReport(reportAllData, report?.reportStatus);
-    setReport((oldData) => {
-      return {
-        ...oldData,
-        reportData: data,
-      };
-    });
-  }, [report.reportStatus,reportAllData]);
+    getAPIData();
+  }, [report?.reportStatus]);
   return {
     columns,
     openModal,
     report,
+    loaderInFolder,
+    reportAllData,
     handleModal,
     handleSelectStatus,
     handleSelectAnswer,

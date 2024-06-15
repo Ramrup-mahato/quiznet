@@ -34,33 +34,33 @@ const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
       <div className=" ">
         <QuestionShow
           // question={question}
-          answerTitle={question.a}
-          correctAns={question.correctAnswer}
+          answerTitle={question?.a}
+          correctAns={question?.correctAnswer}
           yourAns={question?.yourAnswer}
           answerNo={"a"}
           answerResult={
             question?.yourAnswer === "a"
-              ? question.correctAnswer === question?.yourAnswer
+              ? question?.correctAnswer === question?.yourAnswer
                 ? "correct"
                 : "wrong"
               : null
           }
           questionId={question?._id}
-          img={question.aImg}
+          img={question?.aImg}
           handleSelectAnswers={handleSelectAnswers}
         />
         <QuestionShow
           // question={question}
-          answerTitle={question.b}
-          correctAns={question.correctAnswer}
+          answerTitle={question?.b}
+          correctAns={question?.correctAnswer}
           answerNo={"b"}
-          img={question.bImg}
+          img={question?.bImg}
           handleSelectAnswers={handleSelectAnswers}
           yourAns={question?.yourAnswer}
           questionId={question?._id}
           answerResult={
             question?.yourAnswer === "b"
-              ? question.correctAnswer === question?.yourAnswer
+              ? question?.correctAnswer === question?.yourAnswer
                 ? "correct"
                 : "wrong"
               : null
@@ -68,16 +68,16 @@ const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
         />
         <QuestionShow
           // question={question}
-          answerTitle={question.c}
-          correctAns={question.correctAnswer}
+          answerTitle={question?.c}
+          correctAns={question?.correctAnswer}
           answerNo={"c"}
-          img={question.cImg}
+          img={question?.cImg}
           handleSelectAnswers={handleSelectAnswers}
           yourAns={question?.yourAnswer}
           questionId={question?._id}
           answerResult={
             question?.yourAnswer === "c"
-              ? question.correctAnswer === question?.yourAnswer
+              ? question?.correctAnswer === question?.yourAnswer
                 ? "correct"
                 : "wrong"
               : null
@@ -85,16 +85,16 @@ const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
         />
         <QuestionShow
           // question={question}
-          answerTitle={question.d}
-          correctAns={question.correctAnswer}
+          answerTitle={question?.d}
+          correctAns={question?.correctAnswer}
           answerNo={"d"}
-          img={question.dImg}
+          img={question?.dImg}
           handleSelectAnswers={handleSelectAnswers}
           yourAns={question?.yourAnswer}
           questionId={question?._id}
           answerResult={
             question?.yourAnswer === "d"
-              ? question.correctAnswer === question?.yourAnswer
+              ? question?.correctAnswer === question?.yourAnswer
                 ? "correct"
                 : "wrong"
               : null
