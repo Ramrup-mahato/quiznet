@@ -2,7 +2,7 @@
   "name": "quiznet",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://quiznet.vercel.app",
   "engines": {
     "node": "20.x",
     "npm": "10.x"
