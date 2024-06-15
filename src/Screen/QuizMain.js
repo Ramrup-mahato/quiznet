@@ -9,6 +9,9 @@ import SubmitQuiz from "../components/Quiz/SubmitQuiz";
 import "react-circular-progressbar/dist/styles.css";
 import Loader from "../components/ReUsable/Loader";
 import NotFound from "../components/ReUsable/NotFound ";
+import Modal from "../components/Modal/Modal";
+import { FaFolderOpen } from "react-icons/fa6";
+import TextInput from "../components/ReUsable/TextInput";
 
 const QuizMain = () => {
   const {
@@ -16,6 +19,7 @@ const QuizMain = () => {
     quizData,
     quiz,
     loaderInFolder,
+    reportQuestion,
     handleSelectQuestion,
     handleSelectAnswers,
     handleNextQuestion,
@@ -23,6 +27,8 @@ const QuizMain = () => {
     handleSeeResult,
     handleNextQuiz,
     handleAgainQuiz,
+    handleReportQuestion,
+    handleSelectReportAnswer,
   } = QuizService();
 
   return (
@@ -37,21 +43,21 @@ const QuizMain = () => {
               </div>
             ) : (
               <>
-              {
-                quizData?.questions?.length>0?
-
-                <Quiz
-                  quizData={quizData}
-                  handleSelectQuestion={handleSelectQuestion}
-                  question={question}
-                  quiz={quiz}
-                  handleSelectAnswers={handleSelectAnswers}
-                  handleNextQuestion={handleNextQuestion}
-                  handlePreviousQuestion={handlePreviousQuestion}
-                  handleSeeResult={handleSeeResult}
-                />:
-                <NotFound />
-              }
+                {quizData?.questions?.length > 0 ? (
+                  <Quiz
+                    quizData={quizData}
+                    handleSelectQuestion={handleSelectQuestion}
+                    question={question}
+                    quiz={quiz}
+                    handleSelectAnswers={handleSelectAnswers}
+                    handleNextQuestion={handleNextQuestion}
+                    handlePreviousQuestion={handlePreviousQuestion}
+                    handleSeeResult={handleSeeResult}
+                    handleReportQuestion={handleReportQuestion}
+                  />
+                ) : (
+                  <NotFound />
+                )}
               </>
             )}
           </>
@@ -67,8 +73,83 @@ const QuizMain = () => {
         )}
       </ContainerBox>
       <Footer />
+      <ReportModal
+        handleReportQuestion={handleReportQuestion}
+        reportQuestion={reportQuestion}
+        handleSelectReportAnswer={handleSelectReportAnswer}
+      />
     </Parents>
   );
 };
 
 export default QuizMain;
+
+const ReportModal = ({
+  handleReportQuestion,
+  reportQuestion,
+  handleSelectReportAnswer,
+}) => {
+  return (
+    <Modal open={reportQuestion.reportModal} onClose={handleReportQuestion}>
+      <div className="min-w-[300px] sm:w-[500px]  bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500 rounded-tr-3xl rounded-bl-3xl ">
+        <div
+          className="flex items-center bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
+          font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-2 rounded-tr-3xl"
+        >
+          <h3>Report Details</h3>
+        </div>
+        <div className=" flex pt-5 flex-row justify-between items-center px-4">
+          <p className="text-[13px] font-bold text-gray-600 dark:text-[var(--colW2)]">
+            Select corrected Answer
+          </p>
+        </div>
+
+        <div className="w-full flex justify-start items-center gap-2 py-2 px-4">
+          {["a", "b", "c", "d"].map((ele, i) => (
+            <div
+              key={i}
+              className={`flex items-start gap-3  cursor-pointer `}
+              onClick={() => handleSelectReportAnswer(ele)}
+            >
+              <p
+                className={`font-extrabold rounded-full  border-[3px] px-2  bg-white 
+                 ${
+                   reportQuestion?.yourAnswer === ele &&
+                   "shadow-md shadow-green-800 border-green-800  text-green-800"
+                 }  
+                `}
+              >
+                {ele.toUpperCase()}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="px-4">
+          <TextInput
+            name={"folder"}
+            require
+            textarea
+            label={"Message"}
+            placeholder={"Please enter message here..."}
+          />
+
+          <div className="w-full flex justify-end items-center gap-2 p-3">
+            <button
+              className="w-[100px] flex justify-center items-center font-medium text=[14px] shadow-2xl bg-white dark:bg-slate-700 border-[2px] border-rose-500 s cursor-pointer rounded-md py-1 px-3"
+              onClick={handleReportQuestion}
+            >
+              Cancel
+            </button>
+            <button
+              className="w-[100px] flex justify-center items-center font-medium text=[14px] shadow-2xl bg-[var(--colB1)] border border-[var(--colB1)] text-white cursor-pointer rounded-md py-1 px-3"
+              type="submit"
+              // onClick={() => handleSubmit()}
+            >
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+};

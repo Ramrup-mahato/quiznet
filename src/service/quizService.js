@@ -20,6 +20,13 @@ const QuizService = () => {
     time: 3,
     noOfGivenAnswer: 0,
   });
+  const [reportQuestion, setReportQuestion] = useState({
+    //-----report data
+    qsId: "",
+    reportModal: false,
+    message: "",
+    errorMessage:''
+  });
   // console.log("quizData", quizData);
   const { quizpath, path } = useParams();
   const navigation = useNavigate();
@@ -128,7 +135,22 @@ const QuizService = () => {
       };
     });
   };
-
+  // --------------------Report Question open modal--------------------------
+  const handleReportQuestion = (qsId) => {
+    setReportQuestion((prev) => ({
+      ...prev,
+      qsId: qsId,
+      reportModal: !prev.reportModal,
+      yourAnswer: "",
+    }));
+  };
+  // ---------------------
+  const handleSelectReportAnswer = (ele) => {
+    setReportQuestion((prev) => ({
+      ...prev,
+      yourAnswer: ele,
+    }));
+  };
   // ------------------get chapter and  Question APi--------------
   const getChapter = async () => {
     try {
@@ -161,6 +183,7 @@ const QuizService = () => {
     quizData,
     quiz,
     loaderInFolder,
+    reportQuestion,
     handleSelectQuestion,
     handleSelectAnswers,
     handleNextQuestion,
@@ -168,6 +191,8 @@ const QuizService = () => {
     handleSeeResult,
     handleNextQuiz,
     handleAgainQuiz,
+    handleReportQuestion,
+    handleSelectReportAnswer,
   };
 };
 

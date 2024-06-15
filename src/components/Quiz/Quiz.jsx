@@ -17,6 +17,7 @@ const Quiz = ({
   handleNextQuestion,
   handlePreviousQuestion,
   handleSeeResult,
+  handleReportQuestion,
 }) => {
   const navigate = useNavigate();
 
@@ -36,9 +37,9 @@ const Quiz = ({
           <h3>{quizData?.chapterTitle}</h3>
           {test === true && <p>0:20:16</p>}
         </div>
-        <div className="flex gap-3  flex-col sm:flex-row w-full h-full p-3  max-h-[100vh] overflow-x-scroll sm:overflow-y-scroll sm:overflow-hidden whitespace-nowrap scrollBarY">
+        <div className="flex gap-3  flex-col sm:flex-row  h-full p-3  max-h-[100vh] ">
           <div className=" sm:w-[150px] md:w-[250px] lg:w-[400px] bg-[var(--colW2)] dark:bg-slate-800 rounded-md rounded-bl-2xl p-2 ">
-            <div className="flex w-full  justify-between items-center gap-3">
+            <div className="flex   justify-between items-center gap-3">
               <div>
                 <p className="font-extrabold sm:font-semibold  text-[var(--colB1)] text-[12px] sm:text-[15px] ">
                   Total Question:{quiz?.totalQuestion}
@@ -94,6 +95,7 @@ const Quiz = ({
             <QuizBox
               question={question}
               handleSelectAnswers={handleSelectAnswers}
+              handleReportQuestion={handleReportQuestion}
             />
             <div className="w-full flex justify-end gap-2">
               {quiz?.questionNumber == 0 ? (

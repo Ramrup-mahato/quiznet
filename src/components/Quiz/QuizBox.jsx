@@ -1,14 +1,24 @@
 import React from "react";
 import Answers from "../Admin/AddCourse/Answers";
 import QuestionShow from "./QuestionShow";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
-const QuizBox = ({ question, handleSelectAnswers }) => {
+const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
   // console.log("============",question);
   return (
     <div className=" sm:p-5">
-      <p className="p-2 no-select text-[15px] sm:text-[16px] ">
-        Q. {question?.question}
-      </p>
+      <div className="flex justify-between items-center">
+        <div>
+          <p className="p-2 no-select text-[15px] sm:text-[16px] ">
+            Q. {question?.question}
+          </p>
+        </div>
+        <BsThreeDotsVertical
+          className="cursor-pointer "
+          size={15}
+          onClick={() => handleReportQuestion(question?._id)}
+        />
+      </div>
       {question?.questionsImg ? (
         <div className="px-4 py-2 border-[2px] rounded-lg">
           <img
@@ -29,8 +39,11 @@ const QuizBox = ({ question, handleSelectAnswers }) => {
           yourAns={question?.yourAnswer}
           answerNo={"a"}
           answerResult={
-            question?.yourAnswer === "a"? question.correctAnswer===question?.yourAnswer?'correct':'wrong':null
-             
+            question?.yourAnswer === "a"
+              ? question.correctAnswer === question?.yourAnswer
+                ? "correct"
+                : "wrong"
+              : null
           }
           questionId={question?._id}
           img={question.aImg}
@@ -46,7 +59,11 @@ const QuizBox = ({ question, handleSelectAnswers }) => {
           yourAns={question?.yourAnswer}
           questionId={question?._id}
           answerResult={
-            question?.yourAnswer === "b"? question.correctAnswer===question?.yourAnswer?'correct':'wrong':null
+            question?.yourAnswer === "b"
+              ? question.correctAnswer === question?.yourAnswer
+                ? "correct"
+                : "wrong"
+              : null
           }
         />
         <QuestionShow
@@ -59,7 +76,11 @@ const QuizBox = ({ question, handleSelectAnswers }) => {
           yourAns={question?.yourAnswer}
           questionId={question?._id}
           answerResult={
-            question?.yourAnswer === "c"? question.correctAnswer===question?.yourAnswer?'correct':'wrong':null
+            question?.yourAnswer === "c"
+              ? question.correctAnswer === question?.yourAnswer
+                ? "correct"
+                : "wrong"
+              : null
           }
         />
         <QuestionShow
@@ -72,7 +93,11 @@ const QuizBox = ({ question, handleSelectAnswers }) => {
           yourAns={question?.yourAnswer}
           questionId={question?._id}
           answerResult={
-            question?.yourAnswer === "d"? question.correctAnswer===question?.yourAnswer?'correct':'wrong':null
+            question?.yourAnswer === "d"
+              ? question.correctAnswer === question?.yourAnswer
+                ? "correct"
+                : "wrong"
+              : null
           }
         />
       </div>
