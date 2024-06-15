@@ -29,6 +29,8 @@ const QuizMain = () => {
     handleAgainQuiz,
     handleReportQuestion,
     handleSelectReportAnswer,
+    handleSubmitReportQuestion,
+    handleReportText,
   } = QuizService();
 
   return (
@@ -71,13 +73,15 @@ const QuizMain = () => {
             handleAgainQuiz={handleAgainQuiz}
           />
         )}
-      </ContainerBox>
-      <Footer />
       <ReportModal
         handleReportQuestion={handleReportQuestion}
         reportQuestion={reportQuestion}
         handleSelectReportAnswer={handleSelectReportAnswer}
+        handleSubmitReportQuestion={handleSubmitReportQuestion}
+        handleReportText={handleReportText}
       />
+      </ContainerBox>
+      <Footer />
     </Parents>
   );
 };
@@ -88,6 +92,8 @@ const ReportModal = ({
   handleReportQuestion,
   reportQuestion,
   handleSelectReportAnswer,
+  handleSubmitReportQuestion,
+  handleReportText,
 }) => {
   return (
     <Modal open={reportQuestion.reportModal} onClose={handleReportQuestion}>
@@ -129,8 +135,12 @@ const ReportModal = ({
             name={"folder"}
             require
             textarea
+            error={reportQuestion?.errorMessage.length > 0 ? true : false}
+            errorMessage={reportQuestion?.errorMessage}
             label={"Message"}
             placeholder={"Please enter message here..."}
+            handleChange={handleReportText}
+            value={reportQuestion?.message}
           />
 
           <div className="w-full flex justify-end items-center gap-2 p-3">
@@ -143,7 +153,7 @@ const ReportModal = ({
             <button
               className="w-[100px] flex justify-center items-center font-medium text=[14px] shadow-2xl bg-[var(--colB1)] border border-[var(--colB1)] text-white cursor-pointer rounded-md py-1 px-3"
               type="submit"
-              // onClick={() => handleSubmit()}
+              onClick={() => handleSubmitReportQuestion()}
             >
               Save
             </button>

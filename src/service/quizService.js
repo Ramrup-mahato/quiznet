@@ -3,8 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { topicsName } from "../utils/data";
 import { toastError } from "../utils/tostify";
 import ContextStore from "../context/Context";
-import { apiGetResponse } from "../utils/Helper";
-import { getData } from "../components/AuthGard/LogGard";
+import { apiGetResponse, apiResponse } from "../utils/Helper";
+import { getData, postData } from "../components/AuthGard/LogGard";
 
 const QuizService = () => {
   const [question, setQuestion] = useState({}); //selected show Question
@@ -25,12 +25,13 @@ const QuizService = () => {
     qsId: "",
     reportModal: false,
     message: "",
-    errorMessage:''
+    errorMessage: "",
+    yourAnswer: "",
   });
   // console.log("quizData", quizData);
   const { quizpath, path } = useParams();
   const navigation = useNavigate();
-  const { token, setIsLoader, setLoaderInFolder, loaderInFolder,userDetails } =
+  const { token, setIsLoader, setLoaderInFolder, loaderInFolder, userDetails } =
     useContext(ContextStore);
   // console.log("quizpath", quizpath);
   const handleSelectQuestion = (i) => {
@@ -144,12 +145,58 @@ const QuizService = () => {
       yourAnswer: "",
     }));
   };
-  // ---------------------
+  // ---------------------handle change  Report Text-----------------------
+  const handleReportText = (e) => {
+    setReportQuestion((prev) => ({
+      ...prev,
+      message: e.target.value,
+      errorMessage: "",
+    }));
+  };
+  // ---------------------Submit Report --------------
   const handleSelectReportAnswer = (ele) => {
     setReportQuestion((prev) => ({
       ...prev,
       yourAnswer: ele,
     }));
+  };
+  // -------------Report Question submit -----------------
+  const handleSubmitReportQuestion = async () => {
+    try {
+      if (reportQuestion?.message.length > 5) {
+        setIsLoader(true);
+        let json = {
+          userId: userDetails?._id,
+          message: reportQuestion?.message,
+          questionDetail: [
+            {
+              qsId: reportQuestion?.qsId,
+              userAnswer: reportQuestion?.yourAnswer,
+            },
+          ],
+        };
+        let res = await apiResponse(await postData("/report", json, token));
+        if (res.success) {
+          setIsLoader(false);
+          setReportQuestion((prev) => ({
+            ...prev,
+            qsId: '',
+            reportModal: !prev.reportModal,
+            yourAnswer: "",
+            message:''
+          }));
+        }
+      } else {
+        setReportQuestion((prev) => ({
+          ...prev,
+          errorMessage: "Please enter a message with more than 5 characters.",
+        }));
+      }
+    } catch (error) {
+      setIsLoader(false);
+      toastError(error.message || "something went wrong");
+      console.log(error);
+    }
   };
   // ------------------get chapter and  Question APi--------------
   const getChapter = async () => {
@@ -193,6 +240,8 @@ const QuizService = () => {
     handleAgainQuiz,
     handleReportQuestion,
     handleSelectReportAnswer,
+    handleSubmitReportQuestion,
+    handleReportText,
   };
 };
 

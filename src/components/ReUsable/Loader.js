@@ -16,7 +16,7 @@ const Loader = ({ folderLoader }) => {
         <>
           <div
             id="modal-overlay"
-            className="fixed top-0 left-0 w-full h-full bg-[#00000099] flex items-center justify-center"
+            className="fixed top-0 left-0 w-full h-full bg-[#00000099] flex items-center justify-center z-50"
           >
             <div className=" loader"></div>
           </div>
