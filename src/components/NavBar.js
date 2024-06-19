@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import logo1 from "../assets/image/quizNet2.png";
-import avatar from "../assets/image/ramrup pic.JPG";
+// import avatar from "../assets/image/ramrup pic.JPG";
 import ToggleButton from "./ToggleButton";
 import { NavLink } from "react-router-dom";
 import { navRoute } from "../routes/NavigationRoute";
+import ContextStore from "../context/Context";
 
 const NavBar = ({ pageName }) => {
-  const userName = "Ramrup";
+  const {userDetails}=useContext(ContextStore)
+  // const userName = "amrup";
   // const avatar=""
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
   const [visibleTop, setVisibleTop] = useState(false);
   const [navMenu, setNavMenu] = useState(false);
-  console.log(visibleTop);
+  console.log("userDetails",userDetails);
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const isScrollingDown = currentScrollPos > prevScrollPos;
@@ -66,9 +68,9 @@ const NavBar = ({ pageName }) => {
           </div>
           {/* <RxHamburgerMenu className="w-6 h-6 mx-2 sm:hidden  cursor-pointer" /> */}
           <div className="w-10 overflow-hidden relative cursor-pointer  flex justify-center items-center ">
-            {avatar ? (
+            {userDetails?.avatar ? (
               <img
-                src={avatar}
+                src={userDetails?.avatar}
                 alt="Avatar"
                 className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
                 onClick={() => handleNavMenu()}
@@ -80,7 +82,7 @@ const NavBar = ({ pageName }) => {
                    bg-[#512Dab] text-[var(--colW2)] text-[25px]"
                   onClick={() => handleNavMenu()}
                 >
-                  {userName[0].toUpperCase()}
+                  {userDetails?.username?.slice(0,1)?.toUpperCase()}
                 </p>
               </div>
             )}

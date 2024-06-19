@@ -41,8 +41,8 @@ const AddQuestionModal = ({
 
         <div className="p-4 overflow-scroll min-w-[500px] h-[530px] ">
           {["Que", "A", "B", "C", "D"].map((ele, i) => (
-            <>
-              <div key={i} className="flex flex-row justify-center items-center">
+            <div key={i}>
+              <div  className="flex flex-row justify-center items-center">
                 <input
                   type="radio"
                   name={`${ele}`}
@@ -100,7 +100,7 @@ const AddQuestionModal = ({
                   )}
                 </div>
               )}
-            </>
+            </div>
           ))}
           <div className="w-full flex justify-end items-center gap-2 p-3">
             <button

@@ -12,7 +12,7 @@ const Contact = () => {
       <ContainerBox>
         <AdminSideBar
           selected={"Contact user"}
-          avatar={""}
+          avatar={userDetails?.avatar}
           userName={userDetails?.username}
         >
           <ContactPage />

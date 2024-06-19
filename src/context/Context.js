@@ -33,9 +33,9 @@ export const Context = ({ children }) => {
     if (getToken) {
       if (getToken?.token) {
         setToken(getToken?.token);
+        setUserDetails(getToken?.user)
         if (getToken?.role) {
           setRole(getToken?.role);
-          setUserDetails(getToken.user)
         }
       } else {
         setToken("");

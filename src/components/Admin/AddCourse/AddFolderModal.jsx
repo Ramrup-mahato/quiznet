@@ -5,8 +5,6 @@ import Study from "../../../assets/image/study3.png";
 import TextInput from "../../ReUsable/TextInput";
 import Loader from "../../ReUsable/Loader";
 
-
-
 const AddFolderModal = ({
   errors,
   touched,
@@ -17,7 +15,6 @@ const AddFolderModal = ({
   modal,
   loader,
   handleModal,
-  handleModelSave,
   handleSelectImage,
   handleCancelModal,
 }) => {
@@ -54,33 +51,41 @@ const AddFolderModal = ({
             handleChange={handleChange}
             onBlur={handleBlur}
           />
-          {modal?.folderType !== "Chapter" && (
-            <div className="bg-[var(--colW1)] w-[200px] h-[200px] relative mt-3  border-[3px] rounded-lg border-[var(--colB1)] overflow-hidden flex justify-center items-center ">
-              {loader.imageKit === true ? (
-                <Loader folderLoader={true} />
-              ) : (
-                <>
-                  {modal?.folderImage ? (
-                    <img src={modal?.folderImage} alt="course" className=" w-[190px] h-[190px] rounded-lg object-cover " />
-                  ) : (
-                    <img src={Study} alt="course"  className=" w-[190px] h-[190px] rounded-lg object-cover" />
-                  )}
-                </>
-              )}
-              <label htmlFor="foldername">
-                <FaCameraRotate
-                  size={25}
-                  className="absolute top-0 right-0 m-2 cursor-pointer text-[var(--colB1)]"
-                />
-              </label>
-              <input
-                type="file"
-                id="foldername"
-                className="hidden"
-                onChange={(e) => handleSelectImage(e)}
+
+          <div className="bg-[var(--colW1)] w-[200px] h-[200px] relative mt-3  border-[3px] rounded-lg border-[var(--colB1)] overflow-hidden flex justify-center items-center ">
+            {loader.imageKit === true ? (
+              <Loader folderLoader={true} />
+            ) : (
+              <>
+                {modal?.folderImage ? (
+                  <img
+                    src={modal?.folderImage}
+                    alt="course"
+                    className=" w-[190px] h-[190px] rounded-lg object-cover "
+                  />
+                ) : (
+                  <img
+                    src={Study}
+                    alt="course"
+                    className=" w-[190px] h-[190px] rounded-lg object-cover"
+                  />
+                )}
+              </>
+            )}
+            <label htmlFor="foldername">
+              <FaCameraRotate
+                size={25}
+                className="absolute top-0 right-0 m-2 cursor-pointer text-[var(--colB1)]"
               />
-            </div>
-          )}
+            </label>
+            <input
+              type="file"
+              id="foldername"
+              className="hidden"
+              onChange={(e) => handleSelectImage(e)}
+            />
+          </div>
+
           <div className="w-full flex justify-end items-center gap-2 p-3">
             <button
               className="w-[100px] flex justify-center items-center font-medium text=[14px] shadow-2xl bg-white dark:bg-slate-700 border-[2px] border-rose-500 s cursor-pointer rounded-md py-1 px-3"

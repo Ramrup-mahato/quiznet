@@ -66,7 +66,7 @@ const AddCoursePage = ({
 
                   <p className="font-medium text-[14px] text-[#00E396] bg-[#e4fff6] px-2 rounded-full flex justify-center items-center gap-1">
                     <FaUsers size={20} className="text-[var(--colB1)]" />{" "}
-                    <span>40</span>
+                    <span>{course?.count}</span>
                   </p>
                   <FaEdit
                     size={25}

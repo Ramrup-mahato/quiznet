@@ -93,6 +93,7 @@ const LoginService = () => {
     let res = await apiResponse(await postData("/forgetPassword", json));
     if (res) setIsLoader(false);
     console.log(res);
+    alert(JSON.stringify(res?.date))
   };
   // -----------close modal---------------
   const handleModal = () => {
@@ -116,6 +117,7 @@ const LoginService = () => {
       setIsLoader(false);
       setActivate(true);
       setOpenModal(false);
+      alert(JSON.stringify(res?.date))
     }
   };
   return {

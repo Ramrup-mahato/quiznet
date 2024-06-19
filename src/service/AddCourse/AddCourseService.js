@@ -423,6 +423,7 @@ const AddCourseService = () => {
         return {
           ...old,
           mainFolder: true,
+          folderImage: course?.chapterImage,
           editId: course?._id,
           folderType: val,
         };
@@ -509,7 +510,9 @@ const AddCourseService = () => {
           subjectId: modal?.mainFolderDetails?.subjectPath,
           chapterTitle: value.folder,
           chapterPath: value.path,
+          chapterImage: modal.folderImage
         };
+        console.log("Chapter",json);
         setIsLoader(true);
         let folder = await apiResponse(
           await updateData("/chapter", json, token)
@@ -600,6 +603,7 @@ const AddCourseService = () => {
           subjectId: modal?.mainFolderDetails?.subjectPath,
           chapterTitle: val.folder,
           chapterPath: val.path,
+          chapterImage: modal.folderImage
         };
         setIsLoader(true);
         let folder = await apiResponse(await postData("/chapter", json, token));
@@ -609,6 +613,7 @@ const AddCourseService = () => {
           setModal((old) => {
             return {
               ...old,
+              folderImage: "",
               mainFolder: false,
             };
           });

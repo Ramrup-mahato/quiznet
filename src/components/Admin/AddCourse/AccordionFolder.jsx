@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
-import {
-  MdOutlineDelete,
-} from "react-icons/md";
+import { MdOutlineDelete } from "react-icons/md";
 import {
   FaCameraRotate,
   FaFolderOpen,
@@ -41,7 +39,7 @@ const AccordionFolder = ({
           <div className="flex gap-2 justify-center items-center">
             <p className="font-medium text-[12px] text-[var(--colB1)] shadow-xl bg-[#e4fff6] px-2 rounded-full flex justify-center items-center gap-1">
               <FaUsers size={15} className="text-[var(--colB1)]" />{" "}
-              <span>220</span>
+              <span>{subject?.count}</span>
             </p>
             <FaEdit
               size={20}
@@ -134,6 +132,10 @@ const AccordionFolder = ({
                       className="w-8 h-8 text-[#FEB019] bg-[#fbf3e1] p-2 shadow-lg rounded-full cursor-pointer hover:bg-blue-100  "
                       title="Download CSV"
                     />
+                    <p className="font-medium text-[12px] text-[var(--colB1)] shadow-xl bg-[#e4fff6] px-2 rounded-full flex justify-center items-center gap-1">
+                      <FaUsers size={15} className="text-[var(--colB1)]" />{" "}
+                      <span>{chapter?.count}</span>
+                    </p>
                     <FaEdit
                       size={20}
                       color="#7654f6"

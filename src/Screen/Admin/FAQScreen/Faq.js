@@ -12,7 +12,7 @@ const Faq = () => {
       <ContainerBox>
         <AdminSideBar
           selected={"FAQ"}
-          avatar={""}
+          avatar={userDetails?.avatar}
           userName={userDetails?.username}
         >
           <FaqPage />

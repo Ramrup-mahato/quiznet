@@ -135,6 +135,7 @@ const RegistrationService = () => {
     let res = await apiResponse(await postData("/forgetPassword", json));
     console.log(res);
     if(res) setIsLoader(false)
+      alert(JSON.stringify(res?.date))
   };
 // ------------------only enter number----------------------
 const handlePhoneChange = (e) => {

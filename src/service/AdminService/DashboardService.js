@@ -1,21 +1,18 @@
-import { useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toastError } from "../../utils/tostify";
+import ContextStore from "../../context/Context";
+import { apiGetResponse } from "../../utils/Helper";
+import { getData } from "../../components/AuthGard/LogGard";
 
 const DashboardService = () => {
   let navigation = useNavigate();
+  const { token, setLoaderInFolder, loaderInFolder } = useContext(ContextStore);
   const [activeInactive, setActiveInactive] = useState({
     series: [
       {
         name: "Total User",
         data: [162, 162, 432, 321, 162, 207, 194, 175, 167, 223, 104, 265],
-      },
-      {
-        name: "Active user",
-        data: [32, 21, 232, 121, 32, 167, 34, 55, 67, 13, 64, 235],
-      },
-      {
-        name: "InActive user",
-        data: [132, 41, 232, 221, 32, 107, 34, 25, 67, 123, 44, 135],
       },
     ],
 
@@ -175,6 +172,7 @@ const DashboardService = () => {
       },
     },
   });
+  
   // converts or separated by comma
   const commaSeparated = (number) =>
     number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -182,6 +180,25 @@ const DashboardService = () => {
   const handleNavigate = (path) => {
     navigation(path);
   };
+
+  // --------------------get Api Call ---------------------
+  const getAllDashboard = async () => {
+    try {
+      setLoaderInFolder(true);
+      let res = await apiGetResponse(await getData(`/dashboard`, token));
+      if (res?.success) {
+        setLoaderInFolder(false);
+      }
+    } catch (error) {
+      setLoaderInFolder(false);
+      console.error(error);
+      toastError(error?.message || "something went wrong");
+    }
+  };
+  useEffect(() => {
+    getAllDashboard();
+  }, []);
+
   return {
     activeInactive,
     registerUser,

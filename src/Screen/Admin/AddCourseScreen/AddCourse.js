@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Parents from "../../../components/ReUsable/Parents";
 import ContainerBox from "../../../components/ReUsable/ContainerBox";
 import AdminSideBar from "../../../components/Admin/AdminSideBar/AdminSideBar";
@@ -10,8 +10,10 @@ import Loader from "../../../components/ReUsable/Loader";
 import DeleteFolderModal from "../../../components/Admin/AddCourse/DeleteFolderModal";
 import AddQuestionModal from "../../../components/Admin/AddCourse/AddQuestionModal";
 import { filterQuestion } from "../../../utils/Helper";
+import ContextStore from "../../../context/Context";
 
 const AddCourse = () => {
+  const { userDetails } = useContext(ContextStore);
   let {
     courseData,
     QuestionDetails,
@@ -57,8 +59,8 @@ const AddCourse = () => {
       <ContainerBox>
         <AdminSideBar
           selected={"Add Course"}
-          avatar={""}
-          userName={"niku singh"}
+          avatar={userDetails?.avatar}
+          userName={userDetails?.username}
         >
           {loader.allData === true ? (
             <>
