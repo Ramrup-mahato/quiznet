@@ -32,7 +32,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
                 key={i}
                 className={`flex items-center gap-2 bg-gray-100 dark:bg-gray-800 p-2 rounded hover:bg-slate-200\
                  dark:hover:bg-gray-700 
-                 ${selected === Ele?.name ? "select text-black" : ""}`}
+                 ${selected === Ele?.name ? "select text-[var(--colB1)]" : ""}`}
               >
                 <Ele.icon size={20} />
                 <p className="text-[14px]">{Ele?.name}</p>

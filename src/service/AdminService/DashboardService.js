@@ -5,189 +5,76 @@ import ContextStore from "../../context/Context";
 import { apiGetResponse } from "../../utils/Helper";
 import { getData } from "../../components/AuthGard/LogGard";
 
+
 const DashboardService = () => {
   let navigation = useNavigate();
   const { token, setLoaderInFolder, loaderInFolder } = useContext(ContextStore);
-  const [activeInactive, setActiveInactive] = useState({
-    series: [
-      {
-        name: "Total User",
-        data: [162, 162, 432, 321, 162, 207, 194, 175, 167, 223, 104, 265],
-      },
-    ],
+  const [dashboard, setDashboard] = useState({});
+  const [registerGraph, setRegisterGraph] = useState({});
+  const [visitGraph, setVisitGraph] = useState({});
+  console.log("registerGraph",registerGraph);
+  console.log("visitGraph",visitGraph);
 
-    options: {
-      chart: {
-        height: 350,
-        type: "area",
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "smooth",
-      },
 
-      // colors: ["#165BAA","red","aqua"],
-      //   stroke: { width: 0, curve: "smooth" },
-      //   fill: { opacity: 1, type: "solid" },
-
-      yaxis: {
-        labels: {
-          style: {
-            // colors: "#fff",
-          },
-        },
-      },
-      xaxis: {
-        title: {
-          // text: "years",
-          style: { fontSize: 20, color: "#165baa" },
-        },
-
-        categories: [
-          "jan",
-          "feb",
-          "mar",
-          "Apr",
-          "may",
-          "jun",
-          "jul",
-          "Aug",
-          "oct",
-          "Sep",
-          "Nov",
-          "Dec",
-        ],
-        labels: {
-          style: {
-            // colors: "#fff",
-          },
-        },
-        grid: {
-          show: false, // Hide grid lines
-        },
-        fill: {
-          opacity: 1, // Set fill opacity to make the area chart fully opaque
-        },
-        markers: {
-          size: 0, // Hide markers
-        },
-      },
-      tooltip: {
-        x: {
-          format: "dd/MM/yy HH:mm",
-        },
-        enabled: true,
-        fillSeriesColor: true,
-      },
-      legend: {
-        show: true,
-        labels: {
-          //   colors: "#fff",
-          useSeriesColors: false,
-        },
-      },
-    },
+  const [dashboardInfo, setDashboardInfo] = useState({
+    registerType: "month",
+    viewType: "month",
+    selectRegisterYear: "",
+    selectVisitYear: "",
+    registerLoader: false,
+    visitLoader: false,
   });
-  const [registerUser, setRegisterUser] = useState({
-    series: [
-      {
-        name: "Register user",
-        data: [32, 21, 232, 121, 32, 167, 34, 55, 67, 13, 64, 235],
-      },
-    ],
 
-    options: {
-      chart: {
-        height: 350,
-        type: "area",
-      },
-      dataLabels: {
-        enabled: true,
-      },
-      stroke: {
-        curve: "smooth",
-      },
-
-      //   colors: ["#165BAA"],
-      //     stroke: { width: 0, curve: "smooth" },
-      //     fill: { opacity: 1, type: "solid" },
-
-      yaxis: {
-        labels: {
-          style: {
-            // colors: "#fff",
-          },
-        },
-      },
-      xaxis: {
-        title: {
-          // text: "years",
-          style: { fontSize: 20, color: "#165baa" },
-        },
-
-        categories: [
-          "jan",
-          "feb",
-          "mar",
-          "Apr",
-          "may",
-          "jun",
-          "jul",
-          "Aug",
-          "oct",
-          "Sep",
-          "Nov",
-          "Dec",
-        ],
-        labels: {
-          style: {
-            // colors: "#fff",
-          },
-        },
-        grid: {
-          show: false, // Hide grid lines
-        },
-        fill: {
-          opacity: 1, // Set fill opacity to make the area chart fully opaque
-        },
-        markers: {
-          size: 0, // Hide markers
-        },
-      },
-      tooltip: {
-        x: {
-          format: "dd/MM/yy HH:mm",
-        },
-        enabled: true,
-        fillSeriesColor: true,
-      },
-      legend: {
-        show: true,
-        labels: {
-          //   colors: "#fff",
-          useSeriesColors: false,
-        },
-      },
-    },
-  });
-  
   // converts or separated by comma
   const commaSeparated = (number) =>
-    number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    number && number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 
   const handleNavigate = (path) => {
     navigation(path);
   };
-
+  // -----------------------select register Year-------------------------
+  const handleSelectRegisterYear = (year) => {
+    getRegisterGraph(year);
+    setDashboardInfo((prev) => ({
+      ...prev,
+      selectRegisterYear: year,
+    }));
+  };
+  // -----------------------select Visit Year-------------------------
+  const handleSelectVisitYear = (year) => {
+    getVisitGraph(year);
+    setDashboardInfo((prev) => ({
+      ...prev,
+      selectVisitYear: year,
+    }));
+  };
+  // ----------------------view type select------------------------
+  const handleViewType = (val) => {
+    setDashboardInfo((prev) => ({
+      ...prev,
+      viewType: val,
+    }));
+  };
+  // --------------------------register count --------------------------
+  const handleRegisterType = (val) => {
+    setDashboardInfo((prev) => ({
+      ...prev,
+      registerType: val,
+    }));
+  };
   // --------------------get Api Call ---------------------
   const getAllDashboard = async () => {
     try {
       setLoaderInFolder(true);
-      let res = await apiGetResponse(await getData(`/dashboard`, token));
+      let res = await apiGetResponse(
+        await getData(
+          `/dashboard?year=${dashboardInfo?.selectRegisterYear}&visitYear=${dashboardInfo?.selectVisitYear}`,
+          token
+        )
+      );
       if (res?.success) {
         setLoaderInFolder(false);
+        setDashboard(res?.data);
       }
     } catch (error) {
       setLoaderInFolder(false);
@@ -195,17 +82,88 @@ const DashboardService = () => {
       toastError(error?.message || "something went wrong");
     }
   };
+  // --------------------get register Graph Api Call ---------------------
+  const getRegisterGraph = async (val) => {
+    try {
+      setDashboardInfo((prev) => ({
+        ...prev,
+        registerLoader: true,
+      }));
+      let res = await apiGetResponse(
+        await getData(`/dashboard/register?year=${val}`, token)
+      );
+      if (res?.success) {
+        setRegisterGraph(res?.data);
+        setDashboardInfo((prev) => ({
+          ...prev,
+          registerLoader: false,
+        }));
+      }
+    } catch (error) {
+      setDashboardInfo((prev) => ({
+        ...prev,
+        registerLoader: false,
+      }));
+      console.error(error);
+      toastError(error?.message || "something went wrong");
+    }
+  };
+  // --------------------get Visit Graph Api Call ---------------------
+  const getVisitGraph = async (val) => {
+    try {
+      setDashboardInfo((prev) => ({
+        ...prev,
+        visitLoader: true,
+      }));
+      let res = await apiGetResponse(
+        await getData(`/dashboard/visit?visitYear=${val}`, token)
+      );
+      if (res?.success) {
+        setVisitGraph(res?.data);
+        setDashboardInfo((prev) => ({
+          ...prev,
+          visitLoader: false,
+        }));
+      }
+    } catch (error) {
+      setDashboardInfo((prev) => ({
+        ...prev,
+        visitLoader: false,
+      }));
+      console.error(error);
+      toastError(error?.message || "something went wrong");
+    }
+  };
   useEffect(() => {
     getAllDashboard();
+    getRegisterGraph(dashboardInfo?.selectRegisterYear);
+    getVisitGraph(dashboardInfo?.selectVisitYear);
+    if (!dashboardInfo?.selectRegisterYear) {
+      setDashboardInfo((prev) => ({
+        ...prev,
+        selectRegisterYear: new Date().getFullYear(),
+      }));
+    }
+    if (!dashboardInfo?.selectVisitYear) {
+      setDashboardInfo((prev) => ({
+        ...prev,
+        selectVisitYear: new Date().getFullYear(),
+      }));
+    }
   }, []);
 
   return {
-    activeInactive,
-    registerUser,
+    loaderInFolder,
+    dashboard,
+    dashboardInfo,
+    registerGraph,
+    visitGraph,
     commaSeparated,
     handleNavigate,
-    setRegisterUser,
-    setActiveInactive,
+    handleViewType,
+    handleRegisterType,
+    handleSelectRegisterYear,
+    handleSelectVisitYear,
   };
 };
 

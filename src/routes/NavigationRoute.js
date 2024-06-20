@@ -2,34 +2,23 @@ import { RxDashboard } from "react-icons/rx";
 import { FaPeopleGroup } from "react-icons/fa6";
 import { IoBookSharp } from "react-icons/io5";
 import { RiContactsLine } from "react-icons/ri";
-import { MdReportProblem } from "react-icons/md";
+import { MdHome, MdReportProblem } from "react-icons/md";
 import { BiSolidBookAdd } from "react-icons/bi";
 import { FaQuestionCircle } from "react-icons/fa";
 
 export const navRoute = [
   {
+    icon: MdHome,
     name: "Home",
     path: "/",
   },
-  // {
-  //   name: "PTEpractice",
-  //   path: "/pte",
-  // },
   {
-    name: "Learn",
+    name: "PTEpractice",
+    path: "/pte",
+  },
+  {
+    name: "About",
     path: "/about",
-  },
-  {
-    name: "Score",
-    path: "/score",
-  },
-  {
-    name: "Login",
-    path: "/login",
-  },
-  {
-    name: "Result",
-    path: "/result",
   },
 ];
 

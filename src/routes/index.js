@@ -18,6 +18,7 @@ import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
 import AuthGard from "../components/AuthGard/AuthGard";
 import AdminAuthGard from "../components/AuthGard/AdminAuthGard";
 import NotFound from "../components/ReUsable/NotFound ";
+import About from "../Screen/About";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -102,6 +103,11 @@ export const MainRoutes = () => {
       path: "/:path/:quizpath",
       component: QuizMain,
       name: "quiz",
+    },
+    {
+      path: "/about",
+      component: About,
+      name: "about",
     },
   ];
   return (

@@ -21,6 +21,64 @@ const Courses = () => {
   } = CourseService();
   return (
     <div className="w-full h-full flex flex-col items-center">
+      <div className="w-full h-full flex gap-5 flex-col sm:px-5  pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
+        {course?.map((ele, index) => (
+          <div
+            key={index}
+            className="w-full h-full flex flex-col  dark:bg-gray-900 
+            text-black dark:text-white rounded-bl-3xl rounded-tr-3xl  "
+          >
+            <div
+              className="bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
+                font-semibold text-base shadow shadow-slate-500 dark:shadow-gray-900 p-2 rounded-tr-3xl"
+            >
+              <h3>{ele?.courseTitle}</h3>
+            </div>
+            <div className="userMainDivs  sm:p-2">
+              {ele?.subjects.map((sub, i) => (
+                <div
+                  key={i}
+                  className="item bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
+               rounded-lg text-[14px] hover:text-[var(--colB1)]  cursor-pointer"
+                  onClick={() => handleSelectCourse(sub.subjectPath)}
+                >
+                  <div>
+                    <img
+                      src={sub?.subjectImage}
+                      alt={sub?.subjectTitle}
+                      className="w-[200vw] sm:w-[250vw] h-[150px] sm:h-[230px] rounded-t-lg"
+                    />
+                  </div>
+                  <div className="w-full py-2 px-1 sm:px-3">
+                    <p className="font-bold">{sub?.subjectTitle}</p>
+                    <div className=" text-[12px] flex justify-between ">
+                      <p>
+                        Total:<span className="font-bold"> 10 </span> subject
+                      </p>
+                      <p>view T&C</p>
+                    </div>
+                    <div className=" text-[12px] flex justify-between items-center ">
+                      <p>
+                        visit:<span className="font-bold"> 1254</span>
+                      </p>
+                      <p className="border-[3px] rounded-md px-7 py-2 font-bold">
+                        Play
+                      </p>
+                    </div>
+                    <div className=" text-[12px] flex justify-between items-center border-t-2 mt-1 ">
+                      <p>
+                        visit:
+                        <span className="font-bold"> Ministry of science</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
       <div className="w-full h-full grid lg:grid-cols-2 sm:grid-cols-1 px-6 sm:px-5 gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
         {course?.map((ele, index) => (
           <div
@@ -48,8 +106,7 @@ const Courses = () => {
                     key={i}
                     className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950 rounded-full text-[14px] 
                 hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
-                    onClick={() => handleSelectCourse(sub.subjectPath
-                    )}
+                    onClick={() => handleSelectCourse(sub.subjectPath)}
                   >
                     <p className="">{sub?.subjectTitle}</p>
                     <IoIosArrowForward />
@@ -129,10 +186,13 @@ const Courses = () => {
               value={values.message}
             />
             <div className="flex justify-end items-center gap-2 py-2">
-              <button  className="border-[3px] rounded mt-3 py-2 px-4 border-[var(--colB1)] bg-[var(--colB1)] text-[15px] font-bold text-white cursor-pointer"
-              type="submit"
-              onClick={handleSubmit}
-              >Submit</button>
+              <button
+                className="border-[3px] rounded mt-3 py-2 px-4 border-[var(--colB1)] bg-[var(--colB1)] text-[15px] font-bold text-white cursor-pointer"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
