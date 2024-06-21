@@ -1,4 +1,4 @@
-import  { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import ContextStore from "../context/Context";
 import { toastError } from "../utils/tostify";
@@ -8,7 +8,8 @@ import { getData } from "../components/AuthGard/LogGard";
 const CourseDetailsService = () => {
   const navigation = useNavigate();
   const { path } = useParams();
-  const { token, setLoaderInFolder,loaderInFolder } = useContext(ContextStore);
+  const { token, setLoaderInFolder, loaderInFolder, viewCourse, toggleView } =
+    useContext(ContextStore);
   const [subject, setSubject] = useState({});
 
   const handleSelectTopic = (path, parentPath) => {
@@ -18,7 +19,9 @@ const CourseDetailsService = () => {
   const getSubject = async () => {
     try {
       setLoaderInFolder(true);
-      let res = await apiGetResponse(await getData(`/subject?query=${path}`,token));
+      let res = await apiGetResponse(
+        await getData(`/subject?query=${path}`, token)
+      );
       if (res?.success) {
         setSubject(res?.data);
         setLoaderInFolder(false);
@@ -38,6 +41,8 @@ const CourseDetailsService = () => {
     subject,
     loaderInFolder,
     handleSelectTopic,
+    viewCourse,
+    toggleView,
   };
 };
 
