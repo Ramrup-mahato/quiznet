@@ -67,15 +67,16 @@ const Courses = () => {
                       </p>
                       <div className="py-1 text-[12px] flex justify-between ">
                         <p>
-                          Total:<span className="font-bold"> 10 </span> subject
+                          Total:
+                          <span className="font-bold text-[var(--colG2)]">{sub?.chapterCount}</span>
                         </p>
-                        <p className="pr-3 hover:text-[var(--colB1)] hover:underline">
-                          view T&C
+                        <p className="pr-3 hover:text-[var(--colB1)] hover:underline font-bold">
+                          T&C
                         </p>
                       </div>
                       <div className=" text-[12px] flex justify-between items-center ">
                         <p>
-                          visit:<span className="font-bold"> 1254</span>
+                          visit:<span className="font-bold text-[var(--colG2)]"> 1254</span>
                         </p>
                         <p className=" text-[var(--colG2)] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-bold">
                           View

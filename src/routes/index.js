@@ -19,6 +19,7 @@ import AuthGard from "../components/AuthGard/AuthGard";
 import AdminAuthGard from "../components/AuthGard/AdminAuthGard";
 import NotFound from "../components/ReUsable/NotFound ";
 import About from "../Screen/About";
+import Setting from "../Screen/Setting";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -108,6 +109,11 @@ export const MainRoutes = () => {
       path: "/about",
       component: About,
       name: "about",
+    },
+    {
+      path: "/setting",
+      component: Setting,
+      name: "setting",
     },
   ];
   return (

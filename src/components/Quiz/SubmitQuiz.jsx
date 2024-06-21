@@ -6,6 +6,7 @@ import {
 import entrance from "../../assets/image/study3.png";
 import QuestionShow from "./QuestionShow";
 import { VscDebugRestart } from "react-icons/vsc";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
 const SubmitQuiz = ({
   quizData,
@@ -13,6 +14,7 @@ const SubmitQuiz = ({
   quiz,
   handleNextQuiz,
   handleAgainQuiz,
+  handleGoBack,
 }) => {
   const totalQuestions = quiz?.totalQuestion || 0;
   const correctAnswers = quiz?.correctAnswer || 0;
@@ -27,7 +29,14 @@ const SubmitQuiz = ({
           className="flex justify-between bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
     font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-3 rounded-tr-3xl"
         >
-          <h3>{quizData?.field}</h3>
+          <div className="flex  justify-center items-center">
+            <FaArrowLeftLong
+              size={20}
+              className="cursor-pointer mr-1 "
+              onClick={() => handleGoBack("")}
+            />
+            <h3>{quizData?.chapterTitle}</h3>
+          </div>
           {test === true && <p>0:20:16</p>}
         </div>
         <div className="flex gap-3  flex-col sm:flex-row w-full h-full p-3">

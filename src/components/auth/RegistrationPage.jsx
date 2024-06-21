@@ -100,7 +100,7 @@ const RegistrationPage = () => {
                       I am Student
                     </label>
                   </div>
-                  <div>
+                  <div className="flex justify-center items-center ">
                     <input
                       id="Expert"
                       type="radio"

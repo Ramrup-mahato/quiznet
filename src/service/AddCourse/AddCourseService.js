@@ -50,6 +50,7 @@ const AddCourseService = () => {
     mainFolderDetails: {},
     editId: "",
   });
+  console.log("modal", modal);
 
   const [questionModal, setQuestionModal] = useState({
     openCloseModal: false,
@@ -465,7 +466,6 @@ const AddCourseService = () => {
                 folderType: "",
                 folderImage: "",
                 mainFolderDetails: {},
-              
               };
             });
             handleReset();
@@ -496,7 +496,6 @@ const AddCourseService = () => {
                 folderType: "",
                 folderImage: "",
                 mainFolderDetails: {},
-               
               };
             });
             handleReset();
@@ -510,9 +509,9 @@ const AddCourseService = () => {
           subjectId: modal?.mainFolderDetails?.subjectPath,
           chapterTitle: value.folder,
           chapterPath: value.path,
-          chapterImage: modal.folderImage
+          chapterImage: modal.folderImage,
         };
-        console.log("Chapter",json);
+        console.log("Chapter", json);
         setIsLoader(true);
         let folder = await apiResponse(
           await updateData("/chapter", json, token)
@@ -527,7 +526,6 @@ const AddCourseService = () => {
               folderType: "",
               folderImage: "",
               mainFolderDetails: {},
-             
             };
           });
           handleReset();
@@ -603,7 +601,7 @@ const AddCourseService = () => {
           subjectId: modal?.mainFolderDetails?.subjectPath,
           chapterTitle: val.folder,
           chapterPath: val.path,
-          chapterImage: modal.folderImage
+          chapterImage: modal.folderImage,
         };
         setIsLoader(true);
         let folder = await apiResponse(await postData("/chapter", json, token));
@@ -1035,13 +1033,13 @@ const AddCourseService = () => {
     });
   };
   // ----------------------------publish Course ------------------------------
-  const handlePublishCourse = async (value,id) => {
+  const handlePublishCourse = async (value, id) => {
     console.log("publish", value);
     try {
       setIsLoader(true);
       let json = {
         _id: id,
-        publish:!value
+        publish: !value,
       };
 
       let folder = await apiResponse(

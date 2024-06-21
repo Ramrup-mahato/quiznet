@@ -1,7 +1,7 @@
 import React from "react";
 // import { courseName, topicsName } from "../../utils/data";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaFolderOpen } from "react-icons/fa6";
+import { FaArrowLeftLong, FaFolderOpen } from "react-icons/fa6";
 import CourseDetailsService from "../../service/courseDetailsService";
 // import { useParams } from "react-router-dom";
 import Loader from "../ReUsable/Loader";
@@ -17,6 +17,9 @@ const CourseDetailsPage = () => {
     viewCourse,
     toggleView,
   } = CourseDetailsService();
+  const handleGoBack = () => {
+    window.history.back();
+  };
   return (
     <div className="w-full min-h-[calc(100vh-115px)] lg:min-h-[100vh]   sm:px-5 gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
       {loaderInFolder ? (
@@ -34,7 +37,14 @@ const CourseDetailsPage = () => {
                     className="bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
                   font-semibold text-base  p-2 rounded-tr-3xl flex justify-between items-center"
                   >
-                    <h3>{subject?.subjectTitle}</h3>
+                    <div className="flex  justify-center items-center">
+                      <FaArrowLeftLong
+                        size={20}
+                        className="cursor-pointer mr-1 "
+                        onClick={() => handleGoBack("")}
+                      />
+                      <h3>{subject?.subjectTitle}</h3>
+                    </div>
                     <BsNintendoSwitch
                       title="change view"
                       className={`mr-3 cursor-pointer text-[var(--colG3)]  ${
@@ -104,7 +114,14 @@ const CourseDetailsPage = () => {
                     className="bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
           font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-2 rounded-tr-3xl  flex justify-between items-center"
                   >
-                    <h3>{subject?.subjectTitle}</h3>
+                    <div className="flex justify-center items-center">
+                      <FaArrowLeftLong
+                        size={20}
+                        className="cursor-pointer mr-1 "
+                        onClick={() => handleGoBack("")}
+                      />
+                      <h3>{subject?.subjectTitle}</h3>
+                    </div>
                     <BsNintendoSwitch
                       title="change view"
                       className={`mr-3 cursor-pointer text-[var(--colG3)]  ${

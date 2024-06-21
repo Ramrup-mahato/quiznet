@@ -30,6 +30,7 @@ const QuizMain = () => {
     handleSelectReportAnswer,
     handleSubmitReportQuestion,
     handleReportText,
+    handleGoBack,
   } = QuizService();
 
   return (
@@ -55,6 +56,7 @@ const QuizMain = () => {
                     handlePreviousQuestion={handlePreviousQuestion}
                     handleSeeResult={handleSeeResult}
                     handleReportQuestion={handleReportQuestion}
+                    handleGoBack={handleGoBack}
                   />
                 ) : (
                   <NotFound />
@@ -64,6 +66,7 @@ const QuizMain = () => {
           </>
         ) : (
           <SubmitQuiz
+            handleGoBack={handleGoBack}
             quizData={quizData}
             handleSelectQuestion={handleSelectQuestion}
             question={question}
@@ -72,13 +75,13 @@ const QuizMain = () => {
             handleAgainQuiz={handleAgainQuiz}
           />
         )}
-      <ReportModal
-        handleReportQuestion={handleReportQuestion}
-        reportQuestion={reportQuestion}
-        handleSelectReportAnswer={handleSelectReportAnswer}
-        handleSubmitReportQuestion={handleSubmitReportQuestion}
-        handleReportText={handleReportText}
-      />
+        <ReportModal
+          handleReportQuestion={handleReportQuestion}
+          reportQuestion={reportQuestion}
+          handleSelectReportAnswer={handleSelectReportAnswer}
+          handleSubmitReportQuestion={handleSubmitReportQuestion}
+          handleReportText={handleReportText}
+        />
       </ContainerBox>
       <Footer />
     </Parents>

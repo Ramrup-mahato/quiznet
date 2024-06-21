@@ -132,6 +132,13 @@ const QuizService = () => {
       return {
         ...oldEle,
         result: false,
+        submitAnswer: "",
+        selectQue: "",
+        questionNumber: 0,
+        totalQuestion: 0,
+        correctAnswer: 0,
+        wrongAnswer: 0,
+        noOfGivenAnswer: 0,
       };
     });
   };
@@ -179,10 +186,10 @@ const QuizService = () => {
           setIsLoader(false);
           setReportQuestion((prev) => ({
             ...prev,
-            qsId: '',
+            qsId: "",
             reportModal: !prev.reportModal,
             yourAnswer: "",
-            message:''
+            message: "",
           }));
         }
       } else {
@@ -220,6 +227,10 @@ const QuizService = () => {
       toastError(error?.message || "Something went wrong.");
     }
   };
+  // -------------handleGoBack-------------------
+  const handleGoBack = () => {
+    window.history.back();
+  };
 
   useEffect(() => {
     getChapter();
@@ -241,6 +252,7 @@ const QuizService = () => {
     handleSelectReportAnswer,
     handleSubmitReportQuestion,
     handleReportText,
+    handleGoBack,
   };
 };
 

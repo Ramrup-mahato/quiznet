@@ -92,6 +92,12 @@ const CourseService = () => {
   useEffect(() => {
     GetCourse();
     GetFaqApi();
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 100);
   }, []);
 
   return {
