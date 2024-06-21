@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import  { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { contactSchema } from "../Schema";
 import { toastError, toastWarning } from "../utils/tostify";
@@ -15,7 +15,8 @@ const initialValue = {
 };
 
 const CourseService = () => {
-  const { token, setIsLoader } = useContext(ContextStore);
+  const { token, setIsLoader, viewCourse, toggleView } =
+    useContext(ContextStore);
   const navigation = useNavigate();
   const [faqQuestion, setFaqQuestion] = useState([]);
   const [course, setCourse] = useState([]);
@@ -104,6 +105,8 @@ const CourseService = () => {
     handlePhoneChange,
     faqQuestion,
     course,
+    viewCourse,
+    toggleView,
   };
 };
 

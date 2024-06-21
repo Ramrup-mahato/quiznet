@@ -50,7 +50,7 @@ const NavBar = ({ pageName }) => {
         </div>
         <div className="relative flex flex-row  items-center justify-center">
           <div className=" bg-white rounded-full justify-center items-center px-3 hidden md:flex  ">
-            <MdOutlineSearch />
+            <MdOutlineSearch className="text-gray-500" />
             <input
               placeholder='Enter Course "Physics"...'
               className=" searchInput md:min-w-[300px] lg:min-w-[500px] "
