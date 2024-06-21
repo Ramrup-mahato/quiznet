@@ -27,7 +27,7 @@ const LoginPage = () => {
     handleActivate,
   } = LoginService();
   return (
-    <div className="w-full p-5 sm:max-w-[1024px]  h-[100vh]  flex justify-center items-center">
+    <div className="w-full p-5 sm:max-w-[1024px]  min-h-[100vh]  flex justify-center items-center">
       <div
         className="w-full  flex flex-col bg-[var(--colW3)] dark:bg-gray-900 shadow-xl shadow-[var(--colG3)]
      dark:shadow-gray-700 text-black dark:text-white rounded-bl-3xl rounded-tr-3xl "
