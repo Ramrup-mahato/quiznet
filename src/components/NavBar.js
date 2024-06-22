@@ -9,6 +9,7 @@ import { toastError } from "../utils/tostify";
 import { apiGetResponse } from "../utils/Helper";
 import { getData } from "./AuthGard/LogGard";
 import Loader from "./ReUsable/Loader";
+import { RxCross2 } from "react-icons/rx";
 
 const NavBar = ({ pageName }) => {
   const navigation = useNavigate();
@@ -39,6 +40,10 @@ const NavBar = ({ pageName }) => {
       setNavMenu(false);
     }
   };
+  const handleClearSearch = () => {
+    setSearchList([]);
+    setSearchText("");
+  };
   const handleSearch = async (e) => {
     let val = e.target.value;
     setSearchText(val);
@@ -50,10 +55,7 @@ const NavBar = ({ pageName }) => {
             await getData(`/search?search=${val}`, token)
           );
           if (res?.success) {
-            if(searchText.length>1){
-
-              setSearchList(res?.data);
-            }
+            setSearchList(res?.data);
             setLoaderInFolder(false);
           }
         } catch (error) {
@@ -90,27 +92,33 @@ const NavBar = ({ pageName }) => {
         </div>
         <div className="relative flex flex-row  items-center ">
           {token && (
-            <div className=" bg-white rounded-full justify-center items-center px-3 hidden md:flex  ">
+            <div className=" bg-white dark:bg-gray-700 rounded-full justify-center items-center px-3 hidden md:flex  ">
               <MdOutlineSearch className="text-gray-500" />
               <input
                 placeholder='Enter Course "Physics"...'
                 value={searchText}
-                className=" searchInput md:min-w-[300px] lg:min-w-[500px] "
+                className=" searchInput md:min-w-[300px] lg:min-w-[500px] bg-white dark:bg-gray-700 "
                 onChange={(e) => handleSearch(e)}
               />
+              {(searchText.length > 0 || searchList.length > 0) && (
+                <RxCross2
+                  onClick={() => handleClearSearch()}
+                  className="cursor-pointer text-gray-400"
+                />
+              )}
             </div>
           )}
           {loaderInFolder === true ? (
-            <div className="absolute top-[50px] bg-white p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg flex justify-center items-center">
+            <div className="absolute top-[50px] bg-white dark:bg-gray-800 p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg flex justify-center items-center">
               <Loader folderLoader={true} />
             </div>
           ) : (
             <>
               {searchList.length > 0 ? (
-                <div className="absolute top-[50px] bg-white p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg hidden md:block ">
+                <div className="absolute top-[50px] bg-white dark:bg-gray-800 dark:text-gray-100 p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg hidden md:block ">
                   {searchList?.slice(0, 10)?.map((ele, i) => (
                     <div
-                      className="w-full bg-[var(--colW1)] m-1 p-2 border rounded flex justify-start items-center gap-4 cursor-pointer"
+                      className="w-full bg-[var(--colW1)] dark:bg-gray-900 dark:text-gray-100 m-1 p-2 border rounded flex justify-start items-center gap-4 cursor-pointer"
                       onClick={() => handleSelectTopic(ele?.subjectPath)}
                     >
                       <img
@@ -123,12 +131,12 @@ const NavBar = ({ pageName }) => {
                         className="w-[50px] h-[40px] rounded"
                       />
                       <div>
-                        <p className="text-[13px] text-gray-700 font-bold">
+                        <p className="text-[13px] text-gray-700 dark:text-gray-100 font-bold">
                           {ele?.courseTitle ||
                             ele?.subjectTitle ||
                             ele?.chapterTitle}
                         </p>
-                        <p className=" text-[12px] text-gray-500">
+                        <p className=" text-[12px] text-gray-500 dark:text-gray-100">
                           {ele?.coursePath ||
                             ele?.subjectPath ||
                             ele?.chapterPath}
@@ -140,9 +148,9 @@ const NavBar = ({ pageName }) => {
               ) : (
                 <>
                   {searchText.length > 1 && (
-                    <div className="absolute top-[50px] bg-white p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg flex justify-center items-center">
-                      <p className="bg-[var(--colW1)] border rounded px-3 p-1">
-                        No Data found!
+                    <div className="absolute top-[50px] bg-white dark:bg-gray-800 p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg flex justify-center items-center">
+                      <p className="bg-[var(--colW1)] dark:bg-gray-900 border rounded px-3 p-1">
+                        No Data found !
                       </p>
                     </div>
                   )}
