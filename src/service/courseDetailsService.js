@@ -34,7 +34,7 @@ const CourseDetailsService = () => {
   };
   useEffect(() => {
     getSubject();
-  }, []);
+  }, [path]);
 
   return {
     path,

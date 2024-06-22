@@ -1,20 +1,33 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import logo1 from "../assets/image/quizNet2.png";
-// import avatar from "../assets/image/ramrup pic.JPG";
 import ToggleButton from "./ToggleButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { navRoute } from "../routes/NavigationRoute";
 import ContextStore from "../context/Context";
-import TextInput from "./ReUsable/TextInput";
 import { MdOutlineSearch } from "react-icons/md";
+import { toastError } from "../utils/tostify";
+import { apiGetResponse } from "../utils/Helper";
+import { getData } from "./AuthGard/LogGard";
+import Loader from "./ReUsable/Loader";
 
 const NavBar = ({ pageName }) => {
+  const navigation = useNavigate();
   const navMenuRef = useRef(null);
   const { userDetails, token } = useContext(ContextStore);
   const [navMenu, setNavMenu] = useState(false);
+  const [loaderInFolder, setLoaderInFolder] = useState(false);
+
+  const [searchText, setSearchText] = useState("");
+
+  const [searchList, setSearchList] = useState([]);
 
   const handleNavMenu = () => {
     setNavMenu((old) => !old);
+  };
+  const handleSelectTopic = (path) => {
+    navigation(`/${path}`);
+    setSearchList([]);
+    setSearchText("");
   };
 
   const handleLogout = () => {
@@ -24,6 +37,30 @@ const NavBar = ({ pageName }) => {
   const handleClickOutside = (event) => {
     if (navMenuRef.current && !navMenuRef.current.contains(event.target)) {
       setNavMenu(false);
+    }
+  };
+  const handleSearch = async (e) => {
+    let val = e.target.value;
+    setSearchText(val);
+    if (val.length > 1) {
+      setLoaderInFolder(true);
+      setTimeout(async () => {
+        try {
+          let res = await apiGetResponse(
+            await getData(`/search?search=${val}`, token)
+          );
+          if (res?.success) {
+            setSearchList(res?.data);
+            setLoaderInFolder(false);
+          }
+        } catch (error) {
+          setLoaderInFolder(false);
+          console.error(error);
+          toastError(error?.message || "something went wrong while searching");
+        }
+      }, 500);
+    } else {
+      setSearchList([]);
     }
   };
 
@@ -48,14 +85,68 @@ const NavBar = ({ pageName }) => {
             />
           </NavLink>
         </div>
-        <div className="relative flex flex-row  items-center justify-center">
-          <div className=" bg-white rounded-full justify-center items-center px-3 hidden md:flex  ">
-            <MdOutlineSearch className="text-gray-500" />
-            <input
-              placeholder='Enter Course "Physics"...'
-              className=" searchInput md:min-w-[300px] lg:min-w-[500px] "
-            />
-          </div>
+        <div className="relative flex flex-row  items-center ">
+          {token && (
+            <div className=" bg-white rounded-full justify-center items-center px-3 hidden md:flex  ">
+              <MdOutlineSearch className="text-gray-500" />
+              <input
+                placeholder='Enter Course "Physics"...'
+                value={searchText}
+                className=" searchInput md:min-w-[300px] lg:min-w-[500px] "
+                onChange={(e) => handleSearch(e)}
+              />
+            </div>
+          )}
+          {loaderInFolder === true ? (
+            <div className="absolute top-[50px] bg-white p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg flex justify-center items-center">
+              <Loader folderLoader={true} />
+            </div>
+          ) : (
+            <>
+              {searchList.length > 0 ? (
+                <div className="absolute top-[50px] bg-white p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg hidden md:block ">
+                  {searchList?.slice(0, 10)?.map((ele, i) => (
+                    <div
+                      className="w-full bg-[var(--colW1)] m-1 p-2 border rounded flex justify-start items-center gap-4 cursor-pointer"
+                      onClick={() => handleSelectTopic(ele?.subjectPath)}
+                    >
+                      <img
+                        src={
+                          ele?.courseImage ||
+                          ele?.subjectImage ||
+                          ele?.chapterImage
+                        }
+                        alt="search course.."
+                        className="w-[50px] h-[40px] rounded"
+                      />
+                      <div>
+                        <p className="text-[13px] text-gray-700 font-bold">
+                          {ele?.courseTitle ||
+                            ele?.subjectTitle ||
+                            ele?.chapterTitle}
+                        </p>
+                        <p className=" text-[12px] text-gray-500">
+                          {ele?.coursePath ||
+                            ele?.subjectPath ||
+                            ele?.chapterPath}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <>
+                  {searchText.length > 1 && (
+                    <div className="absolute top-[50px] bg-white p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg flex justify-center items-center">
+                      <p className="bg-[var(--colW1)] border rounded px-3 p-1">
+                        No Data found!
+                      </p>
+                    </div>
+                  )}
+                </>
+              )}
+            </>
+          )}
           {/* <ul className="hidden flex-row  items-center cursor-pointer  sm:flex">
             {navRoute?.map((name, index) => (
               <NavLink key={index} to={name.path}>
