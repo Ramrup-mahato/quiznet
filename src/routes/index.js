@@ -111,9 +111,9 @@ export const MainRoutes = () => {
       name: "about",
     },
     {
-      path: "/setting",
+      path: "/profile",
       component: Setting,
-      name: "setting",
+      name: "profile",
     },
   ];
   return (

@@ -354,29 +354,34 @@ const AddCourseService = () => {
     // const result = URL.createObjectURL(file);
     // let img = document.getElementById(id);
     //   img.src = result;
-
+try {
+  
+  setLoader((old) => {
+    return {
+      ...old,
+      imageKit: true,
+    };
+  });
+  let imageKitResponse = await ImageUpload(file, "course");
+  console.log("imageKitResponse", imageKitResponse);
+  if (imageKitResponse) {
+    setModal((old) => {
+      return {
+        ...old,
+        folderImage: imageKitResponse,
+      };
+    });
     setLoader((old) => {
       return {
         ...old,
-        imageKit: true,
+        imageKit: false,
       };
     });
-    let imageKitResponse = await ImageUpload(file, "course");
-    console.log("imageKitResponse", imageKitResponse);
-    if (imageKitResponse) {
-      setModal((old) => {
-        return {
-          ...old,
-          folderImage: imageKitResponse,
-        };
-      });
-      setLoader((old) => {
-        return {
-          ...old,
-          imageKit: false,
-        };
-      });
-    }
+  }
+} catch (error) {
+  console.error(error);
+  toastError(error?.message || "something wrong with imageKit");
+}
   };
   // ---------------Edit folder ------------------------
   const handleEditFolder = (val, course) => {
@@ -740,29 +745,35 @@ const AddCourseService = () => {
   //------------------------handle Select image--------------------------------------
   const handleSelectQuestionImage = async (e) => {
     const file = e.target.files[0];
-
-    setLoader((old) => {
-      return {
-        ...old,
-        [e.target.name]: true,
-      };
-    });
-    let imageKitResponse = await ImageUpload(file, "question");
-    console.log("imageKitResponse", imageKitResponse);
-    if (imageKitResponse) {
-      setQuestionModal((old) => {
-        return {
-          ...old,
-          [e.target.name]: imageKitResponse,
-        };
-      });
+    try {
+      
       setLoader((old) => {
         return {
           ...old,
-          [e.target.name]: false,
+          [e.target.name]: true,
         };
       });
+      let imageKitResponse = await ImageUpload(file, "question");
+      console.log("imageKitResponse", imageKitResponse);
+      if (imageKitResponse) {
+        setQuestionModal((old) => {
+          return {
+            ...old,
+            [e.target.name]: imageKitResponse,
+          };
+        });
+        setLoader((old) => {
+          return {
+            ...old,
+            [e.target.name]: false,
+          };
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toastError(error?.message || "something wrong with imageKit");
     }
+
   };
   // ---------------------Cancel Question Modal----------------------
   const handleCancelQuestionModal = () => {

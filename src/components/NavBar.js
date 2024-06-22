@@ -75,7 +75,7 @@ const NavBar = ({ pageName }) => {
                 <img
                   src={userDetails?.avatar}
                   alt="Avatar"
-                  className="w-10 h-10 rounded-full border-white border-2 imageAvatar "
+                  className="w-10 h-10 rounded-full border-white border-2 imageAvatar object-cover"
                   onClick={() => handleNavMenu()}
                 />
               ) : (
@@ -96,20 +96,20 @@ const NavBar = ({ pageName }) => {
           ) : (
             <>
               <NavLink to={"/login"}>
-                <p className="pl-3 py-2  text-[13px] font-bold hover:text-black rounded-sm ">
+                <p className="pl-3 py-2  text-[13px] font-bold hover:text-black dark:hover:text-gray-100 rounded-sm ">
                   Sign In
                 </p>
               </NavLink>
               <div className="text-gray-500">|</div>
               <NavLink to={"/registration"}>
-                <p className="pr-3 py-2  text-[13px] font-bold  hover:text-black rounded-sm ">
+                <p className="pr-3 py-2  text-[13px] font-bold  hover:text-black dark:hover:text-gray-100 rounded-sm ">
                   Sign Up
                 </p>
               </NavLink>
             </>
           )}
           {navMenu === true && (
-            <div className="absolute top-10 right-1  "  ref={navMenuRef}>
+            <div className="absolute top-10 right-1  " ref={navMenuRef}>
               <div
                 className="w-[200px] h-full flex flex-col bg-[var(--colW3)] dark:bg-gray-800 shadow-xl shadow-[var(--colG3)]
            dark:shadow-gray-700 text-black dark:text-white  rounded-lg "
@@ -128,15 +128,15 @@ const NavBar = ({ pageName }) => {
                       </li>
                     </NavLink>
                   ))}
-                  <NavLink to={"/setting"}>
+                  <NavLink to={"/profile"}>
                     <li
                       className={`px-3 py-2 w-full hover:bg-[var(--colB6)] hover:text-black rounded-md  ${
-                        pageName === "setting"
+                        pageName === "profile"
                           ? "bg-[var(--colB5)] text-black"
                           : ""
                       }`}
                     >
-                      Setting
+                      Profile
                     </li>
                   </NavLink>
                   <li
