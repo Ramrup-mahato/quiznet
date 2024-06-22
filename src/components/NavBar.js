@@ -50,7 +50,10 @@ const NavBar = ({ pageName }) => {
             await getData(`/search?search=${val}`, token)
           );
           if (res?.success) {
-            setSearchList(res?.data);
+            if(searchText.length>1){
+
+              setSearchList(res?.data);
+            }
             setLoaderInFolder(false);
           }
         } catch (error) {
