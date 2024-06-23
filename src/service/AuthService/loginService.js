@@ -63,6 +63,17 @@ const LoginService = () => {
       if (error?.data?.isActive === false) {
         setTimeout(() => setOpenModal(true), 2000);
       }
+      if (error?.data?.isBlocked) {
+        setTimeout(() => {
+          navigation("/");
+        }, 2000);
+        setTimeout(() => {
+          const element = document.getElementById("contactMessage");
+          const yOffset = -100;
+          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }, 4000);
+      }
     }
   };
 

@@ -160,7 +160,7 @@ const Courses = () => {
           />
         ))}
       </div>
-      <div className="w-full flex flex-col md:flex-row   gap-2 p-2 mb-7">
+      <div id="contactMessage" className="w-full flex flex-col md:flex-row   gap-2 p-2 mb-7">
         <div className="w-full md:w-[45%] flex flex-col justify-center px-10">
           <h1 className="w-full font-extrabold  text-[25px] items-center dark:text-slate-50">
             We Love to connect, Help,Receive feedback just tell us...
