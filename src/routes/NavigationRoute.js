@@ -31,12 +31,12 @@ export const adminSideBarRoute = [
   {
     name: "Employees",
     path: "/admin/employees",
-    icon: FaPeopleGroup,
+    icon:IoBookSharp,
   },
   {
-    name: "Course Material",
-    path: "/admin/course",
-    icon: IoBookSharp,
+    name: "User Manager",
+    path: "/admin/users",
+    icon: FaPeopleGroup ,
   },
   {
     name: "Add Course",

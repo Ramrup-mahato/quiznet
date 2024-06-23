@@ -279,7 +279,7 @@ const DashboardPage = () => {
               </h1>
             </div>
             <div className="p-2 flex justify-between">
-              <div className="flex bg-white gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
+              <div className="flex bg-white dark:bg-gray-700 gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
                 {registerGraph?.yearlyRegistrationData?.years?.map(
                   (year, i) => (
                     <div
@@ -335,11 +335,11 @@ const DashboardPage = () => {
           <div className="bg-[var(--colW2)] dark:bg-gray-800 rounded-lg relative ">
             <div className="flex justify-between items-center p-2">
               <h1 className="font-bold text-gray-700 dark:text-gray-100 ">
-                Total User
+                User Visit on course
               </h1>
             </div>
             <div className="p-2 flex justify-between">
-              <div className="flex bg-white gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
+              <div className="flex bg-white dark:bg-slate-700 gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
                 {visitGraph?.yearlyVisitData?.years?.map((year, i) => (
                   <div
                     key={i}

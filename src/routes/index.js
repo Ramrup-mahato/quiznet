@@ -20,6 +20,7 @@ import AdminAuthGard from "../components/AuthGard/AdminAuthGard";
 import NotFound from "../components/ReUsable/NotFound ";
 import About from "../Screen/About";
 import Setting from "../Screen/Setting";
+import UsersManager from "../Screen/Admin/UserScreen/UsersManager";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -69,9 +70,9 @@ export const MainRoutes = () => {
       name: "Employees",
     },
     {
-      path: "/admin/course",
-      component: CourseMaterial,
-      name: "Course Material",
+      path: "/admin/users",
+      component: UsersManager,
+      name: "Users manager",
     },
     {
       path: "/admin/addCourse",
