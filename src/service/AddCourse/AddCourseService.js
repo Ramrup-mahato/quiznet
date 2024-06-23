@@ -354,34 +354,33 @@ const AddCourseService = () => {
     // const result = URL.createObjectURL(file);
     // let img = document.getElementById(id);
     //   img.src = result;
-try {
-  
-  setLoader((old) => {
-    return {
-      ...old,
-      imageKit: true,
-    };
-  });
-  let imageKitResponse = await ImageUpload(file, "course");
-  console.log("imageKitResponse", imageKitResponse);
-  if (imageKitResponse) {
-    setModal((old) => {
-      return {
-        ...old,
-        folderImage: imageKitResponse,
-      };
-    });
-    setLoader((old) => {
-      return {
-        ...old,
-        imageKit: false,
-      };
-    });
-  }
-} catch (error) {
-  console.error(error);
-  toastError(error?.message || "something wrong with imageKit");
-}
+    try {
+      setLoader((old) => {
+        return {
+          ...old,
+          imageKit: true,
+        };
+      });
+      let imageKitResponse = await ImageUpload(file, "course");
+      console.log("imageKitResponse", imageKitResponse);
+      if (imageKitResponse) {
+        setModal((old) => {
+          return {
+            ...old,
+            folderImage: imageKitResponse,
+          };
+        });
+        setLoader((old) => {
+          return {
+            ...old,
+            imageKit: false,
+          };
+        });
+      }
+    } catch (error) {
+      console.error(error);
+      toastError(error?.message || "something wrong with imageKit");
+    }
   };
   // ---------------Edit folder ------------------------
   const handleEditFolder = (val, course) => {
@@ -746,7 +745,6 @@ try {
   const handleSelectQuestionImage = async (e) => {
     const file = e.target.files[0];
     try {
-      
       setLoader((old) => {
         return {
           ...old,
@@ -773,7 +771,6 @@ try {
       console.error(error);
       toastError(error?.message || "something wrong with imageKit");
     }
-
   };
   // ---------------------Cancel Question Modal----------------------
   const handleCancelQuestionModal = () => {
@@ -1011,7 +1008,7 @@ try {
           _id: value?.Id && value?.Id ? value?.Id : "",
           chapterId: QuestionDetails.chapterInfo?.chapterPath,
           question: value?.Question,
-          correctAnswer: value?.Correct_Answer,
+          correctAnswer: value?.Correct_Answer?.toLowerCase(),
           a: value?.Option_A,
           b: value?.Option_B,
           c: value?.Option_C,
