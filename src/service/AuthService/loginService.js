@@ -1,11 +1,11 @@
 import { useFormik } from "formik";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LoginSchema } from "../../Schema";
 import { jwtDecode } from "jwt-decode";
 import { postData } from "../../components/AuthGard/LogGard";
 import { apiResponse } from "../../utils/Helper";
-import { toastSuccess, toastWarning } from "../../utils/tostify";
+import { toastError, toastSuccess, toastWarning } from "../../utils/tostify";
 import ContextStore from "../../context/Context";
 
 const initialValues = {
@@ -93,7 +93,7 @@ const LoginService = () => {
     let res = await apiResponse(await postData("/forgetPassword", json));
     if (res) setIsLoader(false);
     console.log(res);
-    alert(JSON.stringify(res?.date))
+    alert(JSON.stringify(res));
   };
   // -----------close modal---------------
   const handleModal = () => {
@@ -106,20 +106,44 @@ const LoginService = () => {
   };
   // ------------------------Activate Account--------------------------
   const handleActivate = async () => {
-    setIsLoader(true);
-    setTime(40);
-    let json = {
-      email: values.email,
-    };
-    let res = await apiResponse(await postData("/forgetPassword", json));
-    console.log(res);
-    if (res) {
+    try {
+      setIsLoader(true);
+      setTime(40);
+
+      const json = {
+        email: values.email,
+      };
+
+      const response = await postData("/forgetPassword", json);
+      const res = await apiResponse(response);
+
+      console.log(res);
+
+      if (res?.success) {
+        setActivate(true);
+        setOpenModal(false);
+        alert(JSON.stringify(res?.OTP));
+      } else {
+        // Handle the case where the response is not successful
+        toastError("An error occurred: " + (res?.message || "Unknown error"));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toastError("An error occurred while processing your request.");
+    } finally {
       setIsLoader(false);
-      setActivate(true);
-      setOpenModal(false);
-      alert(JSON.stringify(res?.date))
     }
   };
+
+  useEffect(() => {
+    if (time > 0) {
+      const timer = setTimeout(() => {
+        setTime(time - 1);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [time]);
   return {
     errors,
     values,

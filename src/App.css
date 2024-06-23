@@ -316,7 +316,7 @@
   max-width: 320px; 
   min-width: 200px; 
   margin-bottom: 20px; 
-  background-color: #f0f0f0; 
+  background-color: var(--colW1); 
   border: 1px solid #ccc; 
 }
 @media screen and (max-width: 685px) {

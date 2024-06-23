@@ -13,7 +13,6 @@ import Employee from "../Screen/Admin/EmployeeScreen/Employee";
 import Faq from "../Screen/Admin/FAQScreen/Faq";
 import Report from "../Screen/Admin/ReportScreen/Report";
 import Contact from "../Screen/Admin/ContactScreen/Contact";
-import CourseMaterial from "../Screen/Admin/CourseMaterialScreen/CourseMaterial";
 import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
 import AuthGard from "../components/AuthGard/AuthGard";
 import AdminAuthGard from "../components/AuthGard/AdminAuthGard";

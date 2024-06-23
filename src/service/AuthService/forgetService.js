@@ -71,7 +71,7 @@ const ForgetService = () => {
         let res = await apiResponse(await postData("/forgetPassword", json));
         if (res) {
           setStage("otp");
-          alert(JSON.stringify(res?.date))
+          alert(JSON.stringify(res))
           setTime(40)
           setIsLoader(false)
           setForget((old) => {
@@ -125,7 +125,7 @@ const ForgetService = () => {
     setIsLoader(true)
     let res = await apiResponse(await postData("/forgetPassword", json));
     console.log(res);
-    alert(JSON.stringify(res?.date))
+    alert(JSON.stringify(res))
     if(res) setIsLoader(false)
     } catch (error) {
       if(error) setIsLoader(false)

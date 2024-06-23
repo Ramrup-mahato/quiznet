@@ -2,7 +2,7 @@ import { useFormik } from "formik";
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RegisterSchema } from "../../Schema";
-import {  toastSuccess, toastWarning } from "../../utils/tostify";
+import { toastSuccess, toastWarning } from "../../utils/tostify";
 import { postData } from "../../components/AuthGard/LogGard";
 import { apiResponse } from "../../utils/Helper";
 import ContextStore from "../../context/Context";
@@ -17,7 +17,7 @@ const initialValues = {
 
 const RegistrationService = () => {
   const navigation = useNavigate();
-  const {setIsLoader}=useContext(ContextStore)
+  const { setIsLoader } = useContext(ContextStore);
   const [regDetails, setRegDetails] = useState({
     radioSelect: "student",
     termCondition: false,
@@ -27,25 +27,32 @@ const RegistrationService = () => {
   });
   const [time, setTime] = useState(0);
   console.log("regDetails", regDetails);
-  const { errors, values, touched, handleBlur, handleChange, handleSubmit ,setFieldValue} =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: RegisterSchema,
-      onSubmit: (values, action) => {
-        if (regDetails.termCondition === true) {
-          handleRegister(values);
-        } else {
-          toastWarning("Please read and select term and condition");
-        }
-        // action.resetForm();
-      },
-    });
-// ------------------Navigate -----------------------
+  const {
+    errors,
+    values,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: RegisterSchema,
+    onSubmit: (values, action) => {
+      if (regDetails.termCondition === true) {
+        handleRegister(values);
+      } else {
+        toastWarning("Please read and select term and condition");
+      }
+      // action.resetForm();
+    },
+  });
+  // ------------------Navigate -----------------------
   const handleSigIn = (path) => {
     console.log("handleForgetRegister", path);
     navigation(`/${path}`);
   };
-// ------------------Selection of student or Expert  -----------------------
+  // ------------------Selection of student or Expert  -----------------------
 
   const handleSelectRadio = (e) => {
     let select = e.target.name;
@@ -56,7 +63,7 @@ const RegistrationService = () => {
       };
     });
   };
-// ---------------select Term And condition------------------------
+  // ---------------select Term And condition------------------------
   const handleTermCondition = (e) => {
     let { checked } = e.target;
     setRegDetails((oldData) => {
@@ -75,24 +82,23 @@ const RegistrationService = () => {
       };
     });
   };
-// --------------------Submit OTP with API------------------------
+  // --------------------Submit OTP with API------------------------
   const handleSubmitOTP = async () => {
     try {
-      setIsLoader(true)
+      setIsLoader(true);
       const json = {
         email: regDetails?.email,
         OTP: regDetails?.OTP,
       };
       let verifyOtp = await apiResponse(await postData("/verifyOTP", json));
       if (verifyOtp) {
-        setIsLoader(false)
+        setIsLoader(false);
         setTimeout(() => {
           navigation("/login");
         }, 2000);
       }
     } catch (error) {
-      
-      if(error) setIsLoader(false)
+      if (error) setIsLoader(false);
     }
   };
   const handleRegister = async (value) => {
@@ -105,11 +111,11 @@ const RegistrationService = () => {
         password: value?.password,
         conformPassword: value?.conformPassword,
       };
-      setIsLoader(true)
+      setIsLoader(true);
       const response = await apiResponse(await postData("/register", json));
       if (response) {
         setTime(40);
-        setIsLoader(false)
+        setIsLoader(false);
         setRegDetails((oldData) => {
           return {
             ...oldData,
@@ -119,7 +125,7 @@ const RegistrationService = () => {
         });
       }
     } catch (error) {
-      if(error) setIsLoader(false)
+      if (error) setIsLoader(false);
     }
   };
   // -------------------Resend OTP----------------------------
@@ -127,23 +133,23 @@ const RegistrationService = () => {
     event.preventDefault();
     setTime(40);
     toastSuccess("Send request for new OTP");
-    setIsLoader(true)
+    setIsLoader(true);
     let json = {
       email: values.email,
     };
 
     let res = await apiResponse(await postData("/forgetPassword", json));
     console.log(res);
-    if(res) setIsLoader(false)
-      alert(JSON.stringify(res?.date))
+    if (res) setIsLoader(false);
+    alert(JSON.stringify(res));
   };
-// ------------------only enter number----------------------
-const handlePhoneChange = (e) => {
-  const { name, value } = e.target;
-  if (/^\d*$/.test(value)) {
-    setFieldValue(name, value);
-  }
-};
+  // ------------------only enter number----------------------
+  const handlePhoneChange = (e) => {
+    const { name, value } = e.target;
+    if (/^\d*$/.test(value)) {
+      setFieldValue(name, value);
+    }
+  };
   useEffect(() => {
     if (time !== 0) {
       const timer = setTimeout(() => setTime(time - 1), 1000);

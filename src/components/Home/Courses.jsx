@@ -50,8 +50,8 @@ const Courses = () => {
                 {ele?.subjects.map((sub, i) => (
                   <div
                     key={i}
-                    className="item m-[2px] bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
-               rounded-lg text-[14px]   cursor-pointer"
+                    className="item m-[2px] bg-[var(--colW1)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
+               rounded-lg text-[14px]  cursor-pointer"
                     onClick={() => handleSelectCourse(sub.subjectPath)}
                   >
                     <div>
@@ -78,7 +78,7 @@ const Courses = () => {
                         <p>
                           visit:<span className="font-bold text-[var(--colG2)]"> 1254</span>
                         </p>
-                        <p className=" text-[var(--colG2)] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-bold">
+                        <p className=" text-[var(--colG2)]  text-[14px] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-extrabold">
                           View
                         </p>
                       </div>
