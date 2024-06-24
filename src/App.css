@@ -319,6 +319,22 @@
   background-color: var(--colW1); 
   border: 1px solid #ccc; 
 }
+@media screen and (max-width: 1366px) {
+  .userMainDivs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .item {
+    flex: 1 1 250px;
+    max-width: 300px; 
+    min-width: 180px; 
+    margin-bottom: 20px; 
+    background-color: var(--colW1); 
+    border: 1px solid #ccc; 
+  }
+}
 @media screen and (max-width: 685px) {
   .userMainDivs {
     display: flex;

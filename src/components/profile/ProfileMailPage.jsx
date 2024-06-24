@@ -30,7 +30,7 @@ const ProfileMailPage = () => {
                         <img
                           src={userDetails?.avatar}
                           alt={userDetails?.username}
-                          className="w-full h-full border-[4px] border-[var(--colG1)] rounded-full object-fill"
+                          className="w-full h-full border-[4px] border-[var(--colG1)] rounded-full object-cover"
                         />
                       ) : (
                         <p

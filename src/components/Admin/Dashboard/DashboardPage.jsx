@@ -242,12 +242,12 @@ const DashboardPage = () => {
               </p>
             </div>
           </div>
-          <div className="flex gap-4 bg-white dark:bg-gray-700 p-4 rounded-lg">
+          <div className="flex gap-4 bg-white dark:bg-gray-700 p-3 rounded-lg">
             <div
-              className="min-w-[150px] flex justify-center flex-col items-center gap-1 p-3 rounded-lg shadow-lg bg-[#E7F7FC] cursor-pointer"
+              className="min-w-[100px] flex justify-center flex-col items-center gap-1 p-3 rounded-lg shadow-lg bg-[#E7F7FC] cursor-pointer"
               onClick={() => handleNavigate("/admin/contact")}
             >
-              <RiSpeakFill size={55} color={"#00abe4"} />
+              <RiSpeakFill size={35} color={"#00abe4"} />
               <p className="font-medium text-[10px] text-slate-500">
                 User Enquiry
               </p>
@@ -257,10 +257,10 @@ const DashboardPage = () => {
               </p>
             </div>
             <div
-              className="min-w-[150px] flex justify-center flex-col items-center gap-1 p-3 rounded-lg shadow-lg bg-[#FDF9F2] cursor-pointer"
+              className="min-w-[100px] flex justify-center flex-col items-center gap-1 p-3 rounded-lg shadow-lg bg-[#FDF9F2] cursor-pointer"
               onClick={() => handleNavigate("/admin/report")}
             >
-              <MdReport size={55} color={"#EABC77"} />
+              <MdReport size={35} color={"#EABC77"} />
               <p className="font-medium text-[10px] text-slate-500">
                 Report Question
               </p>
@@ -278,24 +278,34 @@ const DashboardPage = () => {
                 Register User
               </h1>
             </div>
-            <div className="p-2 flex justify-between">
-              <div className="flex bg-white dark:bg-gray-700 gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
-                {registerGraph?.yearlyRegistrationData?.years?.map(
-                  (year, i) => (
-                    <div
-                      key={i}
-                      className={`text-[12px] shadow flex justify-center items-center px-3 py-1 rounded-full cursor-pointer ${
-                        dashboardInfo?.selectRegisterYear === year
-                          ? "bg-[var(--colB1)] text-white "
-                          : null
-                      }`}
-                      onClick={() => handleSelectRegisterYear(year)}
-                    >
-                      <p className=" ">{year}</p>
-                    </div>
-                  )
-                )}
-              </div>
+            <div
+              className={` w-full p-2 flex ${
+                dashboardInfo?.registerType === "year"
+                  ? "justify-end items-end"
+                  : "justify-between "
+              }`}
+            >
+              {dashboardInfo?.registerType === "year" ? (
+                ""
+              ) : (
+                <div className="flex bg-white dark:bg-gray-700 gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
+                  {registerGraph?.yearlyRegistrationData?.years?.map(
+                    (year, i) => (
+                      <div
+                        key={i}
+                        className={`text-[12px] shadow flex justify-center items-center px-3 py-1 rounded-full cursor-pointer ${
+                          dashboardInfo?.selectRegisterYear === year
+                            ? "bg-[var(--colB1)] text-white "
+                            : null
+                        }`}
+                        onClick={() => handleSelectRegisterYear(year)}
+                      >
+                        <p className=" ">{year}</p>
+                      </div>
+                    )
+                  )}
+                </div>
+              )}
               <div className="flex p-1 bg-[var(--colW3)] dark:bg-gray-600 rounded-full text-[12px] font-medium ">
                 <p
                   className={`${
@@ -338,22 +348,32 @@ const DashboardPage = () => {
                 User Visit on course
               </h1>
             </div>
-            <div className="p-2 flex justify-between">
-              <div className="flex bg-white dark:bg-slate-700 gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
-                {visitGraph?.yearlyVisitData?.years?.map((year, i) => (
-                  <div
-                    key={i}
-                    className={`text-[12px] shadow flex justify-center items-center px-3 py-1 rounded-full cursor-pointer ${
-                      dashboardInfo.selectVisitYear === year
-                        ? "bg-[var(--colB1)] text-white "
-                        : null
-                    }`}
-                    onClick={() => handleSelectVisitYear(year)}
-                  >
-                    <p className=" ">{year}</p>
-                  </div>
-                ))}
-              </div>
+            <div
+              className={` w-full p-2 flex ${
+                dashboardInfo?.viewType === "year"
+                  ? "justify-end items-end"
+                  : "justify-between "
+              }`}
+            >
+              {dashboardInfo?.viewType === "year" ? (
+                ""
+              ) : (
+                <div className="flex bg-white dark:bg-slate-700 gap-1 px-2  py-1 rounded-full shadow overflow-scroll max-w-[300px]">
+                  {visitGraph?.yearlyVisitData?.years?.map((year, i) => (
+                    <div
+                      key={i}
+                      className={`text-[12px] shadow flex justify-center items-center px-3 py-1 rounded-full cursor-pointer ${
+                        dashboardInfo.selectVisitYear === year
+                          ? "bg-[var(--colB1)] text-white "
+                          : null
+                      }`}
+                      onClick={() => handleSelectVisitYear(year)}
+                    >
+                      <p className=" ">{year}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
               <div className="flex p-1 bg-[var(--colW3)] dark:bg-gray-600 rounded-full text-[12px] font-medium ">
                 <p
                   className={`${

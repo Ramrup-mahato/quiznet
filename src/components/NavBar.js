@@ -116,7 +116,7 @@ const NavBar = ({ pageName }) => {
             <>
               {searchList.length > 0 ? (
                 <div className="absolute top-[50px] bg-white dark:bg-gray-800 dark:text-gray-100 p-5 md:min-w-[300px] lg:min-w-[500px] rounded-lg hidden md:block ">
-                  {searchList?.slice(0, 10)?.map((ele, i) => (
+                  {searchList?.slice(0, 7)?.map((ele, i) => (
                     <div
                       className="w-full bg-[var(--colW1)] dark:bg-gray-900 dark:text-gray-100 m-1 p-2 border rounded flex justify-start items-center gap-4 cursor-pointer"
                       onClick={() => handleSelectTopic(ele?.subjectPath)}
