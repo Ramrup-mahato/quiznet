@@ -14,7 +14,7 @@ import { RxCross2 } from "react-icons/rx";
 const NavBar = ({ pageName }) => {
   const navigation = useNavigate();
   const navMenuRef = useRef(null);
-  const { userDetails, token } = useContext(ContextStore);
+  const { userDetails, token, role } = useContext(ContextStore);
   const [navMenu, setNavMenu] = useState(false);
   const [loaderInFolder, setLoaderInFolder] = useState(false);
 
@@ -241,6 +241,20 @@ const NavBar = ({ pageName }) => {
                       Profile
                     </li>
                   </NavLink>
+                  {(userDetails?.userType === "employee" ||
+                    role === "admin") && (
+                    <NavLink to={"/workspace"}>
+                      <li
+                        className={`px-3 py-2 w-full hover:bg-[var(--colB6)] hover:text-black rounded-md  ${
+                          pageName === "workspace"
+                            ? "bg-[var(--colB5)] text-black"
+                            : ""
+                        }`}
+                      >
+                        My Work Space
+                      </li>
+                    </NavLink>
+                  )}
                   <li
                     onClick={() => handleLogout()}
                     className={`px-3 py-2 w-full hover:bg-[var(--colB6)] hover:text-black rounded-md  ${

@@ -20,6 +20,7 @@ import NotFound from "../components/ReUsable/NotFound ";
 import About from "../Screen/About";
 import Setting from "../Screen/Setting";
 import UsersManager from "../Screen/Admin/UserScreen/UsersManager";
+import WorkSpace from "../Screen/WorkSpace";
 
 export const MainRoutes = () => {
   const authRouts = [
@@ -114,6 +115,11 @@ export const MainRoutes = () => {
       path: "/profile",
       component: Setting,
       name: "profile",
+    },
+    {
+      path: "/workspace",
+      component: WorkSpace,
+      name: "workspace",
     },
   ];
   return (

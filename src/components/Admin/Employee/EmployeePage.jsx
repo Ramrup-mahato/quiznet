@@ -15,10 +15,12 @@ const EmployeePage = () => {
     searchText,
     openModal,
     modalData,
+    employee,
     addEditModal,
     handleSearchText,
     handleSelectEmployee,
     handleAddNewEmployee,
+    handleSaveEmployee,
   } = EmployeeService();
   return (
     <div className="p-4">
@@ -26,7 +28,7 @@ const EmployeePage = () => {
         <h1 className="font-medium text-[14px] text-gray-600">
           Total Employee:{" "}
           <span className="font-bold text-[14px] text-[var(--colB1)]">
-            {employeeList.length}
+            {employeeList?.length}
           </span>
         </h1>
         <div className="flex gap-2 justify-center items-center">
@@ -39,67 +41,97 @@ const EmployeePage = () => {
         </div>
       </div>
       <div className="grid grid-cols-2 p-5 gap-4  ">
-        {employeeList?.map((emp, i) => (
-          <div
-            key={i}
-            className="p-3 bg-[var(--colW2)] dark:bg-slate-800 flex flex-col justify-center items-center rounded-lg shadow-lg"
-          >
-            {emp?.image ? (
-              <img
-                src={emp?.image}
-                alt="employee..."
-                className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+        {employeeList?.length > 0 &&
+          employeeList?.map((emp, i) => (
+            <div
+              key={i}
+              className="p-3 bg-[var(--colW2)] dark:bg-slate-800 flex flex-col justify-center items-center rounded-lg shadow-lg"
+            >
+              {emp?.avatar ? (
+                <img
+                  src={emp?.avatar}
+                  alt="employee..."
+                  className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
                   shadow-2xl shadow-slate-500 dark:shadow-slate-400"
-              />
-            ) : (
-              <p
-                className="w-[200px] h-[200px] font-bold text-[100px] flex justify-center items-center text-violet-600 rounded-full border-[4px] border-[var(--colW3)] 
+                />
+              ) : (
+                <p
+                  className="w-[200px] h-[200px] font-bold text-[100px] flex justify-center items-center text-violet-600 rounded-full border-[4px] border-[var(--colW3)] 
               shadow-2xl shadow-slate-500 dark:shadow-slate-400"
-              >
-                {emp?.name[0].toUpperCase()}
-              </p>
-            )}
-            <div className="w-full flex flex-col p-3">
-              <p className="font-bold text-[20px] text-slate-600 dark:text-slate-100">
-                {emp?.name}
-              </p>
-              <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
-                {emp?.phone}
-              </p>
-              <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
-                {emp?.email}
-              </p>
-              <div className=" flex gap-3 ">
-                <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
-                  Course:
+                >
+                  {emp?.username?.slice(0, 1).toUpperCase()}
                 </p>
-                <p className="font-bold text-[14px] text-[var(--colB1)]">
-                  {emp?.topicAssign}
-                </p>
-              </div>
-              <div className=" flex gap-3 ">
-                <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
-                  Status:
-                </p>
+              )}
+              <div className="w-full flex flex-col p-3">
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Name:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?.username}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Phone:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?.phone}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Email:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?.email}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Active:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?.isActive ? "Yes" : "No"}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Blocked:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?.isBlocked ? "Yes" : "No"}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    User Type:
+                  </p>
 
-                <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
-                  {emp?.status}
-                </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?.userType}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    User id:
+                  </p>
+
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {emp?._id}
+                  </p>
+                </div>
+              </div>
+              <div className="w-full flex justify-end items-end">
+                <button
+                  className=" flex bg-red-400 justify-center items-center gap-3 py-2 px-3  rounded-full cursor-pointer w-[100px]"
+                  onClick={() => handleSaveEmployee("student", emp)}
+                >
+                  Delete <MdDelete size={20} />{" "}
+                </button>
               </div>
             </div>
-            <div className="w-full grid grid-cols-2 gap-2">
-              <button className=" flex bg-red-400 justify-center items-center gap-3 p-2 rounded-full cursor-pointer">
-                Delete <MdDelete size={20} />{" "}
-              </button>
-              <button
-                onClick={() => handleModal(emp, "edit")}
-                className=" flex bg-green-400 justify-center items-center gap-2 p-2 rounded-full cursor-pointer"
-              >
-                Edit <FaRegEdit size={20} />{" "}
-              </button>
-            </div>
-          </div>
-        ))}
+          ))}
       </div>
       <EmployeeModal
         openModal={openModal}
@@ -111,6 +143,8 @@ const EmployeePage = () => {
         addEditModal={addEditModal}
         handleSelectEmployee={handleSelectEmployee}
         handleAddNewEmployee={handleAddNewEmployee}
+        employee={employee}
+        handleSaveEmployee={handleSaveEmployee}
       />
     </div>
   );
@@ -124,7 +158,8 @@ const EmployeeModal = ({
   modalData,
   addEditModal,
   handleSelectEmployee,
-  handleAddNewEmployee,
+  handleSaveEmployee,
+  employee,
 }) => {
   return (
     <>
@@ -149,20 +184,20 @@ const EmployeeModal = ({
                       key={i}
                       onClick={() => handleSelectEmployee(ele)}
                     >
-                      {ele?.image ? (
+                      {ele?.avatar ? (
                         <img
-                          src={ele?.image}
+                          src={ele?.avatar}
                           alt="employee..."
                           className="w-10 h-10 object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)]  "
                         />
                       ) : (
                         <p className="w-10 h-10 font-bold text-[17px] flex justify-center items-center text-violet-600 rounded-full border-[4px] border-[var(--colW3)] ">
-                          {ele?.name[0].toUpperCase()}
+                          {ele?.username?.slice(0, 1).toUpperCase()}
                         </p>
                       )}
                       <div>
                         <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
-                          {ele?.name}
+                          {ele?.username}
                         </p>
                         <p className="font-bold text-[var(--colB1)] text-[14px]">
                           {ele?.email}
@@ -176,53 +211,89 @@ const EmployeeModal = ({
           ) : (
             ""
           )}
-          {modalData && modalData.length > 0 ? (
-            <div className="flex justify-center items-center flex-col">
-              {modalData[0]?.image ? (
+          {employee?.showSelectEmployee ? (
+            <div className="p-3 bg-[var(--colW2)] dark:bg-slate-800 flex flex-col justify-center items-center rounded-lg shadow-lg">
+              {modalData?.avatar ? (
                 <img
-                  src={modalData[0]?.image}
+                  src={modalData?.avatar}
                   alt="employee..."
-                  className="w-[150px] h-[150px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
-                  shadow-2xl shadow-slate-500 dark:shadow-slate-400"
+                  className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+               shadow-2xl shadow-slate-500 dark:shadow-slate-400"
                 />
               ) : (
                 <p
-                  className="w-[150px] h-[150px] font-bold text-[100px] flex justify-center items-center text-violet-600
-                   rounded-full border-[4px] border-[var(--colW3)] 
-              shadow-2xl shadow-slate-500 dark:shadow-slate-400"
+                  className="w-[200px] h-[200px] font-bold text-[100px] flex justify-center items-center text-violet-600 rounded-full border-[4px] border-[var(--colW3)] 
+           shadow-2xl shadow-slate-500 dark:shadow-slate-400"
                 >
-                  {modalData[0]?.name[0].toUpperCase()}
+                  {modalData?.username?.slice(0, 1).toUpperCase()}
                 </p>
               )}
-              <TextInput
-                label={"Name"}
-                placeholder={"please Enter Name"}
-                value={modalData[0]?.name}
-              />
-              <TextInput
-                label={"Email"}
-                placeholder={"please Enter email"}
-                value={modalData[0]?.email}
-              />
-              <TextInput
-                label={"Phone"}
-                placeholder={"please Enter phone"}
-                value={modalData[0]?.phone}
-              />
-              <TextInput
-                label={"Phone"}
-                placeholder={"please Enter phone"}
-                value={modalData[0]?.topicAssign}
-              />
-              <div className="w-full grid grid-cols-2 gap-2 py-2">
-                <button className=" flex border-[2px] border-red-400 justify-center items-center gap-3 p-2 rounded-full cursor-pointer">
-                  Cancel
-                </button>
+              <div className="w-full flex flex-col p-3">
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Name:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?.username}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Phone:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?.phone}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Email:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?.email}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Active:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?.isActive ? "Yes" : "No"}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    Blocked:
+                  </p>
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?.isBlocked ? "Yes" : "No"}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    User Type:
+                  </p>
+
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?.userType}
+                  </p>
+                </div>
+                <div className=" flex gap-3 ">
+                  <p className="font-bold text-[14px] text-slate-600 dark:text-slate-100">
+                    User id:
+                  </p>
+
+                  <p className="font-bold text-[14px] text-[var(--colB1)]">
+                    {modalData?._id}
+                  </p>
+                </div>
+              </div>
+              <div className="w-full flex justify-end items-end">
                 <button
-                  onClick={handleAddNewEmployee}
-                  className=" flex bg-green-400 justify-center items-center gap-2 p-2 rounded-full cursor-pointer"
+                  onClick={() => handleSaveEmployee("employee", modalData)}
+                  className=" flex bg-[var(--colG2)] justify-center items-center gap-2 p-2 rounded-full cursor-pointer w-[100px]  font-bold"
                 >
-                  Save
+                  Add
                 </button>
               </div>
             </div>
