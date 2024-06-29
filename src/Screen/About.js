@@ -9,6 +9,8 @@ import Expert from "../assets/image/expert.png";
 import pk from "../assets/image/pk1.png";
 import quotebottom from "../assets/image/quotebottom.png";
 import quotetop from "../assets/image/quotetop.png";
+import ramrup from "../assets/image/ramrupm.png";
+import ramsorup from "../assets/image/RAMSORUP1.jpg";
 
 const About = () => {
   return (
@@ -20,7 +22,7 @@ const About = () => {
       <Footer /> */}
       <div className="mainImage">
         <div className="backdrop-blur-sm w-full h-full flex justify-center items-center">
-          <p className="text-[50px] drop-shadow-2xl text-white p-3  font-[900] fontFamily">
+          <p className="text-[50px] drop-shadow-2xl text-[var(--colB1)] p-3  font-[900] fontFamily">
             Excellence: Study Guides, Quizzes, PDFs
           </p>
         </div>
@@ -105,7 +107,77 @@ const About = () => {
       </div>
       <div className="bg-white dark:bg-gray-800 dark:text-gray-100 w-full flex justify-center ">
         <ContainerBox>
-          <div className="flex gap-4 flex-col  md:flex-row py-5">
+          <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 py-5 px-2">
+            <div className="p-3 bg-[var(--colW2)] dark:bg-slate-800 flex flex-col justify-center items-center rounded-lg shadow-lg">
+              <img
+                src={ramrup}
+                alt="employee..."
+                className="w-[300px] h-[300px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+                  shadow-2xl shadow-slate-500 dark:shadow-slate-400"
+              />
+
+              <div className="flex-1 flex justify-center flex-col items-start p-2">
+                <p className="font-bold text-[14px] border-b-4 border-[var(--colB1)] mb-2">
+                  CEO, Founder & Developer
+                </p>
+                <div className="w-full lg:max-w-[600px]">
+                  <div>
+                    <img src={quotetop} alt="top quote" />{" "}
+                  </div>
+
+                  <i className="fontFamily  px-5 text-[12px]">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    My name is Ramrup . I am the CEO, Founder, and
+                    Developer of QuizNet, and I'm excited to share that QuizNet
+                    is a platform where you can find and play quiz games for
+                    fun. You can access QuizNet from both the app and website.
+                    QuizNet offers various types of quizzes related to
+                    government exams, license exams, memory tests, fun quizzes,
+                    and more. Experts can also add and create question papers.
+                  </i>
+
+                  <div className="w-full flex justify-end items-end">
+                    <img src={quotebottom} alt="bottom quote" />{" "}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="p-3 bg-[var(--colW2)] dark:bg-slate-800 flex flex-col justify-center items-center rounded-lg shadow-lg">
+              <img
+                src={ramsorup}
+                alt="employee..."
+                className="w-[300px] h-[300px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+                  shadow-2xl shadow-slate-500 dark:shadow-slate-400"
+              />
+
+              <div className="flex-1 flex justify-center flex-col items-start px-2">
+                <p className="font-bold text-[14px] border-b-4 border-[var(--colB1)] mb-2">
+                Marketing Director (MD) & Marketing Lead
+                </p>
+                <div className="w-full lg:max-w-[600px]">
+                  <div>
+                    <img src={quotetop} alt="top quote" />{" "}
+                  </div>
+
+                  <i className="fontFamily  px-5 text-[12px]">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    Hi, I'm Ramsorup. Welcome to QuizNet. I am the
+                    Marketing Lead of QuizNet, and I'm glad to share that
+                    QuizNet is a platform for all kinds of students who want to
+                    prepare for various levels of LokSewa exams, entrance exams,
+                    vehicle licenses, and more. Experts can add and create
+                    question papers. With QuizNet, you can participate in live
+                    quizzes and enhance your learning experience effortlessly.
+                    Our platform offers comprehensive study tools to help you
+                    prepare effectively for exams.
+                  </i>
+
+                  <div className="w-full flex justify-end items-end">
+                    <img src={quotebottom} alt="bottom quote" />{" "}
+                  </div>
+                </div>
+              </div>
+            </div>
             <div className="p-3 bg-[var(--colW2)] dark:bg-slate-800 flex flex-col justify-center items-center rounded-lg shadow-lg">
               <img
                 src={pk}
@@ -115,8 +187,8 @@ const About = () => {
               />
 
               <div className="flex-1 flex justify-center flex-col items-start px-2">
-                <p className="font-bold text-[14px] border-b-4 border-[var(--colB1)]">
-                  Priyanka HR (Human resources)
+                <p className="font-bold text-[14px] border-b-4 border-[var(--colB1)] mb-2">
+                  HR (Human resources)
                 </p>
                 <div className="w-full lg:max-w-[600px]">
                   <div>
@@ -125,7 +197,7 @@ const About = () => {
 
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Hi, my name is Priyanka Mahato. I am the HR (Human
+                    Hi, my name is Priyanka . I am the HR (Human
                     Resources) of QuizNet, and I'm excited to share that QuizNet
                     is a platform where you can find all kinds of course-related
                     quizzes. If you're a student, just log in, and you'll be
@@ -138,7 +210,7 @@ const About = () => {
                   <br />
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    नमस्ते, मेरो नाम प्रियंका महतो हो। म क्विजनेटको एचआर (मानव
+                    नमस्ते, मेरो नाम प्रियंका हो। म क्विजनेटको एचआर (मानव
                     संसाधन) हुँ, र म तपाईलाई यो जानकारी दिन पाउँदा खुशी छु कि
                     क्विजनेट एउटा प्लेटफर्म हो जहाँ तपाईलाई सबै प्रकारका
                     पाठ्यक्रम-सँग सम्बन्धित क्विजहरू पाउन सक्नुहुन्छ। यदि तपाई
