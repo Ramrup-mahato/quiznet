@@ -31,7 +31,7 @@ const About = () => {
         <ContainerBox>
           <div className="flex gap-4 flex-col  md:flex-row">
             <div className="flex md:hidden">
-              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="font-bold text-[30px] md:text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 About Us
               </h1>
             </div>
@@ -43,7 +43,7 @@ const About = () => {
               />
             </div>
             <div className="flex-1 flex justify-center flex-col items-start px-2">
-              <h1 className="hidden md:block font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="hidden md:block font-bold  text-[30px] md:text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 About Us
               </h1>
 
@@ -65,13 +65,13 @@ const About = () => {
         <ContainerBox>
           <div className="flex gap-4 flex-col  md:flex-row">
             <div className="flex md:hidden">
-              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="font-bold text-[30px] md:text-[50px]  border-b-8 border-[var(--colB1)] mb-10">
                 Students
               </h1>
             </div>
             <div className="flex flex-col-reverse md:flex-row">
               <div className="flex-1 flex justify-center flex-col items-start px-2">
-                <h1 className=" hidden md:block font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+                <h1 className=" hidden md:block font-bold text-[30px] md:text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                   Students
                 </h1>
 
@@ -101,7 +101,7 @@ const About = () => {
         <ContainerBox>
           <div className="flex gap-4 flex-col  md:flex-row">
             <div className="flex md:hidden">
-              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="font-bold text-[30px] md:text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 Expert
               </h1>
             </div>
@@ -109,7 +109,7 @@ const About = () => {
               <img src={Expert} alt="About us" className="w-full" />
             </div>
             <div className="flex-1 flex justify-center flex-col items-start px-2">
-              <h1 className="hidden md:block font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="hidden md:block font-bold text-[30px] md:text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 Expert
               </h1>
 
