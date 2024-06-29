@@ -325,11 +325,22 @@
 .mainImage {
   width: 100%;
   height: 60vh;
+  position: relative;
   background-image: url("./assets/image/studyimage.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
+  background-position: center;
+  overflow: hidden; /* Ensures the gradient doesn't overflow */
+}
+
+.mainImage::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)); /* Adjust opacity as needed */
 }
 .fontFamily {
   font-family: "Preahvihear", sans-serif !important;

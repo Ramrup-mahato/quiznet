@@ -22,7 +22,7 @@ const About = () => {
       <Footer /> */}
       <div className="mainImage">
         <div className="backdrop-blur-sm w-full h-full flex justify-center items-center">
-          <p className="text-[50px] drop-shadow-2xl text-[var(--colB1)] p-3  font-[900] fontFamily">
+          <p className="text-[50px] drop-shadow-2xl text-white p-3  font-[900] fontFamily">
             Excellence: Study Guides, Quizzes, PDFs
           </p>
         </div>
@@ -112,7 +112,7 @@ const About = () => {
               <img
                 src={ramrup}
                 alt="employee..."
-                className="w-[300px] h-[300px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+                className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
                   shadow-2xl shadow-slate-500 dark:shadow-slate-400"
               />
 
@@ -146,7 +146,7 @@ const About = () => {
               <img
                 src={ramsorup}
                 alt="employee..."
-                className="w-[300px] h-[300px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+                className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
                   shadow-2xl shadow-slate-500 dark:shadow-slate-400"
               />
 
@@ -182,7 +182,7 @@ const About = () => {
               <img
                 src={pk}
                 alt="employee..."
-                className="w-[300px] h-[300px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
+                className="w-[200px] h-[200px] object-cover bg-cover rounded-full border-[4px] border-[var(--colW3)] 
                   shadow-2xl shadow-slate-500 dark:shadow-slate-400"
               />
 
