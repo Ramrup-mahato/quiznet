@@ -22,7 +22,7 @@ const About = () => {
       <Footer /> */}
       <div className="mainImage">
         <div className="backdrop-blur-sm w-full h-full flex justify-center items-center">
-          <p className="text-[50px] drop-shadow-2xl text-white p-3  font-[900] fontFamily">
+          <p className="text-[30px] md:text-[50px] drop-shadow-2xl text-white p-3  font-[900] fontFamily">
             Excellence: Study Guides, Quizzes, PDFs
           </p>
         </div>
@@ -30,11 +30,20 @@ const About = () => {
       <div className="bg-[var(--colW1)] dark:bg-gray-700 dark:text-gray-100 w-full flex justify-center ">
         <ContainerBox>
           <div className="flex gap-4 flex-col  md:flex-row">
+            <div className="flex md:hidden">
+              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+                About Us
+              </h1>
+            </div>
             <div className=" flex-1 h-[500px] w-full md:w-[600px] flex justify-center items-center">
-              <img src={team} alt="About us" className="w-full p-3" />
+              <img
+                src={team}
+                alt="About us"
+                className=" p-3 h-[400px] md:h-full"
+              />
             </div>
             <div className="flex-1 flex justify-center flex-col items-start px-2">
-              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="hidden md:block font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 About Us
               </h1>
 
@@ -55,27 +64,35 @@ const About = () => {
       <div className="bg-white dark:bg-gray-800 dark:text-gray-100 w-full flex justify-center ">
         <ContainerBox>
           <div className="flex gap-4 flex-col  md:flex-row">
-            <div className="flex-1 flex justify-center flex-col items-start px-2">
+            <div className="flex md:hidden">
               <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 Students
               </h1>
-
-              <p className="fontFamily w-full lg:max-w-[500px] p-5">
-                On Quiznet, students can explore various quizzes and
-                course-related questions, including Loksewa, license exams, and
-                entrance preparations, with access to top-notch courses. They
-                can take self-assessment exams in multiple fields, benefiting
-                from the platform's wide range of exam options. Quiznet also
-                offers PDFs of past exams for comprehensive preparation.
-              </p>
-              <p className="fontFamily w-full lg:max-w-[500px] p-5">
-                Additionally, it features live quiz papers where users can
-                participate in real-time exams. Rankings are determined based on
-                performance, enhancing the interactive learning experience.
-              </p>
             </div>
-            <div className=" flex-1 h-[500px] w-full md:w-[600px] flex justify-center items-center">
-              <img src={imgAboutUs} alt="About us" className="w-full " />
+            <div className="flex flex-col-reverse md:flex-row">
+              <div className="flex-1 flex justify-center flex-col items-start px-2">
+                <h1 className=" hidden md:block font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+                  Students
+                </h1>
+
+                <p className="fontFamily w-full lg:max-w-[500px] p-5">
+                  On Quiznet, students can explore various quizzes and
+                  course-related questions, including Loksewa, license exams,
+                  and entrance preparations, with access to top-notch courses.
+                  They can take self-assessment exams in multiple fields,
+                  benefiting from the platform's wide range of exam options.
+                  Quiznet also offers PDFs of past exams for comprehensive
+                  preparation.
+                </p>
+                <p className="fontFamily w-full lg:max-w-[500px] p-5">
+                  Additionally, it features live quiz papers where users can
+                  participate in real-time exams. Rankings are determined based
+                  on performance, enhancing the interactive learning experience.
+                </p>
+              </div>
+              <div className=" flex-1 h-[500px] w-full md:w-[600px] flex justify-center items-center">
+                <img src={imgAboutUs} alt="About us" className="w-full " />
+              </div>
             </div>
           </div>
         </ContainerBox>
@@ -83,11 +100,16 @@ const About = () => {
       <div className="bg-[var(--colW1)] dark:bg-gray-700 dark:text-gray-100 w-full flex justify-center ">
         <ContainerBox>
           <div className="flex gap-4 flex-col  md:flex-row">
+            <div className="flex md:hidden">
+              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+                Expert
+              </h1>
+            </div>
             <div className=" flex-1 h-[500px] w-full md:w-[600px] flex justify-center items-center">
               <img src={Expert} alt="About us" className="w-full" />
             </div>
             <div className="flex-1 flex justify-center flex-col items-start px-2">
-              <h1 className="font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
+              <h1 className="hidden md:block font-bold text-[50px] border-b-8 border-[var(--colB1)] mb-10">
                 Expert
               </h1>
 
@@ -127,13 +149,13 @@ const About = () => {
 
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    My name is Ramrup . I am the CEO, Founder, and
-                    Developer of QuizNet, and I'm excited to share that QuizNet
-                    is a platform where you can find and play quiz games for
-                    fun. You can access QuizNet from both the app and website.
-                    QuizNet offers various types of quizzes related to
-                    government exams, license exams, memory tests, fun quizzes,
-                    and more. Experts can also add and create question papers.
+                    My name is Ramrup . I am the CEO, Founder, and Developer of
+                    QuizNet, and I'm excited to share that QuizNet is a platform
+                    where you can find and play quiz games for fun. You can
+                    access QuizNet from both the app and website. QuizNet offers
+                    various types of quizzes related to government exams,
+                    license exams, memory tests, fun quizzes, and more. Experts
+                    can also add and create question papers.
                   </i>
 
                   <div className="w-full flex justify-end items-end">
@@ -152,7 +174,7 @@ const About = () => {
 
               <div className="flex-1 flex justify-center flex-col items-start px-2">
                 <p className="font-bold text-[14px] border-b-4 border-[var(--colB1)] mb-2">
-                Marketing Director (MD) & Marketing Lead
+                  Marketing Director (MD) & Marketing Lead
                 </p>
                 <div className="w-full lg:max-w-[600px]">
                   <div>
@@ -161,14 +183,14 @@ const About = () => {
 
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Hi, I'm Ramsorup. Welcome to QuizNet. I am the
-                    Marketing Lead of QuizNet, and I'm glad to share that
-                    QuizNet is a platform for all kinds of students who want to
-                    prepare for various levels of LokSewa exams, entrance exams,
-                    vehicle licenses, and more. Experts can add and create
-                    question papers. With QuizNet, you can participate in live
-                    quizzes and enhance your learning experience effortlessly.
-                    Our platform offers comprehensive study tools to help you
+                    Hi, I'm Ramsorup. Welcome to QuizNet. I am the Marketing
+                    Lead of QuizNet, and I'm glad to share that QuizNet is a
+                    platform for all kinds of students who want to prepare for
+                    various levels of LokSewa exams, entrance exams, vehicle
+                    licenses, and more. Experts can add and create question
+                    papers. With QuizNet, you can participate in live quizzes
+                    and enhance your learning experience effortlessly. Our
+                    platform offers comprehensive study tools to help you
                     prepare effectively for exams.
                   </i>
 
@@ -197,15 +219,14 @@ const About = () => {
 
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Hi, my name is Priyanka . I am the HR (Human
-                    Resources) of QuizNet, and I'm excited to share that QuizNet
-                    is a platform where you can find all kinds of course-related
-                    quizzes. If you're a student, just log in, and you'll be
-                    able to access a wide range of courses and live quizzes. Our
-                    platform offers comprehensive study tools to help you
-                    prepare effectively for exams. With QuizNet, participate in
-                    live quizzes, and enhance your learning experience with
-                    ease.
+                    Hi, my name is Priyanka . I am the HR (Human Resources) of
+                    QuizNet, and I'm excited to share that QuizNet is a platform
+                    where you can find all kinds of course-related quizzes. If
+                    you're a student, just log in, and you'll be able to access
+                    a wide range of courses and live quizzes. Our platform
+                    offers comprehensive study tools to help you prepare
+                    effectively for exams. With QuizNet, participate in live
+                    quizzes, and enhance your learning experience with ease.
                   </i>
                   <br />
                   <i className="fontFamily  px-5 text-[12px]">
