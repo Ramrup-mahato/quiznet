@@ -18,6 +18,7 @@ const AddQuestionModal = ({
   handleSubmitQuestion,
   handleUpdateQuestion,
   handleUnSelectImage,
+  handleDescription
 }) => {
   return (
     <Modal open={questionModal.openCloseModal} onClose={handleQuestionModal}>
@@ -42,7 +43,7 @@ const AddQuestionModal = ({
         <div className="p-4 overflow-scroll min-w-[500px] h-[530px] ">
           {["Que", "A", "B", "C", "D"].map((ele, i) => (
             <div key={i}>
-              <div  className="flex flex-row justify-center items-center">
+              <div className="flex flex-row justify-center items-center">
                 <input
                   type="radio"
                   name={`${ele}`}
@@ -92,8 +93,10 @@ const AddQuestionModal = ({
                         alt="course"
                         className=" max-h-[200px] rounded-lg object-cover my-2 mx-7 border-[2px]"
                       />
-                      <MdOutlineCancel className="text-red-500 font-[900] text-[30px] absolute left-4 top-1 mx-4 cursor-pointer"
-                       onClick={()=>handleUnSelectImage(`${ele}Image`)} />
+                      <MdOutlineCancel
+                        className="text-red-500 font-[900] text-[30px] absolute left-4 top-1 mx-4 cursor-pointer"
+                        onClick={() => handleUnSelectImage(`${ele}Image`)}
+                      />
                     </>
                   ) : (
                     ""
@@ -102,6 +105,14 @@ const AddQuestionModal = ({
               )}
             </div>
           ))}
+          <TextInput
+            label={`Description`}
+            placeholder={`Enter a description`}
+            name={"note"}
+            value={questionModal?.note}
+            textarea
+            handleChange={handleDescription}
+          />
           <div className="w-full flex justify-end items-center gap-2 p-3">
             <button
               className="w-[100px] flex justify-center items-center font-medium text=[14px] shadow-2xl bg-white dark:bg-slate-700 border-[2px] border-rose-500 s cursor-pointer rounded-md py-1 px-3"

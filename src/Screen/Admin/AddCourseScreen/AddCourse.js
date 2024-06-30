@@ -52,6 +52,9 @@ const AddCourse = () => {
     handleUploadCsv,
     handleSearchQuestion,
     handlePublishCourse,
+    handleSelectUpdateFile,
+    handleTestToggle,
+    handleDescription,
   } = AddCourseService();
 
   return (
@@ -109,6 +112,8 @@ const AddCourse = () => {
             handleModelSave={handleModelSave}
             handleSelectImage={handleSelectImage}
             handleCancelModal={handleCancelModal}
+            handleSelectUpdateFile={handleSelectUpdateFile}
+            handleTestToggle={handleTestToggle}
           />
           <DeleteFolderModal
             openClose={deleteFolder.modalOpen}
@@ -127,6 +132,7 @@ const AddCourse = () => {
             loader={loader}
             handleUpdateQuestion={handleUpdateQuestion}
             handleUnSelectImage={handleUnSelectImage}
+            handleDescription={handleDescription}
           />
         </AdminSideBar>
       </ContainerBox>

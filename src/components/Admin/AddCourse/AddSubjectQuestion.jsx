@@ -32,6 +32,7 @@ const AddSubjectQuestion = ({
     { label: "Option_B_Image", key: "bImg" },
     { label: "Option_C_Image", key: "cImg" },
     { label: "Option_D_Image", key: "dImg" },
+    { label: "note", key: "note" },
   ];
 
   return (

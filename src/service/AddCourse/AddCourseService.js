@@ -19,6 +19,9 @@ const AddCourseService = () => {
   const [editValue, setEditValue] = useState({
     folder: "",
     path: "",
+    test: false,
+    testTime: 0,
+    testMessage: "",
   });
   const [courseData, setCourseData] = useState([]);
   const [allQuestion, setAllQuestion] = useState([]);
@@ -49,8 +52,11 @@ const AddCourseService = () => {
     folderImage: "",
     mainFolderDetails: {},
     editId: "",
+    upload: false,
+    updateFile: "",
+    fileName: "",
+    testToggle: false,
   });
-  console.log("modal", modal);
 
   const [questionModal, setQuestionModal] = useState({
     openCloseModal: false,
@@ -66,6 +72,7 @@ const AddCourseService = () => {
     CImage: "",
     DImage: "",
     _id: "",
+    note: "",
   });
 
   const [deleteFolder, setDeleteFolder] = useState({
@@ -117,6 +124,10 @@ const AddCourseService = () => {
         folderType: "",
         folderImage: "",
         mainFolderDetails: {},
+        upload: false,
+        updateFile: "",
+        fileName: "",
+        testToggle: false,
       };
     });
     setQuestionDetails((old) => {
@@ -424,6 +435,9 @@ const AddCourseService = () => {
     } else if (val === "Chapter") {
       setFieldValue("folder", course?.chapterTitle);
       setFieldValue("path", course?.chapterPath);
+      setFieldValue("test", course?.test);
+      setFieldValue("testTime", course?.testTime);
+      setFieldValue("testMessage", course?.testMessage);
       setModal((old) => {
         return {
           ...old,
@@ -431,6 +445,7 @@ const AddCourseService = () => {
           folderImage: course?.chapterImage,
           editId: course?._id,
           folderType: val,
+          testToggle: course?.test,
         };
       });
       setQuestionDetails((old) => {
@@ -514,6 +529,9 @@ const AddCourseService = () => {
           chapterTitle: value.folder,
           chapterPath: value.path,
           chapterImage: modal.folderImage,
+          test: value.test,
+          testTime: value.testTime,
+          testMessage: value.testMessage,
         };
         console.log("Chapter", json);
         setIsLoader(true);
@@ -530,6 +548,10 @@ const AddCourseService = () => {
               folderType: "",
               folderImage: "",
               mainFolderDetails: {},
+              upload: false,
+              updateFile: "",
+              fileName: "",
+              testToggle: false,
             };
           });
           handleReset();
@@ -606,6 +628,9 @@ const AddCourseService = () => {
           chapterTitle: val.folder,
           chapterPath: val.path,
           chapterImage: modal.folderImage,
+          test: val.test,
+          testTime: val.testTime,
+          testMessage: val.testMessage,
         };
         setIsLoader(true);
         let folder = await apiResponse(await postData("/chapter", json, token));
@@ -617,6 +642,10 @@ const AddCourseService = () => {
               ...old,
               folderImage: "",
               mainFolder: false,
+              upload: false,
+              updateFile: "",
+              fileName: "",
+              testToggle: false,
             };
           });
           handleReset();
@@ -789,6 +818,7 @@ const AddCourseService = () => {
         CImage: "",
         DImage: "",
         _id: "",
+        note: "",
       };
     });
   };
@@ -828,6 +858,7 @@ const AddCourseService = () => {
           bImg: questionModal.BImage,
           cImg: questionModal.CImage,
           dImg: questionModal.DImage,
+          note: questionModal.note,
         };
         console.log("step");
 
@@ -851,6 +882,7 @@ const AddCourseService = () => {
               BImage: "",
               CImage: "",
               DImage: "",
+              note: "",
             };
           });
           handleGetQuestion();
@@ -883,6 +915,7 @@ const AddCourseService = () => {
         BImage: question?.bImg,
         CImage: question?.cImg,
         DImage: question?.dImg,
+        note: question?.note,
       };
     });
   };
@@ -919,6 +952,7 @@ const AddCourseService = () => {
           cImg: questionModal.CImage,
           dImg: questionModal.DImage,
           _id: questionModal._id,
+          note: questionModal.note,
         };
 
         let folder = await apiResponse(
@@ -944,6 +978,7 @@ const AddCourseService = () => {
               CImage: "",
               DImage: "",
               _id: "",
+              note: "",
             };
           });
         }
@@ -1018,6 +1053,7 @@ const AddCourseService = () => {
           cImg: value?.Option_C_Image,
           dImg: value?.Option_D_Image,
           questionsImg: value?.Question_Image,
+          note: value?.note,
         };
       });
       console.log("questions", questions);
@@ -1066,7 +1102,28 @@ const AddCourseService = () => {
       setIsLoader(false);
     }
   };
-
+  // ---------------------Create Chapter or Upload Files----------------------
+  const handleSelectUpdateFile = (val) => {
+    setModal((prev) => ({
+      ...prev,
+      upload: val,
+    }));
+  };
+  // ---------------------Test paper is true or false------------------------
+  const handleTestToggle = (value) => {
+    setModal((prev) => ({
+      ...prev,
+      testToggle: !value,
+    }));
+    setFieldValue("test", !value);
+  };
+  // --------------------------Question Description----------------------------------
+  const handleDescription = (e) => {
+    setQuestionModal((prev) => ({
+      ...prev,
+      note: e.target.value,
+    }));
+  };
   useEffect(() => {
     handleGetAllCourse();
   }, []);
@@ -1116,6 +1173,9 @@ const AddCourseService = () => {
     handleUploadCsv,
     handleSearchQuestion,
     handlePublishCourse,
+    handleSelectUpdateFile,
+    handleTestToggle,
+    handleDescription,
   };
 };
 

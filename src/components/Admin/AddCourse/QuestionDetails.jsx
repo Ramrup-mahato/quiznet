@@ -77,6 +77,16 @@ const QuestionDetails = ({
           img={question.dImg}
         />
       </div>
+      {question?.note ? (
+        <div>
+          <h1 className="font-bold text-[14px]">Note</h1>
+          <p className="text-[12px] text-gray-600 dark:text-gray-300 p-2 border-[2px] bg-white dark:bg-gray-900 rounded">
+            {question?.note}
+          </p>
+        </div>
+      ) : (
+        ""
+      )}
       {QuestionDetail?.EditQuestion === question?.id ? (
         <div className="w-full flex justify-end items-center gap-2 p-3">
           <button
