@@ -55,6 +55,7 @@ const AddCourse = () => {
     handleSelectUpdateFile,
     handleTestToggle,
     handleDescription,
+    handleSelectPdf,
   } = AddCourseService();
 
   return (
@@ -114,6 +115,7 @@ const AddCourse = () => {
             handleCancelModal={handleCancelModal}
             handleSelectUpdateFile={handleSelectUpdateFile}
             handleTestToggle={handleTestToggle}
+            handleSelectPdf={handleSelectPdf}
           />
           <DeleteFolderModal
             openClose={deleteFolder.modalOpen}

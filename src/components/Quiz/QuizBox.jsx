@@ -1,6 +1,7 @@
 import React from "react";
 import QuestionShow from "./QuestionShow";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import Accordion from "../Admin/FAQ/Accordion";
 
 const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
   // console.log("============",question);
@@ -100,6 +101,11 @@ const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
           }
         />
       </div>
+      {question?.yourAnswer && (
+        <div className="pt-3">
+          <Accordion title="Note:-" content={question?.note} note={true} />
+        </div>
+      )}
     </div>
   );
 };

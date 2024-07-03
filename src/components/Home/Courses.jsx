@@ -30,7 +30,7 @@ const Courses = () => {
           {course?.map((ele, index) => (
             <div
               key={index}
-              className="w-full h-full flex flex-col  dark:bg-gray-900 
+              className="w-full h-full flex flex-col  
             text-black dark:text-gray-300 rounded-bl-3xl rounded-tr-3xl "
             >
               <div
@@ -58,7 +58,7 @@ const Courses = () => {
                       <img
                         src={sub?.subjectImage}
                         alt={sub?.subjectTitle}
-                        className="w-[200vw] sm:w-[250vw] h-[150px] sm:h-[230px] rounded-t-lg"
+                        className="w-[200vw] sm:w-[250vw] h-[150px] sm:h-[230px] rounded-t-lg object-cover"
                       />
                     </div>
                     <div className="w-full py-2 px-1 sm:px-3 text-gray-700 dark:text-gray-200">

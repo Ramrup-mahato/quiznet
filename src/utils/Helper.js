@@ -84,35 +84,6 @@ export const ImageUpload = async (file, folderPath) => {
 };
 
 
-export const FileUpload = async (file, folderPath) => {
-  const imagekit = new ImageKit({
-    publicKey: process.env.REACT_APP_IMAGEKIT_PUBLIC_KEY,
-    urlEndpoint: process.env.REACT_APP_IMAGEKIT_URL_END_POINT,
-    transformationPosition: "path",
-    authenticationEndpoint:
-      process.env.REACT_APP_IMAGEKIT_AUTHENTICATION_ENDPOINT,
-  });
-
-  return new Promise((resolve, reject) => {
-    imagekit
-      .upload({
-        file: file, 
-        fileName: file.name,
-        folder: folderPath,
-        tags: ["pdf"],
-      })
-      .then((response) => {
-        console.log(response);
-        resolve(response.url);
-      })
-      .catch((error) => {
-        reject(error);
-        console.error("Error uploading file to ImageKit:", error);
-      });
-  });
-};
-
-
 export const DateConverter = (data) => {
   const date = new Date(data);
   const year = date.getFullYear();

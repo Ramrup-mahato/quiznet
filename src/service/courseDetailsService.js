@@ -12,8 +12,10 @@ const CourseDetailsService = () => {
     useContext(ContextStore);
   const [subject, setSubject] = useState({});
 
-  const handleSelectTopic = (path, parentPath) => {
-    navigation(`/${parentPath}/${path}`);
+  const handleSelectTopic = (pdfStatus, path, parentPath) => {
+    if (!pdfStatus) {
+      navigation(`/${parentPath}/${path}`);
+    }
   };
   // ----------Get All Subject APi---------
   const getSubject = async () => {
@@ -32,6 +34,10 @@ const CourseDetailsService = () => {
       toastError(error?.message || "Something went wrong!");
     }
   };
+  // -------------------------open PDF--------------------------------
+  const handleOpenPdf = (pdfUrl) => {
+    window.open(pdfUrl, "_blank");
+  };
   useEffect(() => {
     getSubject();
   }, [path]);
@@ -43,6 +49,7 @@ const CourseDetailsService = () => {
     handleSelectTopic,
     viewCourse,
     toggleView,
+    handleOpenPdf,
   };
 };
 

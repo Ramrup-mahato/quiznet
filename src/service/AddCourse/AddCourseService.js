@@ -42,6 +42,7 @@ const AddCourseService = () => {
     CImage: false,
     DImage: false,
     QueImage: false,
+    fileLoader: false,
   });
 
   const [modal, setModal] = useState({
@@ -55,8 +56,10 @@ const AddCourseService = () => {
     upload: false,
     updateFile: "",
     fileName: "",
+    pdfFile: "",
     testToggle: false,
   });
+  console.log("modal=>", modal);
 
   const [questionModal, setQuestionModal] = useState({
     openCloseModal: false,
@@ -190,14 +193,20 @@ const AddCourseService = () => {
 
   // open subject Data
   const handleOpenSubject = (field) => {
-    setQuestionDetails((oldData) => {
-      return {
-        ...oldData,
-        chapterInfo: field,
-        openChapter: true,
-      };
-    });
+    if (field?.pdfStatus) {
+      const pdfUrl = field.pdfFile;
+      window.open(pdfUrl, "_blank");
+    } else {
+      setQuestionDetails((oldData) => {
+        return {
+          ...oldData,
+          chapterInfo: field,
+          openChapter: true,
+        };
+      });
+    }
   };
+
   // close subject component
   const handleGoBack = () => {
     setQuestionDetails((oldData) => {
@@ -358,7 +367,7 @@ const AddCourseService = () => {
       setIsLoader(false);
     }
   };
-  // ------------------------Delete Api Call----------------------------
+  // ------------------------Image Upload----------------------------
 
   const handleSelectImage = async (e) => {
     const file = e.target.files[0];
@@ -389,6 +398,12 @@ const AddCourseService = () => {
         });
       }
     } catch (error) {
+      setLoader((old) => {
+        return {
+          ...old,
+          imageKit: false,
+        };
+      });
       console.error(error);
       toastError(error?.message || "something wrong with imageKit");
     }
@@ -446,8 +461,12 @@ const AddCourseService = () => {
           editId: course?._id,
           folderType: val,
           testToggle: course?.test,
+          upload: course?.pdfStatus,
+          pdfFile: course?.pdfFile,
+         
         };
       });
+      console.log(val);
       setQuestionDetails((old) => {
         return {
           ...old,
@@ -565,7 +584,7 @@ const AddCourseService = () => {
       setIsLoader(false);
     }
   };
-  // ------------------- Api Call for post Folder Create -----------------------
+  // -------------------Create folder/  Api Call for post Folder Create -----------------------
   const handleCreateFolder = async (val) => {
     try {
       if (modal?.folderType === "Course") {
@@ -623,6 +642,10 @@ const AddCourseService = () => {
           toastWarning("please upload image");
         }
       } else if (modal?.folderType === "Chapter") {
+        if (modal?.upload && !modal?.pdfFile) {
+          toastError("File Is required");
+          return;
+        }
         let json = {
           subjectId: modal?.mainFolderDetails?.subjectPath,
           chapterTitle: val.folder,
@@ -631,6 +654,8 @@ const AddCourseService = () => {
           test: val.test,
           testTime: val.testTime,
           testMessage: val.testMessage,
+          pdfStatus: modal?.upload,
+          pdfFile: modal?.pdfFile,
         };
         setIsLoader(true);
         let folder = await apiResponse(await postData("/chapter", json, token));
@@ -646,6 +671,8 @@ const AddCourseService = () => {
               updateFile: "",
               fileName: "",
               testToggle: false,
+              pdfStatus: false,
+              pdfFile: "",
             };
           });
           handleReset();
@@ -1124,6 +1151,51 @@ const AddCourseService = () => {
       note: e.target.value,
     }));
   };
+  // -------------------------------Pdf Upload-----------------------------------
+  const handleSelectPdf = async (e) => {
+    const file = e.target.files[0];
+    try {
+      setLoader((old) => ({
+        ...old,
+        fileLoader: true,
+      }));
+      let imageKitResponse = await ImageUpload(file, "pdfFile");
+      console.log("imageKitResponse", imageKitResponse);
+      if (imageKitResponse) {
+        setModal((old) => {
+          return {
+            ...old,
+            pdfFile: imageKitResponse,
+            fileName: file?.name,
+          };
+        });
+        setLoader((old) => ({
+          ...old,
+          fileLoader: false,
+        }));
+      }
+    } catch (error) {
+      setLoader((old) => ({
+        ...old,
+        fileLoader: false,
+      }));
+      console.error(error);
+      toastError(error?.message || "something wrong with imageKit");
+    }
+  };
+  function extractName(input) {
+    // Check if input is a string
+    if (typeof input === 'string' && input.length > 0) {
+      // Extract the filename if the input is a URL
+      const fileName = input.includes('/') ? input.split('/').pop() : input;
+  
+      return fileName;
+    }
+  
+    // Return an empty string or null if input is not a valid string
+    return '';
+  }
+
   useEffect(() => {
     handleGetAllCourse();
   }, []);
@@ -1176,6 +1248,7 @@ const AddCourseService = () => {
     handleSelectUpdateFile,
     handleTestToggle,
     handleDescription,
+    handleSelectPdf,
   };
 };
 

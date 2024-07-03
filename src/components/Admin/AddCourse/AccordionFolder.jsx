@@ -9,7 +9,7 @@ import {
 } from "react-icons/fa6";
 import { LuImport } from "react-icons/lu";
 import img from "../../../assets/image/study1.png";
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaRegFilePdf } from "react-icons/fa";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 
@@ -121,17 +121,16 @@ const AccordionFolder = ({
                   className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer p-2"
                 >
                   <div className="flex justify-center items-center gap-1">
-                    <FaFolderOpen size={20} color="#D89F57" />
+                    {chapter?.pdfStatus ? (
+                      <FaRegFilePdf size={20} color="#cc532b" />
+                    ) : (
+                      <FaFolderOpen size={20} color="#D89F57" />
+                    )}
                     <p className="">{chapter?.chapterTitle}</p>
                   </div>
 
                   <div className="flex gap-2 justify-center items-center">
-                    <LuImport
-                      size={10}
-                      // onClick={() => handleModal("", "add")}
-                      className="w-8 h-8 text-[#FEB019] bg-[#fbf3e1] p-2 shadow-lg rounded-full cursor-pointer hover:bg-blue-100  "
-                      title="Download CSV"
-                    />
+                
                     <p className="font-medium text-[12px] text-[var(--colB1)] shadow-xl bg-[#e4fff6] px-2 rounded-full flex justify-center items-center gap-1">
                       <FaUsers size={15} className="text-[var(--colB1)]" />{" "}
                       <span>{chapter?.count}</span>

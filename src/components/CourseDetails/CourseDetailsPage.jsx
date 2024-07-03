@@ -1,12 +1,18 @@
 import React from "react";
 // import { courseName, topicsName } from "../../utils/data";
 import { IoIosArrowForward } from "react-icons/io";
-import { FaArrowLeftLong, FaFolderOpen } from "react-icons/fa6";
+import {
+  FaArrowLeftLong,
+  FaFilePdf,
+  FaFolderOpen,
+  FaRegCircleDown,
+} from "react-icons/fa6";
 import CourseDetailsService from "../../service/courseDetailsService";
 // import { useParams } from "react-router-dom";
 import Loader from "../ReUsable/Loader";
 import NotFound from "../ReUsable/NotFound ";
 import { BsNintendoSwitch } from "react-icons/bs";
+import pdfImg from "../../assets/image/pdf.png";
 
 const CourseDetailsPage = () => {
   const {
@@ -16,6 +22,7 @@ const CourseDetailsPage = () => {
     handleSelectTopic,
     viewCourse,
     toggleView,
+    handleOpenPdf,
   } = CourseDetailsService();
   const handleGoBack = () => {
     window.history.back();
@@ -30,7 +37,7 @@ const CourseDetailsPage = () => {
             <>
               {viewCourse === "more" ? (
                 <div
-                  className="w-full h-full flex flex-col  dark:bg-gray-900 
+                  className=" w-full h-full flex flex-col 
               text-black dark:text-gray-300 rounded-bl-3xl rounded-tr-3xl "
                 >
                   <div
@@ -60,14 +67,18 @@ const CourseDetailsPage = () => {
                         className="item m-[2px] bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
                  rounded-lg text-[14px]   cursor-pointer"
                         onClick={() =>
-                          handleSelectTopic(ele?.chapterPath, path)
+                          handleSelectTopic(
+                            ele?.pdfStatus,
+                            ele?.chapterPath,
+                            path
+                          )
                         }
                       >
                         <div>
                           <img
-                            src={ele?.chapterImage}
+                            src={ele?.chapterImage || pdfImg}
                             alt={ele?.chapterTitle}
-                            className="w-[200vw] sm:w-[250vw] h-[150px] sm:h-[230px] rounded-t-lg"
+                            className="w-[200vw] sm:w-[250vw] h-[150px] sm:h-[230px] rounded-t-lg object-cover"
                           />
                         </div>
                         <div className="w-full py-2 px-1 sm:px-3 text-gray-700 dark:text-gray-200">
@@ -75,21 +86,48 @@ const CourseDetailsPage = () => {
                             {ele?.chapterTitle}
                           </p>
                           <div className="py-1 text-[12px] flex justify-between ">
-                            <p>
-                              Total:<span className="font-bold"> 10 </span>{" "}
-                              subject
-                            </p>
-                            <p className="pr-3 hover:text-[var(--colB1)] hover:underline">
-                              view T&C
-                            </p>
+                            {ele?.pdfStatus === true ? (
+                              <>
+                                <p>
+                                  Format:
+                                  <span className="font-bold">.pdf </span>{" "}
+                                </p>
+                                <p className="pr-3 text-[var(--colB1)] hover:underline">
+                                  T&C
+                                </p>
+                              </>
+                            ) : (
+                              <>
+                                <p>
+                                  Total:<span className="font-bold"> 10 </span>{" "}
+                                  subject
+                                </p>
+                                <p className="pr-3 text-[var(--colB1)] hover:underline">
+                                  T&C
+                                </p>
+                              </>
+                            )}
                           </div>
                           <div className=" text-[12px] flex justify-between items-center ">
-                            <p>
-                              visit:<span className="font-bold"> 1254</span>
-                            </p>
-                            <p className=" text-[var(--colG2)] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-bold">
-                              View
-                            </p>
+                            {ele?.pdfStatus === true ? (
+                              <>
+                                <p className=" py-2 font-bold">Download</p>
+                                <FaRegCircleDown
+                                  size={30}
+                                  className="text-[var(--colG2)] cursor-pointer"
+                                  onClick={() => handleOpenPdf(ele?.pdfFile)}
+                                />
+                              </>
+                            ) : (
+                              <>
+                                <p>
+                                  visit:<span className="font-bold"> 1254</span>
+                                </p>
+                                <p className=" text-[var(--colG2)] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-bold">
+                                  Start
+                                </p>
+                              </>
+                            )}
                           </div>
                           <div className=" text-[12px] flex justify-between items-center border-t-2 mt-1 ">
                             <p>
@@ -142,17 +180,37 @@ const CourseDetailsPage = () => {
                       {subject?.chapters?.map((ele, i) => (
                         <div
                           key={i}
-                          className="w-full  bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-1 sm:my-2 py-2 shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950 rounded-full text-[14px]
-              hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
+                          className={`w-full  bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-1 sm:my-2 py-2 rounded-full ${
+                            ele?.pdfStatus === true
+                              ? ""
+                              : " shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950  text-[14px] hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
+                          }`}
                           onClick={() =>
-                            handleSelectTopic(ele?.chapterPath, path)
+                            handleSelectTopic(
+                              ele?.pdfStatus,
+                              ele?.chapterPath,
+                              path
+                            )
                           }
                         >
                           <div className="flex flex-row justify-center items-center gap-3">
-                            <FaFolderOpen size={25} color="#D89F57" />
+                            {ele?.pdfStatus === true ? (
+                              <FaFilePdf size={30} className="text-[#cc532b]" />
+                            ) : (
+                              <FaFolderOpen size={25} color="#D89F57" />
+                            )}
+
                             <p className="">{ele?.chapterTitle}</p>
                           </div>
-                          <IoIosArrowForward />
+                          {ele?.pdfStatus === true ? (
+                            <FaRegCircleDown
+                              size={20}
+                              className="text-[#d5d8d9] cursor-pointer"
+                              onClick={() => handleOpenPdf(ele?.pdfFile)}
+                            />
+                          ) : (
+                            <IoIosArrowForward />
+                          )}
                         </div>
                       ))}
                     </div>
