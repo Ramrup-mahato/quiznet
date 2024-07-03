@@ -67,11 +67,7 @@ const CourseDetailsPage = () => {
                         className="item m-[2px] bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
                  rounded-lg text-[14px]   cursor-pointer"
                         onClick={() =>
-                          handleSelectTopic(
-                            ele?.pdfStatus,
-                            ele?.chapterPath,
-                            path
-                          )
+                          handleSelectTopic(ele, ele?.chapterPath, path)
                         }
                       >
                         <div>
@@ -186,11 +182,7 @@ const CourseDetailsPage = () => {
                               : " shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950  text-[14px] hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
                           }`}
                           onClick={() =>
-                            handleSelectTopic(
-                              ele?.pdfStatus,
-                              ele?.chapterPath,
-                              path
-                            )
+                            handleSelectTopic(ele, ele?.chapterPath, path)
                           }
                         >
                           <div className="flex flex-row justify-center items-center gap-3">

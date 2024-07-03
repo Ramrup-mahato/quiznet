@@ -40,7 +40,7 @@ const AddFolderModal = ({
                 className={`cursor-pointer rounded-full text-[13px] font-bold p-1 ${
                   modal?.upload ? "" : "bg-[var(--colB1)] text-white"
                 }`}
-                onClick={() => handleSelectUpdateFile(false)}
+                onClick={() => handleSelectUpdateFile(false, "create")}
               >
                 Create Chapter{" "}
               </button>
@@ -48,7 +48,7 @@ const AddFolderModal = ({
                 className={`cursor-pointer rounded-full text-[13px] font-bold p-1 ${
                   modal?.upload ? "bg-[var(--colB1)] text-white" : ""
                 }`}
-                onClick={() => handleSelectUpdateFile(true)}
+                onClick={() => handleSelectUpdateFile(true, "upload")}
               >
                 Upload File
               </button>

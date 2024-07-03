@@ -8,6 +8,7 @@ import { getData, postData } from "../components/AuthGard/LogGard";
 const QuizService = () => {
   const [question, setQuestion] = useState({}); //selected show Question
   const [quizData, setQuizData] = useState([]); //All response data
+  const [testTime, setTestTime] = useState(600  );
   const [quiz, setQuiz] = useState({
     submitAnswer: "",
     selectQue: "",
@@ -18,6 +19,7 @@ const QuizService = () => {
     wrongAnswer: 0,
     time: 3,
     noOfGivenAnswer: 0,
+    totalTime: 600  ,
   });
   const [reportQuestion, setReportQuestion] = useState({
     //-----report data
@@ -30,8 +32,14 @@ const QuizService = () => {
   // console.log("quizData", quizData);
   const { quizpath, path } = useParams();
   const navigation = useNavigate();
-  const { token, setIsLoader, setLoaderInFolder, loaderInFolder, userDetails } =
-    useContext(ContextStore);
+  const {
+    token,
+    setIsLoader,
+    setLoaderInFolder,
+    loaderInFolder,
+    userDetails,
+    exam,
+  } = useContext(ContextStore);
   // console.log("quizpath", quizpath);
   const handleSelectQuestion = (i) => {
     setQuestion(quizData?.questions[i]);
@@ -235,12 +243,22 @@ const QuizService = () => {
   useEffect(() => {
     getChapter();
   }, []);
+  useEffect(() => {
+    if (testTime > 0) {
+      const timerId = setTimeout(() => {
+        setTestTime((prevTime) => prevTime - 1);
+      }, 10);
+      return () => clearTimeout(timerId);
+    }
+  }, [testTime]);
   return {
     question,
     quizData,
     quiz,
     loaderInFolder,
     reportQuestion,
+    testTime,
+    exam,
     handleSelectQuestion,
     handleSelectAnswers,
     handleNextQuestion,

@@ -5,12 +5,14 @@ import {
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import { formatTime } from "../../utils/Helper";
 
 const Quiz = ({
   quizData,
   question,
-  test,
+  exam,
   quiz,
+  testTime,
   handleSelectQuestion,
   handleSelectAnswers,
   handleNextQuestion,
@@ -19,6 +21,21 @@ const Quiz = ({
   handleReportQuestion,
   handleGoBack,
 }) => {
+  const percentage = (testTime / quiz?.totalTime) * 100;
+
+  let pathColor = "#00abe4";
+  let circleColor;
+  let textColor = "#000";
+  if (percentage < 10) {
+    pathColor = "red";
+    circleColor = "#f5bcbc";
+    textColor = "red";
+  } else if (percentage < 25) {
+    pathColor = "#d4c12a";
+    circleColor = "#a6995e";
+    textColor = "#d4c12a";
+  }
+
   return (
     <div className="w-full  min-h-[calc(100vh-115px)] lg:min-h-[100vh]  px-3 sm:px-6  gap-5 pt-[70px]  sm:pt-[100px] pb-5 sm:pb-10">
       <div
@@ -37,35 +54,60 @@ const Quiz = ({
             />
             <h3>{quizData?.chapterTitle}</h3>
           </div>
-          {test === true && <p>0:20:16</p>}
         </div>
         <div className="flex gap-3  flex-col sm:flex-row  p-3  min-h-[80vh] sm:h-full">
           <div className=" sm:w-[150px] md:w-[250px] lg:w-[400px] bg-[var(--colW2)] dark:bg-slate-800 rounded-md rounded-bl-2xl p-2 ">
             <div className="flex   justify-between items-center gap-3">
-              <div>
-                <p className="font-extrabold sm:font-semibold  text-[var(--colB1)] text-[12px] sm:text-[15px] ">
-                  Total Question:{quiz?.totalQuestion}
-                </p>
-                <p className="font-extrabold sm:font-semibold  text-[12px] sm:text-[15px]  text-green-600">
-                  Correct Answer:{quiz?.correctAnswer}
-                </p>
-                <p className="font-extrabold sm:font-semibold   text-[12px] sm:text-[15px]  text-red-600">
-                  Wrong Answer:{quiz?.wrongAnswer}
-                </p>
-              </div>
-              <div className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]">
-                <CircularProgressbarWithChildren
-                  value={quiz?.noOfGivenAnswer}
-                  text={`${quiz?.noOfGivenAnswer}/${quiz?.totalQuestion}`}
-                  maxValue={quiz?.totalQuestion}
-                  className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]"
-                  styles={buildStyles({
-                    pathColor: "#00abe4",
-                    // trailColor: "#f13",
-                    // strokeLinecap: "butt"
-                  })}
-                />
-              </div>
+              {exam === true ? (
+                <>
+                  <div>
+                    <p className=" text-[var(--colB1)] text-[12px] sm:text-[15px] ">
+                      Please select all answer
+                    </p>
+                  </div>
+                  <div className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]">
+                    <CircularProgressbarWithChildren
+                      value={testTime}
+                      text={`${formatTime(testTime)}`}
+                      maxValue={quiz?.totalTime}
+                      className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]"
+                      styles={buildStyles({
+                        pathColor: pathColor,
+                        textColor: textColor,
+                        trailColor: circleColor,
+                        // strokeLinecap: "butt"
+                      })}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <p className="font-extrabold sm:font-semibold  text-[var(--colB1)] text-[12px] sm:text-[15px] ">
+                      Total Question:{quiz?.totalQuestion}
+                    </p>
+                    <p className="font-extrabold sm:font-semibold  text-[12px] sm:text-[15px]  text-green-600">
+                      Correct Answer:{quiz?.correctAnswer}
+                    </p>
+                    <p className="font-extrabold sm:font-semibold   text-[12px] sm:text-[15px]  text-red-600">
+                      Wrong Answer:{quiz?.wrongAnswer}
+                    </p>
+                  </div>
+                  <div className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]">
+                    <CircularProgressbarWithChildren
+                      value={quiz?.noOfGivenAnswer}
+                      text={`${quiz?.noOfGivenAnswer}/${quiz?.totalQuestion}`}
+                      maxValue={quiz?.totalQuestion}
+                      className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]"
+                      styles={buildStyles({
+                        pathColor: "#00abe4",
+                        // trailColor: "#f13",
+                        // strokeLinecap: "butt"
+                      })}
+                    />
+                  </div>
+                </>
+              )}
             </div>
             <h1 className="font-bold text-[13px] text-gray-600 dark:text-gray-50">
               Total Questions

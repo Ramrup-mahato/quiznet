@@ -9,6 +9,7 @@ export const Context = ({ children }) => {
   const [role, setRole] = useState("");
   const [viewCourse, setViewCourse] = useState("more");
   const [userDetails, setUserDetails] = useState("");
+  const [exam, setExam] = useState(false);
 
   const [isLoader, setIsLoader] = useState(false);
   const [loaderInFolder, setLoaderInFolder] = useState(false);
@@ -84,6 +85,8 @@ export const Context = ({ children }) => {
           userDetails,
           viewCourse,
           toggleView,
+          exam,
+          setExam,
         }}
       >
         {children}

@@ -101,9 +101,9 @@ const QuizBox = ({ question, handleSelectAnswers, handleReportQuestion }) => {
           }
         />
       </div>
-      {question?.yourAnswer && (
+      {question?.yourAnswer && question?.note && (
         <div className="pt-3">
-          <Accordion title="Note:-" content={question?.note} note={true} />
+          <Accordion title="Explanation" content={question?.note} note={true} />
         </div>
       )}
     </div>

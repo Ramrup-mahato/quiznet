@@ -30,7 +30,7 @@ const AccordionFolder = ({
       <div
         className={`w-full cursor-pointer flex items-center justify-between`}
       >
-        <div className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer">
+        <div className="w-full bg-[var(--colW2)] dark:bg-gray-700 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer">
           <div className="flex justify-center items-center gap-1">
             <FaFolderOpen size={20} color="#D89F57" />
             <p className="">{subject?.subjectTitle}</p>
@@ -118,7 +118,7 @@ const AccordionFolder = ({
               {subject?.chapters?.map((chapter, i) => (
                 <div
                   key={i}
-                  className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer p-2"
+                  className={`w-full bg-[var(--colW2)] dark:bg-gray-700 flex justify-between items-center px-3 my-2 py-1 rounded-full text-[14px] cursor-pointer p-2 ${ chapter?.test===true?"bg-[#7654f640] dark:bg-[#7654f640]":""}`}
                 >
                   <div className="flex justify-center items-center gap-1">
                     {chapter?.pdfStatus ? (

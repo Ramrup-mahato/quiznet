@@ -463,7 +463,6 @@ const AddCourseService = () => {
           testToggle: course?.test,
           upload: course?.pdfStatus,
           pdfFile: course?.pdfFile,
-         
         };
       });
       console.log(val);
@@ -1130,11 +1129,16 @@ const AddCourseService = () => {
     }
   };
   // ---------------------Create Chapter or Upload Files----------------------
-  const handleSelectUpdateFile = (val) => {
+  const handleSelectUpdateFile = (val, section) => {
     setModal((prev) => ({
       ...prev,
       upload: val,
+      testToggle: section === "upload" && false,
     }));
+    if(section==="upload"){
+      setFieldValue("test", false);
+    }
+
   };
   // ---------------------Test paper is true or false------------------------
   const handleTestToggle = (value) => {
@@ -1185,15 +1189,15 @@ const AddCourseService = () => {
   };
   function extractName(input) {
     // Check if input is a string
-    if (typeof input === 'string' && input.length > 0) {
+    if (typeof input === "string" && input.length > 0) {
       // Extract the filename if the input is a URL
-      const fileName = input.includes('/') ? input.split('/').pop() : input;
-  
+      const fileName = input.includes("/") ? input.split("/").pop() : input;
+
       return fileName;
     }
-  
+
     // Return an empty string or null if input is not a valid string
-    return '';
+    return "";
   }
 
   useEffect(() => {

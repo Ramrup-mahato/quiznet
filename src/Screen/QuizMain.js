@@ -19,6 +19,8 @@ const QuizMain = () => {
     quiz,
     loaderInFolder,
     reportQuestion,
+    testTime,
+    exam,
     handleSelectQuestion,
     handleSelectAnswers,
     handleNextQuestion,
@@ -51,15 +53,17 @@ const QuizMain = () => {
                     handleSelectQuestion={handleSelectQuestion}
                     question={question}
                     quiz={quiz}
+                    exam={exam}
                     handleSelectAnswers={handleSelectAnswers}
                     handleNextQuestion={handleNextQuestion}
                     handlePreviousQuestion={handlePreviousQuestion}
                     handleSeeResult={handleSeeResult}
                     handleReportQuestion={handleReportQuestion}
                     handleGoBack={handleGoBack}
+                    testTime={testTime}
                   />
                 ) : (
-                  <NotFound />
+                  <NotFound noData={true} />
                 )}
               </>
             )}

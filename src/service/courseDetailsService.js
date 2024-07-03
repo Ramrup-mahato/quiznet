@@ -8,12 +8,19 @@ import { getData } from "../components/AuthGard/LogGard";
 const CourseDetailsService = () => {
   const navigation = useNavigate();
   const { path } = useParams();
-  const { token, setLoaderInFolder, loaderInFolder, viewCourse, toggleView } =
-    useContext(ContextStore);
+  const {
+    token,
+    setLoaderInFolder,
+    loaderInFolder,
+    viewCourse,
+    toggleView,
+    setExam,
+  } = useContext(ContextStore);
   const [subject, setSubject] = useState({});
 
-  const handleSelectTopic = (pdfStatus, path, parentPath) => {
-    if (!pdfStatus) {
+  const handleSelectTopic = (item, path, parentPath) => {
+    if (!item?.pdfStatus) {
+      setExam(item?.test);
       navigation(`/${parentPath}/${path}`);
     }
   };
