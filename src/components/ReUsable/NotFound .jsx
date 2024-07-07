@@ -6,8 +6,8 @@ const NotFound = ({ noData }) => {
   return (
     <div className="w-full h-full flex justify-center items-center flex-col pt-[50px] sm:pt-[100px]">
       {noData ? (
-        <h1 className="font-black text-[var(--colB1)] text-[100px]">
-          <i>Empty!</i>
+        <h1 className="font-black text-[var(--colB1)] text-[50px]">
+          <i>No Data Found !</i>
         </h1>
       ) : (
         <h1 className="font-black text-[var(--colB1)] text-[100px]">404</h1>

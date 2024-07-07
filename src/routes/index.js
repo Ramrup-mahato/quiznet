@@ -23,6 +23,7 @@ import NotFound from "../components/ReUsable/NotFound ";
 // import UsersManager from "../Screen/Admin/UserScreen/UsersManager";
 // import WorkSpace from "../Screen/WorkSpace";
 import Loader from "../components/ReUsable/Loader";
+import ExamMain from "../Screen/ExamMain";
 const Home = lazy(() => import("../Screen/Home"));
 const CourseDetails = lazy(() => import("../Screen/CourseDetails"));
 const QuizMain = lazy(() => import("../Screen/QuizMain"));
@@ -132,6 +133,11 @@ export const MainRoutes = () => {
       path: "/:path/:quizpath",
       component: QuizMain,
       name: "quiz",
+    },
+    {
+      path: "/test",
+      component: ExamMain,
+      name: "test",
     },
 
     {

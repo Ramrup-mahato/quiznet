@@ -119,8 +119,14 @@ const CourseDetailsPage = () => {
                                 <p>
                                   visit:<span className="font-bold"> 1254</span>
                                 </p>
-                                <p className=" text-[var(--colG2)] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-bold">
-                                  Start
+                                <p
+                                  className={`  rounded-md px-7 py-2 font-bold ${
+                                    ele?.test
+                                      ? "text-[var(--colW1)]  bg-[var(--colG4)]  font-black border-[2px] border-[var(--colG4)]"
+                                      : "text-[var(--colW1)] bg-[var(--colG2)] font-black border-[2px] border-[var(--colG2)]"
+                                  }`}
+                                >
+                                  {ele?.test ? "Start Test" : "Start Quiz"}
                                 </p>
                               </>
                             )}

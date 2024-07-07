@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import { faqDetails } from "../../utils/data";
 import { toastWarning } from "../../utils/tostify";
 import { apiGetResponse, apiResponse } from "../../utils/Helper";
 import {
@@ -12,7 +11,7 @@ import ContextStore from "../../context/Context";
 const FaqService = () => {
   const { setLoaderInFolder, setIsLoader, token } = useContext(ContextStore);
 
-  const [allFaq, setAllFaq] = useState([...faqDetails]);
+  const [allFaq, setAllFaq] = useState([]);
   const [edit, setEdit] = useState({
     editQuestion: false,
     addNewFaq: false,

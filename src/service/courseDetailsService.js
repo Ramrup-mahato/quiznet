@@ -20,8 +20,12 @@ const CourseDetailsService = () => {
 
   const handleSelectTopic = (item, path, parentPath) => {
     if (!item?.pdfStatus) {
-      setExam(item?.test);
-      navigation(`/${parentPath}/${path}`);
+      if (item?.test === true) {
+        setExam(item?.test);
+        navigation(`/test?testPath=${path}`);
+      } else {
+        navigation(`/${parentPath}/${path}`);
+      }
     }
   };
   // ----------Get All Subject APi---------

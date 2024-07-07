@@ -8,7 +8,7 @@ import { getData, postData } from "../components/AuthGard/LogGard";
 const QuizService = () => {
   const [question, setQuestion] = useState({}); //selected show Question
   const [quizData, setQuizData] = useState([]); //All response data
-  const [testTime, setTestTime] = useState(600  );
+  const [testTime, setTestTime] = useState(600);
   const [quiz, setQuiz] = useState({
     submitAnswer: "",
     selectQue: "",
@@ -19,7 +19,7 @@ const QuizService = () => {
     wrongAnswer: 0,
     time: 3,
     noOfGivenAnswer: 0,
-    totalTime: 600  ,
+    totalTime: 600,
   });
   const [reportQuestion, setReportQuestion] = useState({
     //-----report data
@@ -216,6 +216,7 @@ const QuizService = () => {
   const getChapter = async () => {
     try {
       setLoaderInFolder(true);
+
       let res = await apiGetResponse(
         await getData(`/chapter?query=${quizpath}`, token)
       );

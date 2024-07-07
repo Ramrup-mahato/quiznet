@@ -1,30 +1,30 @@
 import React from "react";
-import QuizBox from "./QuizBox";
+import { FaArrowLeftLong } from "react-icons/fa6";
 import {
   buildStyles,
   CircularProgressbarWithChildren,
 } from "react-circular-progressbar";
-import { FaArrowLeftLong } from "react-icons/fa6";
 import { formatTime } from "../../utils/Helper";
+import ShowTestQuestion from "./ShowTestQuestion";
+import Loader from "../ReUsable/Loader";
 
-const Quiz = ({
-  quizData,
+const ExamPage = ({
   question,
-  exam,
-  quiz,
+  response,
+  handleGoBack,
   testTime,
+  examInfo,
+  loader,
   handleSelectQuestion,
-  handleSelectAnswers,
   handleNextQuestion,
+  handleSelectAnswers,
   handlePreviousQuestion,
   handleSeeResult,
-  handleReportQuestion,
-  handleGoBack,
 }) => {
-  const percentage = (testTime / quiz?.totalTime) * 100;
+  const percentage = (testTime / examInfo?.totalTime) * 100;
 
   let pathColor = "#00abe4";
-  let circleColor;
+  let circleColor = "#33333320";
   let textColor = "#000";
   if (percentage < 10) {
     pathColor = "red";
@@ -32,7 +32,7 @@ const Quiz = ({
     textColor = "red";
   } else if (percentage < 25) {
     pathColor = "#d4c12a";
-    circleColor = "#a6995e";
+    circleColor = "#a6995e20";
     textColor = "#d4c12a";
   }
 
@@ -52,68 +52,37 @@ const Quiz = ({
               className="cursor-pointer mr-1 "
               onClick={() => handleGoBack("")}
             />
-            <h3>{quizData?.chapterTitle}</h3>
+            <h3>{examInfo?.title}</h3>
           </div>
         </div>
         <div className="flex gap-3  flex-col sm:flex-row  p-3  min-h-[80vh] sm:h-full">
           <div className=" sm:w-[150px] md:w-[250px] lg:w-[500px] bg-[var(--colW2)] dark:bg-slate-800 rounded-md rounded-bl-2xl p-2 ">
             <div className="flex   justify-between items-center gap-3">
-              {exam === true ? (
-                <>
-                  <div>
-                    <p className=" text-[var(--colB1)] text-[12px] sm:text-[15px] ">
-                      Please select all answer
-                    </p>
-                  </div>
-                  <div className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]">
-                    <CircularProgressbarWithChildren
-                      value={testTime}
-                      text={`${formatTime(testTime)}`}
-                      maxValue={quiz?.totalTime}
-                      className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]"
-                      styles={buildStyles({
-                        pathColor: pathColor,
-                        textColor: textColor,
-                        trailColor: circleColor,
-                        // strokeLinecap: "butt"
-                      })}
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div>
-                    <p className="font-extrabold sm:font-semibold  text-[var(--colB1)] text-[12px] sm:text-[15px] ">
-                      Total Question:{quiz?.totalQuestion}
-                    </p>
-                    <p className="font-extrabold sm:font-semibold  text-[12px] sm:text-[15px]  text-green-600">
-                      Correct Answer:{quiz?.correctAnswer}
-                    </p>
-                    <p className="font-extrabold sm:font-semibold   text-[12px] sm:text-[15px]  text-red-600">
-                      Wrong Answer:{quiz?.wrongAnswer}
-                    </p>
-                  </div>
-                  <div className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]">
-                    <CircularProgressbarWithChildren
-                      value={quiz?.noOfGivenAnswer}
-                      text={`${quiz?.noOfGivenAnswer}/${quiz?.totalQuestion}`}
-                      maxValue={quiz?.totalQuestion}
-                      className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]"
-                      styles={buildStyles({
-                        pathColor: "#00abe4",
-                        // trailColor: "#f13",
-                        // strokeLinecap: "butt"
-                      })}
-                    />
-                  </div>
-                </>
-              )}
+              {/* <div>
+                <p className=" text-[var(--colB1)] text-[12px] sm:text-[15px] ">
+                  Please select all answer
+                </p>
+              </div> */}
+              <div className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px]">
+                <CircularProgressbarWithChildren
+                  value={testTime}
+                  text={`${formatTime(testTime)}`}
+                  maxValue={examInfo?.totalTime}
+                  className="w-[50px] sm:w-[100px] h-[50px] sm:h-[100px] "
+                  styles={buildStyles({
+                    pathColor: pathColor,
+                    textColor: textColor,
+                    trailColor: circleColor,
+                    // strokeLinecap: "butt"
+                  })}
+                />
+              </div>
             </div>
             <h1 className="font-bold text-[13px] text-gray-600 dark:text-gray-50">
               Total Questions
             </h1>
             <div className="flex sm:flex-wrap gap-1 overflow-x-scroll sm:overflow-y-scroll sm:overflow-hidden whitespace-nowrap scrollBarY ">
-              {quizData?.questions?.map((que, i) => (
+              {response?.map((que, i) => (
                 <div
                   key={i}
                   className="md:w-[30px] w-[25px] md:h-[30px] h-[25px]"
@@ -122,12 +91,8 @@ const Quiz = ({
                     key={i}
                     onClick={() => handleSelectQuestion(i)}
                     className={`bg-slate-300 text-gray-600 dark:text-gray-50 text-[13px] dark:bg-slate-900 flex justify-center items-center rounded-md md:w-[30px] w-[25px] md:h-[30px] h-[25px] cursor-pointer ${
-                      que?.yourAnswer === ""
-                        ? ""
-                        : que?.yourAnswer === que?.correctAnswer
-                        ? "correctAns"
-                        : "wrongAns"
-                    } ${que?._id === quiz?.selectQue ? "yourAnswer" : null}`}
+                      que?.yourAnswer === "" ? "" : "yourAnswer"
+                    } ${examInfo.questionNumber===i? " text-white font-black testQuestionSelected":''}`}
                   >
                     {i + 1}
                   </p>
@@ -135,14 +100,20 @@ const Quiz = ({
               ))}
             </div>
           </div>
+          {loader?.newQuestionLoader===true?
+          <>
+          <div className="w-full justify-center items-center">
+            <Loader folderLoader={true} />
+          </div>
+          </>:
+
           <div className="w-full h-full  sm:p-5">
-            <QuizBox
+            <ShowTestQuestion
               question={question}
               handleSelectAnswers={handleSelectAnswers}
-              handleReportQuestion={handleReportQuestion}
             />
             <div className="w-full flex justify-end gap-2 py-2 sm:py-3">
-              {quiz?.questionNumber === 0 ? (
+              {examInfo?.questionNumber === 0 ? (
                 ""
               ) : (
                 <button
@@ -153,7 +124,7 @@ const Quiz = ({
                 </button>
               )}
 
-              {quiz?.questionNumber + 1 === quizData?.questions?.length ? (
+              {examInfo?.questionNumber + 1 === response?.length ? (
                 <button
                   onClick={() => handleSeeResult()}
                   className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"
@@ -165,11 +136,12 @@ const Quiz = ({
                   onClick={() => handleNextQuestion()}
                   className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]   cursor-pointer"
                 >
-                  Next
+                  Save & Next
                 </button>
               )}
             </div>
           </div>
+          }
           <div className="hidden lg:block lg:w-[500px] bg-[var(--colW2)] dark:bg-slate-800 rounded-md rounded-bl-2xl p-2 "></div>
         </div>
       </div>
@@ -177,4 +149,4 @@ const Quiz = ({
   );
 };
 
-export default Quiz;
+export default ExamPage;

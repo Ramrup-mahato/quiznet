@@ -1,6 +1,6 @@
 import React from "react";
 
-const Modal = ({ open, onClose, children }) => {
+const Modal = ({ open, onClose = () => {}, children }) => {
   const handleClose = (e) => {
     if (e.target.id === "modal-overlay") {
       onClose();

@@ -22,6 +22,7 @@
   --colG1: #005d5d;
   --colG2: #7654f6;
   --colG3: #304074;
+  --colG4: #76c30e;
 }
 .selectedQuestion {
   background-color: var(--colG1) !important;
@@ -340,10 +341,23 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.3)); /* Adjust opacity as needed */
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.3)
+  ); /* Adjust opacity as needed */
 }
 .fontFamily {
   font-family: "Preahvihear", sans-serif !important;
+}
+.blueBg {
+  background-color: #caeaf5 !important;
+}
+.redBg {
+  background-color: #f9c6c6 !important;
+}
+.testQuestionSelected{
+  background-color: var(--colG4);
+  color: #fff;
 }
 
 @media screen and (max-width: 1366px) {
