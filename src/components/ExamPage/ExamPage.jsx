@@ -92,7 +92,11 @@ const ExamPage = ({
                     onClick={() => handleSelectQuestion(i)}
                     className={`bg-slate-300 text-gray-600 dark:text-gray-50 text-[13px] dark:bg-slate-900 flex justify-center items-center rounded-md md:w-[30px] w-[25px] md:h-[30px] h-[25px] cursor-pointer ${
                       que?.yourAnswer === "" ? "" : "yourAnswer"
-                    } ${examInfo.questionNumber===i? " text-white font-black testQuestionSelected":''}`}
+                    } ${
+                      examInfo.questionNumber === i
+                        ? " text-white font-black testQuestionSelected"
+                        : ""
+                    }`}
                   >
                     {i + 1}
                   </p>
@@ -100,48 +104,48 @@ const ExamPage = ({
               ))}
             </div>
           </div>
-          {loader?.newQuestionLoader===true?
-          <>
-          <div className="w-full justify-center items-center">
-            <Loader folderLoader={true} />
-          </div>
-          </>:
+          {loader?.newQuestionLoader === true ? (
+            <>
+              <div className="w-full justify-center items-center">
+                <Loader folderLoader={true} />
+              </div>
+            </>
+          ) : (
+            <div className="w-full h-full  sm:p-5">
+              <ShowTestQuestion
+                question={question}
+                handleSelectAnswers={handleSelectAnswers}
+              />
+              <div className="w-full flex justify-end gap-2 py-2 sm:py-3">
+                {examInfo?.questionNumber === 0 ? (
+                  ""
+                ) : (
+                  <button
+                    onClick={() => handlePreviousQuestion()}
+                    className="border-[2px] h-[35px] border-gray-300 dark:border-gray-600 rounded-full px-5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer"
+                  >
+                    Previous
+                  </button>
+                )}
 
-          <div className="w-full h-full  sm:p-5">
-            <ShowTestQuestion
-              question={question}
-              handleSelectAnswers={handleSelectAnswers}
-            />
-            <div className="w-full flex justify-end gap-2 py-2 sm:py-3">
-              {examInfo?.questionNumber === 0 ? (
-                ""
-              ) : (
-                <button
-                  onClick={() => handlePreviousQuestion()}
-                  className="border-[2px] h-[35px] border-gray-300 dark:border-gray-600 rounded-full px-5 py-1 hover:bg-gray-300 dark:hover:bg-gray-600 cursor-pointer"
-                >
-                  Previous
-                </button>
-              )}
-
-              {examInfo?.questionNumber + 1 === response?.length ? (
-                <button
-                  onClick={() => handleSeeResult()}
-                  className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"
-                >
-                  Submit
-                </button>
-              ) : (
-                <button
-                  onClick={() => handleNextQuestion()}
-                  className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]   cursor-pointer"
-                >
-                  Save & Next
-                </button>
-              )}
+                {examInfo?.questionNumber + 1 === response?.length ? (
+                  <button
+                    onClick={() => handleSeeResult()}
+                    className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"
+                  >
+                    Save & Submit
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleNextQuestion()}
+                    className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]   cursor-pointer"
+                  >
+                    Save & Next
+                  </button>
+                )}
+              </div>
             </div>
-          </div>
-          }
+          )}
           <div className="hidden lg:block lg:w-[500px] bg-[var(--colW2)] dark:bg-slate-800 rounded-md rounded-bl-2xl p-2 "></div>
         </div>
       </div>

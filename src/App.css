@@ -356,7 +356,7 @@
   background-color: #f9c6c6 !important;
 }
 .testQuestionSelected{
-  background-color: var(--colG4);
+  background-color: var(--colG4) !important;
   color: #fff;
 }
 

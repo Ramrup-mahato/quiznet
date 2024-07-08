@@ -23,7 +23,7 @@ const ExamService = () => {
     questionId: "",
     answer: "",
     testMessage: "",
-    openModal: true,
+    openModal: false,
     termAgree: false,
   });
   const [loader, setLoader] = useState({
@@ -129,7 +129,7 @@ const ExamService = () => {
   };
 
   // ------------------get chapter and  Question APi--------------
-  const getChapter = async () => {
+  const getTest = async () => {
     try {
       setLoaderInFolder(true);
 
@@ -147,6 +147,7 @@ const ExamService = () => {
           createdOn: res?.data?.createdOn,
           totalTime: res?.data?.testTime * 60,
           testMessage: res?.data?.testMessage,
+          openModal: true,
         }));
         setTestTime(res?.data?.testTime * 60);
       }
@@ -160,10 +161,10 @@ const ExamService = () => {
   const handleGoBack = () => {
     window.history.back();
   };
-  // ---------------------------------------------------------
+
 
   useEffect(() => {
-    getChapter();
+    getTest();
   }, []);
   useEffect(() => {
     if (testTime > 0) {
