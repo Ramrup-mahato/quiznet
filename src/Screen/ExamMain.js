@@ -28,7 +28,9 @@ const ExamMain = () => {
     handleOpenModal,
     handleChange,
     handleStartExam,
-    handleCancelTest,
+    handleSeeResult,
+    handleWarningSubmit,
+    handleWarningCancel,
   } = ExamService();
   return (
     <Parents>
@@ -52,7 +54,7 @@ const ExamMain = () => {
                 handleNextQuestion={handleNextQuestion}
                 handlePreviousQuestion={handlePreviousQuestion}
                 handleSelectAnswers={handleSelectAnswers}
-                handleSeeResult={() => {}}
+                handleSeeResult={handleSeeResult}
               />
             ) : (
               <NotFound noData={true} />
@@ -67,6 +69,11 @@ const ExamMain = () => {
           handleStartExam={handleStartExam}
           handleGoBack={handleGoBack}
         />
+        <WarningModal
+          examInfo={examInfo}
+          handleWarningSubmit={handleWarningSubmit}
+          handleWarningCancel={handleWarningCancel}
+        />
       </ContainerBox>
       <Footer />
     </Parents>
@@ -74,6 +81,49 @@ const ExamMain = () => {
 };
 
 export default ExamMain;
+
+const WarningModal = ({
+  examInfo,
+  handleWarningSubmit,
+  handleWarningCancel,
+}) => {
+  return (
+    <Modal open={examInfo?.pendingModal}>
+      <div className="p-2">
+        <div className="w-full  md:w-[500px]  max-h-[90vh] bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500  rounded-xl p-3">
+          <div>
+            <h1 className="font-bold fontFamily">
+              Are you sure you want to submit? You still have{" "}
+              {examInfo?.pendingNo?.map((ele, index) => (
+                <span className="text-[20px] text-[var(--colB1)]" key={index}>
+                  {ele}
+                  {examInfo.pendingNo.length - 1 > index ? ", " : ""}
+                </span>
+              ))}{" "}
+              questions pending.
+            </h1>
+          </div>
+
+          <div className="w-full flex justify-end items-end gap-2 p-3 ">
+            {" "}
+            <button
+              className="border-[3px] border-gray-300 text-gray-500 px-5 py-1 rounded-full hover:text-gray-700 hover:border-gray-400"
+              onClick={handleWarningCancel}
+            >
+              Cancel
+            </button>
+            <button
+              className={`border-[3px]  text-white px-5 py-1 rounded-full hover:shadow-md border-[var(--colG4)] bg-[var(--colG4)]`}
+              onClick={() => handleWarningSubmit()}
+            >
+              Start Test
+            </button>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+};
 
 const TestModal = ({
   userDetails,
@@ -249,7 +299,9 @@ const TestModal = ({
                   checked={examInfo?.termAgree}
                   onChange={(e) => handleChange(e)}
                 />
-                <p className="text-[var(--colB1)] text-[13px]">I agree and continue.</p>
+                <p className="text-[var(--colB1)] text-[13px]">
+                  I agree and continue.
+                </p>
               </div>
             </div>
             <div className="w-full flex justify-end items-end gap-2 p-3 ">

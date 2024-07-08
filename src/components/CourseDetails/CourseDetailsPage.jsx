@@ -120,7 +120,7 @@ const CourseDetailsPage = () => {
                                   visit:<span className="font-bold"> 1254</span>
                                 </p>
                                 <p
-                                  className={`  rounded-md px-7 py-2 font-bold ${
+                                  className={` rounded-md px-2 sm:px-7 py-1 sm:py-2 font-bold  flex justify-center items-center ${
                                     ele?.test
                                       ? "text-[var(--colW1)]  bg-[var(--colG4)]  font-black border-[2px] border-[var(--colG4)]"
                                       : "text-[var(--colW1)] bg-[var(--colG2)] font-black border-[2px] border-[var(--colG2)]"

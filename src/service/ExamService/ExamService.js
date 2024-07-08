@@ -25,6 +25,8 @@ const ExamService = () => {
     testMessage: "",
     openModal: false,
     termAgree: false,
+    pendingModal: false,
+    pendingNo: [],
   });
   const [loader, setLoader] = useState({
     newQuestionLoader: false,
@@ -127,6 +129,22 @@ const ExamService = () => {
       answer: answer,
     }));
   };
+  // ------------------check pending before submit ----------------------
+  const handleSeeResult = () => {
+    let arr = [];
+    response.forEach((ele, i) => {
+      if (!ele?.yourAnswer) {
+        arr.push(i + 1);
+      }
+    });
+    if (arr?.length > 0) {
+      setExamInFo((prev) => ({
+        ...prev,
+        pendingNo: arr,
+        pendingModal: true,
+      }));
+    }
+  };
 
   // ------------------get chapter and  Question APi--------------
   const getTest = async () => {
@@ -157,11 +175,24 @@ const ExamService = () => {
       toastError(error?.message || "Something went wrong.");
     }
   };
+  // -----------------Warning Cancel-------------------
+  const handleWarningCancel = () => {
+    setExamInFo((prev) => ({
+      ...prev,
+      pendingNo: [],
+      pendingModal: false,
+    }));
+  };
+  // --------------Warning Submit ----------------
+  const handleWarningSubmit=()=>{
+
+  }
+  // --------------handle get result ---------------------
+
   // -------------handleGoBack-------------------
   const handleGoBack = () => {
     window.history.back();
   };
-
 
   useEffect(() => {
     getTest();
@@ -190,6 +221,9 @@ const ExamService = () => {
     handlePreviousQuestion,
     handleSelectAnswers,
     handleStartExam,
+    handleSeeResult,
+    handleWarningSubmit,
+    handleWarningCancel,
   };
 };
 
