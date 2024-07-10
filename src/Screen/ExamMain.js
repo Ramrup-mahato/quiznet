@@ -9,6 +9,7 @@ import Loader from "../components/ReUsable/Loader";
 import NotFound from "../components/ReUsable/NotFound ";
 import Modal from "../components/Modal/Modal";
 import { GoDotFill } from "react-icons/go";
+import SubmitQuiz from "../components/Quiz/SubmitQuiz";
 
 const ExamMain = () => {
   const {
@@ -42,22 +43,30 @@ const ExamMain = () => {
           </div>
         ) : (
           <>
-            {response?.length > 0 ? (
-              <ExamPage
-                question={question}
-                response={response}
-                testTime={testTime}
-                examInfo={examInfo}
-                loader={loader}
-                handleGoBack={handleGoBack}
-                handleSelectQuestion={handleSelectQuestion}
-                handleNextQuestion={handleNextQuestion}
-                handlePreviousQuestion={handlePreviousQuestion}
-                handleSelectAnswers={handleSelectAnswers}
-                handleSeeResult={handleSeeResult}
-              />
+            {examInfo?.testResult ? (
+              <>
+                <h1  className="text-[100px] font-black fontFamily">Result Page is pending</h1>
+              </>
             ) : (
-              <NotFound noData={true} />
+              <>
+                {response?.length > 0 ? (
+                  <ExamPage
+                    question={question}
+                    response={response}
+                    testTime={testTime}
+                    examInfo={examInfo}
+                    loader={loader}
+                    handleGoBack={handleGoBack}
+                    handleSelectQuestion={handleSelectQuestion}
+                    handleNextQuestion={handleNextQuestion}
+                    handlePreviousQuestion={handlePreviousQuestion}
+                    handleSelectAnswers={handleSelectAnswers}
+                    handleSeeResult={handleSeeResult}
+                  />
+                ) : (
+                  <NotFound noData={true} />
+                )}
+              </>
             )}
           </>
         )}
@@ -116,7 +125,7 @@ const WarningModal = ({
               className={`border-[3px]  text-white px-5 py-1 rounded-full hover:shadow-md border-[var(--colG4)] bg-[var(--colG4)]`}
               onClick={() => handleWarningSubmit()}
             >
-              Start Test
+              Submit Test
             </button>
           </div>
         </div>

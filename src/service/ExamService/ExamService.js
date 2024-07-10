@@ -27,6 +27,7 @@ const ExamService = () => {
     termAgree: false,
     pendingModal: false,
     pendingNo: [],
+    testResult: false,
   });
   const [loader, setLoader] = useState({
     newQuestionLoader: false,
@@ -34,11 +35,12 @@ const ExamService = () => {
   });
   const [question, setQuestion] = useState({});
   const [response, setResponse] = useState([]);
+  const [result, setResult] = useState([]);
 
   const [testTime, setTestTime] = useState(0);
   const query = useQuery();
   let testPath = query.get("testPath");
-  const { token, setLoaderInFolder, loaderInFolder, userDetails } =
+  const { token, setLoaderInFolder, loaderInFolder, userDetails, setIsLoader } =
     useContext(ContextStore);
   // ----------------------onChange-------------------------------
   const handleChange = (e) => {
@@ -66,7 +68,7 @@ const ExamService = () => {
       questionNumber: i,
     }));
   };
-  //   ---------------------next question----------------
+  //   ---------------------save answer in db & next question----------------
   const handleNextQuestion = async () => {
     try {
       setLoader((prev) => ({
@@ -143,6 +145,8 @@ const ExamService = () => {
         pendingNo: arr,
         pendingModal: true,
       }));
+    } else {
+      GetResult();
     }
   };
 
@@ -159,6 +163,7 @@ const ExamService = () => {
 
         setResponse(res?.data?.questions);
         setQuestion(res?.data?.questions?.[0]);
+
         setExamInFo((prev) => ({
           ...prev,
           title: res?.data?.chapterTitle,
@@ -166,11 +171,38 @@ const ExamService = () => {
           totalTime: res?.data?.testTime * 60,
           testMessage: res?.data?.testMessage,
           openModal: true,
+          testId: res?.data?._id,
         }));
         setTestTime(res?.data?.testTime * 60);
       }
     } catch (error) {
       setLoaderInFolder(false);
+      console.log(error);
+      toastError(error?.message || "Something went wrong.");
+    }
+  };
+  // ------------------------Result Api Call----------------------------
+  const GetResult = async () => {
+    try {
+      setIsLoader(true);
+      let json = {
+        userId: userDetails._id,
+      };
+
+      let res = await apiGetResponse(
+        await postData(`/test/result`, json, token)
+      );
+      if (res?.success) {
+        setIsLoader(false);
+        setResult(res?.data);
+        setExamInFo((prev) => ({
+          ...prev,
+          testResult: true,
+          pendingModal: false,
+        }));
+      }
+    } catch (error) {
+      setIsLoader(false);
       console.log(error);
       toastError(error?.message || "Something went wrong.");
     }
@@ -184,9 +216,9 @@ const ExamService = () => {
     }));
   };
   // --------------Warning Submit ----------------
-  const handleWarningSubmit=()=>{
-
-  }
+  const handleWarningSubmit = () => {
+    GetResult();
+  };
   // --------------handle get result ---------------------
 
   // -------------handleGoBack-------------------
