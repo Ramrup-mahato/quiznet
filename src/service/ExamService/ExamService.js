@@ -199,6 +199,7 @@ const ExamService = () => {
           ...prev,
           testResult: true,
           pendingModal: false,
+          termAgree:false
         }));
       }
     } catch (error) {
@@ -225,6 +226,16 @@ const ExamService = () => {
   const handleGoBack = () => {
     window.history.back();
   };
+  // ---------------------------Restart test -------------------------
+  const handleAgainQuiz = () => {
+    getTest();
+    setExamInFo((prev) => ({
+      ...prev,
+      testResult: false,
+      pendingModal: false,
+      questionNumber:0
+    }));
+  };
 
   useEffect(() => {
     getTest();
@@ -244,6 +255,7 @@ const ExamService = () => {
     testTime,
     loader,
     userDetails,
+    result,
     handleChange,
     setExamInFo,
     handleGoBack,
@@ -256,6 +268,7 @@ const ExamService = () => {
     handleSeeResult,
     handleWarningSubmit,
     handleWarningCancel,
+    handleAgainQuiz,
   };
 };
 

@@ -9,7 +9,7 @@ import Loader from "../components/ReUsable/Loader";
 import NotFound from "../components/ReUsable/NotFound ";
 import Modal from "../components/Modal/Modal";
 import { GoDotFill } from "react-icons/go";
-import SubmitQuiz from "../components/Quiz/SubmitQuiz";
+import ShowAnswerList from "../components/ExamPage/ShowAnswerList";
 
 const ExamMain = () => {
   const {
@@ -21,6 +21,7 @@ const ExamMain = () => {
     question,
     response,
     loader,
+    result,
     userDetails,
     handleSelectQuestion,
     handleNextQuestion,
@@ -32,6 +33,7 @@ const ExamMain = () => {
     handleSeeResult,
     handleWarningSubmit,
     handleWarningCancel,
+    handleAgainQuiz,
   } = ExamService();
   return (
     <Parents>
@@ -45,7 +47,12 @@ const ExamMain = () => {
           <>
             {examInfo?.testResult ? (
               <>
-                <h1  className="text-[100px] font-black fontFamily">Result Page is pending</h1>
+                <ShowAnswerList
+                  result={result}
+                  handleGoBack={handleGoBack}
+                  handleAgainQuiz={handleAgainQuiz}
+                  handleNextQuiz={handleGoBack}
+                />
               </>
             ) : (
               <>
