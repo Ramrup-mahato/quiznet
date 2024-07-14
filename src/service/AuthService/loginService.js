@@ -40,10 +40,10 @@ const LoginService = () => {
           };
           let Res = await apiResponse(await postData("/verifyOTP", json));
 
-          if (Res?.success===true) {
+          if (Res?.success === true) {
             setActivate(false);
             setIsLoader(false);
-          }else{
+          } else {
             setIsLoader(false);
           }
         } else {
@@ -53,14 +53,37 @@ const LoginService = () => {
         setIsLoader(true);
         const loginRes = await apiResponse(await postData("/login", values));
         console.log("step1", loginRes);
-        if (loginRes) setIsLoader(false);
-        localStorage.setItem("quizNetToken", JSON.stringify(loginRes.data));
-        setTimeout(() => {
-          window.location.href = "/";
-        }, 2000);
+        if (loginRes?.success) {
+          setIsLoader(false);
+          localStorage.setItem("quizNetToken", JSON.stringify(loginRes.data));
+          setTimeout(() => {
+            window.location.href = "/";
+          }, 2000);
+        } else {
+          console.log("#########==>", loginRes);
+          setIsLoader(false);
+          if (loginRes?.data?.isActive === false) {
+            setTimeout(() => setOpenModal(true), 2000);
+          }
+          if (loginRes?.data?.isBlocked) {
+            setTimeout(() => {
+              navigation("/");
+            }, 2000);
+            setTimeout(() => {
+              const element = document.getElementById("contactMessage");
+              const yOffset = -100;
+              const y =
+                element.getBoundingClientRect().top +
+                window.pageYOffset +
+                yOffset;
+              window.scrollTo({ top: y, behavior: "smooth" });
+            }, 4000);
+          }
+        }
       }
     } catch (error) {
       await apiResponse(error);
+      console.log("error==>", error?.data);
       if (error) setIsLoader(false);
       if (error?.data?.isActive === false) {
         setTimeout(() => setOpenModal(true), 2000);
@@ -72,8 +95,9 @@ const LoginService = () => {
         setTimeout(() => {
           const element = document.getElementById("contactMessage");
           const yOffset = -100;
-          const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-          window.scrollTo({ top: y, behavior: 'smooth' });
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: "smooth" });
         }, 4000);
       }
     }
@@ -85,10 +109,47 @@ const LoginService = () => {
   };
   // -------------------------login with Google ------------------------
   const handleGoogleSuccess = async (response) => {
-    console.log("response from google", response);
+    // console.log("response from google", response);
 
-    let newResponse = jwtDecode(response.credential);
-    console.log("newResponse", newResponse);
+    // let newResponse = jwtDecode(response.credential);
+    // console.log("newResponse", newResponse);
+    try {
+      setIsLoader(true);
+      let json = {
+        credential: response?.credential,
+      };
+      let res = await apiResponse(await postData("/login/google", json));
+     
+      if (res?.success) {
+        setIsLoader(false);
+        localStorage.setItem("quizNetToken", JSON.stringify(res?.data));
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      } else {
+        setIsLoader(false);
+        if (res?.data?.isActive === false) {
+          setTimeout(() => setOpenModal(true), 2000);
+        }
+        if (res?.data?.isBlocked) {
+          setTimeout(() => {
+            navigation("/");
+          }, 2000);
+          setTimeout(() => {
+            const element = document.getElementById("contactMessage");
+            const yOffset = -100;
+            const y =
+              element.getBoundingClientRect().top +
+              window.pageYOffset +
+              yOffset;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }, 4000);
+        }
+      }
+    } catch (error) {
+      setIsLoader(false);
+      console.log(error);
+    }
   };
 
   const handleEnterOtp = (e) => {

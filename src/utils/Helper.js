@@ -37,6 +37,7 @@ export const apiResponse = (data) => {
     return data;
   } else if (data?.success === false) {
     toastWarning(data?.message);
+    return data
   }
 };
 
