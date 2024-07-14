@@ -24,6 +24,7 @@ import NotFound from "../components/ReUsable/NotFound ";
 // import WorkSpace from "../Screen/WorkSpace";
 import Loader from "../components/ReUsable/Loader";
 import ExamMain from "../Screen/ExamMain";
+import TermAndCondition from "../components/ReUsable/TermAndCondition";
 const Home = lazy(() => import("../Screen/Home"));
 const CourseDetails = lazy(() => import("../Screen/CourseDetails"));
 const QuizMain = lazy(() => import("../Screen/QuizMain"));
@@ -83,6 +84,11 @@ export const MainRoutes = () => {
       path: "/about",
       component: About,
       name: "about",
+    },
+    {
+      path: "/term&condition",
+      component: TermAndCondition,
+      name: "term&condition",
     },
   ];
 

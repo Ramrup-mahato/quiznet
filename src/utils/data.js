@@ -250,6 +250,53 @@ export const courseName = [
 
 
 
+export const termAndCondition=[
+  {
+    title:"Introduction",
+    paragraph:'Welcome to KizoStudy (“we,” “our,” “us”). These Terms and Conditions (“Terms,” “T&C”) govern your use of our website located at [KizoStudy Website URL] (together or individually “Service”) operated by KizoStudy.'
+  },
+  {
+    title:" Accounts",
+    paragraph:'When you create an account with us, you must provide us information that is accurate, complete, and current at all times. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account on our Service.'
+  },
+  {
+    title:"User Content",
+    paragraph:'Our Service allows users to create and upload content, including text and images. You are responsible for the content you upload and must ensure that it complies with all applicable laws and does not infringe on any third-party rights.'
+  },
+  {
+    title:"Intellectual Property",
+    paragraph:'The content, including but not limited to our logo, visual design, and trademarks, is our exclusive property. You may not use our intellectual property without our prior written consent.'
+  },
+  {
+    title:" Questions and Course Content",
+    paragraph:'The questions on this site are for quizzes and MCQ questions. We verify the questions to the best of our ability, but if you are affected by the course content in any way, we are not responsible. Our questions are collected from books, question banks, exam papers, and many other sources.'
+  },
+  {
+    title:"Feedback and Suggestions",
+    paragraph:'If you provide feedback and suggestions, we may use them without any obligation to compensate you or provide credit.'
+  },
+  {
+    title:"Limitation of Liability",
+    paragraph:'In no event shall KizoStudy, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.'
+  },
+  {
+    title:"Governing Law",
+    paragraph:'These Terms shall be governed and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.'
+  },
+  {
+    title:"Changes to Terms",
+    paragraph:'We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least [30 days] notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.'
+  },
+  {
+    title:"Termination",
+    paragraph:'We may terminate or suspend your account immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.'
+  },
+  {
+    title:"Contact Us",
+    paragraph:'If you have any questions about these Terms, please contact us:'
+  }
+]
+
 
 
 

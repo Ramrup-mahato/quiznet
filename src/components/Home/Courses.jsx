@@ -7,6 +7,10 @@ import contactImage from "../../assets/image/studyBanner.png";
 import TextInput from "../ReUsable/TextInput";
 import { IoIosSwitch } from "react-icons/io";
 import { BsNintendoSwitch } from "react-icons/bs";
+import { MdVerified } from "react-icons/md";
+import { FaBookOpen } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa6";
+import { NavLink } from "react-router-dom";
 
 const Courses = () => {
   const {
@@ -52,7 +56,6 @@ const Courses = () => {
                     key={i}
                     className="item m-[2px] bg-[var(--colW1)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
                rounded-lg text-[14px]  cursor-pointer"
-                    onClick={() => handleSelectCourse(sub.subjectPath)}
                   >
                     <div>
                       <img
@@ -62,32 +65,51 @@ const Courses = () => {
                       />
                     </div>
                     <div className="w-full py-2 px-1 sm:px-3 text-gray-700 dark:text-gray-200">
-                      <p className="font-bold text-blue-900 dark:text-blue-100">
+                      <p className="font-bold text-[12px] sm:text-[14px] text-blue-900 dark:text-blue-100">
                         {sub?.subjectTitle}
                       </p>
                       <div className="py-1 text-[12px] flex justify-between ">
-                        <p>
-                          Total:
-                          <span className="font-bold text-[var(--colG2)]">{sub?.chapterCount}</span>
+                        <p className="text-[11px] sm:text-[13px]  flex justify-center items-center">
+                          <FaBookOpen size={15} color="#A1662F " />
+                          &nbsp;
+                          <span className="font-bold  underline">
+                            {" "}
+                            {sub?.chapterCount}&nbsp;
+                          </span>
+                          Courses
                         </p>
-                        <p className="pr-3 hover:text-[var(--colB1)] hover:underline font-bold">
-                          T&C
-                        </p>
+                        <NavLink to={"/term&condition"}>
+                          <p className="pr-3 hover:text-[var(--colB1)] hover:underline font-bold">
+                            T&C
+                          </p>
+                        </NavLink>
                       </div>
                       <div className=" text-[12px] flex justify-between items-center ">
-                        <p>
-                          visit:<span className="font-bold text-[var(--colG2)]"> 1254</span>
-                        </p>
-                        <p className=" text-[var(--colG2)]  text-[14px] border-[2px] border-[var(--colG2)] rounded-md px-7 py-2 font-extrabold">
-                          View
+                        <div className="flex justify-center items-center">
+                          <MdVerified className="text-[var(--colG4)] text-[14px] md:text-[20px]" />
+
+                          <p className="text-[11px] sm:text-[13px]">
+                            <span className="text-[var(--colG4)]">
+                              Verified
+                            </span>
+                          </p>
+                        </div>
+                        <div></div>
+                        <p
+                          className="flex gap-1 justify-center items-center text-[var(--colW2)] bg-[var(--colB1)] 
+                        text-[12px] md:text-[14px] border-[2px] border-[var(--colB1)] rounded-md px-3 md:px-7
+                          py-1 md:py-2 font-extrabold hover:shadow-md"
+                          onClick={() => handleSelectCourse(sub.subjectPath)}
+                        >
+                          View <FaArrowRight />
                         </p>
                       </div>
-                      <div className=" text-[12px] flex justify-between items-center border-t-2 mt-1 ">
-                        <p>
-                          website:
+                      <div className=" text-[12px] flex justify-center items-center border-t-2 mt-1 ">
+                        <p className="flex">
+                          <span className="hidden md:block">website:</span>
                           <span className="font-bold hover:text-[var(--colB1)] hover:underline">
                             {" "}
-                            www.quiznp.com
+                            www.kizostudy.com
                           </span>
                         </p>
                       </div>
@@ -160,7 +182,10 @@ const Courses = () => {
           />
         ))}
       </div>
-      <div id="contactMessage" className="w-full flex flex-col md:flex-row   gap-2 p-2 mb-7">
+      <div
+        id="contactMessage"
+        className="w-full flex flex-col md:flex-row   gap-2 p-2 mb-7"
+      >
         <div className="w-full md:w-[45%] flex flex-col justify-center px-10">
           <h1 className="w-full font-extrabold  text-[25px] items-center dark:text-slate-50">
             We Love to connect, Help,Receive feedback just tell us...
