@@ -147,6 +147,29 @@ const RegistrationService = () => {
     if (res) setIsLoader(false);
   
   };
+  // -------------------Register with Google--------------------------
+  const handleGoogleSuccess = async (response) => {
+    try {
+      setIsLoader(true);
+      let json = {
+        credential: response?.credential,
+      };
+      let res = await apiResponse(await postData("/login/google", json));
+
+      if (res?.success) {
+        setIsLoader(false);
+        localStorage.setItem("quizNetToken", JSON.stringify(res?.data));
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 2000);
+      } else {
+        setIsLoader(false);
+      }
+    } catch (error) {
+      setIsLoader(false);
+      console.log(error);
+    }
+  };
   // ------------------only enter number----------------------
   const handlePhoneChange = (e) => {
     const { name, value } = e.target;
@@ -176,6 +199,7 @@ const RegistrationService = () => {
     handleSubmitOTP,
     handleResendOtp,
     handlePhoneChange,
+    handleGoogleSuccess,
   };
 };
 

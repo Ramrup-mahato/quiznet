@@ -20,6 +20,7 @@ const RegistrationPage = () => {
     handleSubmitOTP,
     handleResendOtp,
     handlePhoneChange,
+    handleGoogleSuccess,
   } = RegistrationService();
   return (
     <div className="w-full p-5 sm:max-w-[1024px]  min-h-[100vh]  flex justify-center items-center">
@@ -221,7 +222,7 @@ const RegistrationPage = () => {
               )}
             </div>
 
-            <GoogleLoginButton text={"continue_with"} />
+            <GoogleLoginButton text={"continue_with"} handleGoogleSuccess={handleGoogleSuccess} />
 
             <div className="pl-5 text-[13px] text-gray-500">
               <p>
