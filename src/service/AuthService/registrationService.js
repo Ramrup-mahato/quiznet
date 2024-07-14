@@ -91,11 +91,13 @@ const RegistrationService = () => {
         OTP: regDetails?.OTP,
       };
       let verifyOtp = await apiResponse(await postData("/verifyOTP", json));
-      if (verifyOtp) {
+      if (verifyOtp?.success) {
         setIsLoader(false);
         setTimeout(() => {
           navigation("/login");
         }, 2000);
+      }else{
+        setIsLoader(false);
       }
     } catch (error) {
       if (error) setIsLoader(false);
@@ -113,7 +115,7 @@ const RegistrationService = () => {
       };
       setIsLoader(true);
       const response = await apiResponse(await postData("/register", json));
-      if (response) {
+      if (response?.success) {
         setTime(40);
         setIsLoader(false);
         setRegDetails((oldData) => {
@@ -123,6 +125,8 @@ const RegistrationService = () => {
             email: value?.email,
           };
         });
+      }else{
+        setIsLoader(false);
       }
     } catch (error) {
       if (error) setIsLoader(false);
@@ -141,7 +145,7 @@ const RegistrationService = () => {
     let res = await apiResponse(await postData("/forgetPassword", json));
     console.log(res);
     if (res) setIsLoader(false);
-    alert(JSON.stringify(res));
+  
   };
   // ------------------only enter number----------------------
   const handlePhoneChange = (e) => {

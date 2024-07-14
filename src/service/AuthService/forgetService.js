@@ -17,7 +17,7 @@ const newPassword = {
 
 const ForgetService = () => {
   const navigation = useNavigate();
-  const {setIsLoader}=useContext(ContextStore)
+  const { setIsLoader } = useContext(ContextStore);
   const [stage, setStage] = useState("email");
   const [forget, setForget] = useState({
     otp: "",
@@ -67,30 +67,33 @@ const ForgetService = () => {
         let json = {
           email: value.email,
         };
-        setIsLoader(true)
+        setIsLoader(true);
         let res = await apiResponse(await postData("/forgetPassword", json));
-        if (res) {
+        if (res?.success === true) {
           setStage("otp");
-          alert(JSON.stringify(res))
-          setTime(40)
-          setIsLoader(false)
+          setTime(40);
+          setIsLoader(false);
           setForget((old) => {
             return {
               ...old,
               email: value.email,
             };
           });
+        }else{
+          setIsLoader(false);
         }
       } else if (stage === "otp") {
         let json = {
           email: forget.email,
           OTP: forget.otp,
         };
-        setIsLoader(true)
+        setIsLoader(true);
         let res = await apiResponse(await postData("/verifyOTP", json));
-        if (res) {
-          setIsLoader(false)
+        if (res?.success === true) {
+          setIsLoader(false);
           setStage("password");
+        } else {
+          setIsLoader(false);
         }
       } else if (stage === "password") {
         let json = {
@@ -99,36 +102,34 @@ const ForgetService = () => {
           password: value.password,
           conformPassword: value.conformPassword,
         };
-        setIsLoader(true)
+        setIsLoader(true);
         let res = await apiResponse(await postData("/updatePassword", json));
-        if (res) {
-          setIsLoader(false)
+        if (res?.success === true) {
+          setIsLoader(false);
           setStage("finish");
-          setTimeout(() => navigation('/login'), 3000);
+          setTimeout(() => navigation("/login"), 3000);
+        } else {
+          setIsLoader(false);
         }
       }
     } catch (error) {
-      if(error) setIsLoader(false)
+      if (error) setIsLoader(false);
     }
   };
   // -------------------Resend OTP----------------------------
   const handleResendOtp = async (event) => {
     try {
-      
-    
-    event.preventDefault();
-    setTime(40)
-    let json = {
-      email: forget.email,
-    };
-    toastSuccess("Send request for new OTP");
-    setIsLoader(true)
-    let res = await apiResponse(await postData("/forgetPassword", json));
-    console.log(res);
-    alert(JSON.stringify(res))
-    if(res) setIsLoader(false)
+      event.preventDefault();
+      setTime(40);
+      let json = {
+        email: forget.email,
+      };
+      toastSuccess("Send request for new OTP");
+      setIsLoader(true);
+      let res = await apiResponse(await postData("/forgetPassword", json));
+    if(res) setIsLoader(false);
     } catch (error) {
-      if(error) setIsLoader(false)
+      if (error) setIsLoader(false);
     }
   };
 

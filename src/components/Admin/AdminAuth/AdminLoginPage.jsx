@@ -108,8 +108,8 @@ const AdminLoginPage = () => {
               <button
                 className="w-full bg-[var(--colB1)] rounded-full cursor-pointer h-[35px] flex 
               justify-center items-center text-[var(--colW2)] font-medium hover:opacity-[0.9] "
-              type="submit"
-              onClick={handleSubmit}
+                type="submit"
+                onClick={handleSubmit}
               >
                 Login Admin Account
               </button>

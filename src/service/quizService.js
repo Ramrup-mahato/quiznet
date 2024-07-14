@@ -190,7 +190,7 @@ const QuizService = () => {
           ],
         };
         let res = await apiResponse(await postData("/report", json, token));
-        if (res.success) {
+        if (res?.success) {
           setIsLoader(false);
           setReportQuestion((prev) => ({
             ...prev,
@@ -199,6 +199,8 @@ const QuizService = () => {
             yourAnswer: "",
             message: "",
           }));
+        }else{
+          setIsLoader(false);
         }
       } else {
         setReportQuestion((prev) => ({

@@ -284,7 +284,7 @@ const AddCourseService = () => {
           await postData("/delete-course", json, token)
         );
         console.log("step2");
-        if (folder.success) {
+        if (folder?.success) {
           setDeleteFolder((old) => {
             return {
               ...old,
@@ -294,6 +294,8 @@ const AddCourseService = () => {
             };
           });
           handleGetAllCourse();
+          setIsLoader(false);
+        }else{
           setIsLoader(false);
         }
       } else if (deleteFolder?.folderType === "Subject") {
@@ -304,7 +306,7 @@ const AddCourseService = () => {
         let folder = await apiResponse(
           await postData("/delete-subject", json, token)
         );
-        if (folder.success) {
+        if (folder?.success) {
           setIsLoader(false);
           setDeleteFolder((old) => {
             return {
@@ -315,6 +317,8 @@ const AddCourseService = () => {
             };
           });
           handleGetAllCourse();
+        }else{
+          setIsLoader(false);
         }
       } else if (deleteFolder?.folderType === "Chapter") {
         let json = {
@@ -324,7 +328,7 @@ const AddCourseService = () => {
         let folder = await apiResponse(
           await postData("/delete-chapter", json, token)
         );
-        if (folder.success) {
+        if (folder?.success) {
           handleGetAllCourse();
           setIsLoader(false);
           setDeleteFolder((old) => {
@@ -335,6 +339,8 @@ const AddCourseService = () => {
               folderType: "",
             };
           });
+        }else{
+          setIsLoader(false);
         }
       } else if (deleteFolder?.folderType === "Question") {
         let json = {
@@ -346,7 +352,7 @@ const AddCourseService = () => {
         let folder = await apiResponse(
           await postData("/delete-question", json, token)
         );
-        if (folder.success) {
+        if (folder?.success) {
           handleGetQuestion();
           setIsLoader(false);
           setDeleteFolder((old) => {
@@ -357,6 +363,8 @@ const AddCourseService = () => {
               folderType: "",
             };
           });
+        }else{
+          setIsLoader(false);
         }
       }
     } catch (error) {
@@ -493,7 +501,7 @@ const AddCourseService = () => {
             await updateData("/course", json, token)
           );
           console.log("folder", folder);
-          if (folder.success) {
+          if (folder?.success) {
             handleGetAllCourse();
             setIsLoader(false);
             setModal((old) => {
@@ -506,6 +514,8 @@ const AddCourseService = () => {
               };
             });
             handleReset();
+          }else{
+            setIsLoader(false);
           }
         } else {
           toastWarning("please upload image");
@@ -523,7 +533,7 @@ const AddCourseService = () => {
           let folder = await apiResponse(
             await updateData("/subject", json, token)
           );
-          if (folder.success) {
+          if (folder?.success) {
             setIsLoader(false);
             handleGetAllCourse();
             setModal((old) => {
@@ -536,6 +546,8 @@ const AddCourseService = () => {
               };
             });
             handleReset();
+          }else{
+            setIsLoader(false);
           }
         } else {
           toastWarning("please upload image");
@@ -556,7 +568,7 @@ const AddCourseService = () => {
         let folder = await apiResponse(
           await updateData("/chapter", json, token)
         );
-        if (folder.success) {
+        if (folder?.success) {
           handleGetAllCourse();
           setIsLoader(false);
           setModal((old) => {
@@ -573,6 +585,8 @@ const AddCourseService = () => {
             };
           });
           handleReset();
+        }else{
+          setIsLoader(false);
         }
       }
     } catch (error) {
@@ -598,7 +612,7 @@ const AddCourseService = () => {
             await postData("/course", json, token)
           );
           console.log("folder", folder);
-          if (folder.success) {
+          if (folder?.success) {
             handleGetAllCourse();
             setIsLoader(false);
             setModal((old) => {
@@ -609,6 +623,8 @@ const AddCourseService = () => {
               };
             });
             handleReset();
+          }else{
+            setIsLoader(false);
           }
         } else {
           toastWarning("please upload image");
@@ -625,7 +641,7 @@ const AddCourseService = () => {
           let folder = await apiResponse(
             await postData("/subject", json, token)
           );
-          if (folder.success) {
+          if (folder?.success) {
             setIsLoader(false);
             handleGetAllCourse();
             setModal((old) => {
@@ -636,6 +652,8 @@ const AddCourseService = () => {
               };
             });
             handleReset();
+          }else{
+            setIsLoader(false);
           }
         } else {
           toastWarning("please upload image");
@@ -658,7 +676,7 @@ const AddCourseService = () => {
         };
         setIsLoader(true);
         let folder = await apiResponse(await postData("/chapter", json, token));
-        if (folder.success) {
+        if (folder?.success) {
           handleGetAllCourse();
           setIsLoader(false);
           setModal((old) => {
@@ -675,6 +693,8 @@ const AddCourseService = () => {
             };
           });
           handleReset();
+        }else{
+          setIsLoader(false);
         }
       }
     } catch (error) {
@@ -892,7 +912,7 @@ const AddCourseService = () => {
           await postData("/questions", json, token)
         );
         console.log("step2");
-        if (folder.success) {
+        if (folder?.success) {
           setQuestionModal((old) => {
             return {
               ...old,
@@ -912,6 +932,8 @@ const AddCourseService = () => {
             };
           });
           handleGetQuestion();
+          setIsLoader(false);
+        }else{
           setIsLoader(false);
         }
       }
@@ -985,7 +1007,7 @@ const AddCourseService = () => {
           await updateData("/questions", json, token)
         );
         console.log("folder", folder);
-        if (folder.success) {
+        if (folder?.success) {
           handleGetQuestion();
           setIsLoader(false);
           setQuestionModal((old) => {
@@ -1007,6 +1029,8 @@ const AddCourseService = () => {
               note: "",
             };
           });
+        }else{
+          setIsLoader(false);
         }
       }
     } catch (error) {
@@ -1086,7 +1110,7 @@ const AddCourseService = () => {
       let Question = await apiResponse(
         await postData("/questions/csv", { questionsOfArray: questions }, token)
       );
-      if (Question.success) {
+      if (Question?.success) {
         handleGetQuestion();
       }
     } catch (error) {
@@ -1116,8 +1140,10 @@ const AddCourseService = () => {
         await updateData("/course/publish", json, token)
       );
       console.log("publish", folder);
-      if (folder.success) {
+      if (folder?.success) {
         handleGetAllCourse();
+        setIsLoader(false);
+      }else{
         setIsLoader(false);
       }
     } catch (error) {

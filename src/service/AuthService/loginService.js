@@ -40,8 +40,10 @@ const LoginService = () => {
           };
           let Res = await apiResponse(await postData("/verifyOTP", json));
 
-          if (Res) {
+          if (Res?.success===true) {
             setActivate(false);
+            setIsLoader(false);
+          }else{
             setIsLoader(false);
           }
         } else {
@@ -103,8 +105,6 @@ const LoginService = () => {
 
     let res = await apiResponse(await postData("/forgetPassword", json));
     if (res) setIsLoader(false);
-    console.log(res);
-    alert(JSON.stringify(res));
   };
   // -----------close modal---------------
   const handleModal = () => {
@@ -128,13 +128,11 @@ const LoginService = () => {
       const response = await postData("/forgetPassword", json);
       const res = await apiResponse(response);
 
-      console.log(res);
-
       if (res?.success) {
         setActivate(true);
         setOpenModal(false);
-        alert(JSON.stringify(res?.OTP));
       } else {
+        setIsLoader(false);
         // Handle the case where the response is not successful
         toastError("An error occurred: " + (res?.message || "Unknown error"));
       }

@@ -26,6 +26,8 @@ const ProfileService = () => {
           localStorage.setItem("quizNetToken", JSON.stringify(getToken));
           setLoaderInFolder(false);
           window.location.reload();
+        }else{
+          setLoaderInFolder(false);
         }
       }
     } catch (error) {

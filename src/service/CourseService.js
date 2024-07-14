@@ -55,9 +55,11 @@ const CourseService = () => {
       let response = await apiResponse(
         await postData("/contact", value, token)
       );
-      if (response.success) {
+      if (response?.success) {
         setIsLoader(false);
         handleReset();
+      }else {
+        setIsLoader(false);
       }
     } catch (error) {
       setIsLoader(false);

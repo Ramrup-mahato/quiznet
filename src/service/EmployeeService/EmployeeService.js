@@ -44,6 +44,8 @@ const EmployeeService = () => {
       if (res?.success) {
         handleGetAllEmployee();
         setOpenModal(false);
+      }else{
+        setLoaderInFolder(false);
       }
     } catch (error) {
       setLoaderInFolder(false);

@@ -36,6 +36,8 @@ const WorkSpaceService = () => {
       if (res?.success) {
         handleGetAllWorkSpace();
         setIsLoader(false);
+      }else{
+        setIsLoader(false);
       }
     } catch (error) {
       setIsLoader(false);
@@ -62,6 +64,8 @@ const WorkSpaceService = () => {
           img.src = image;
           setMassage("");
           handleGetAllWorkSpace();
+        }else{
+          setIsLoader(false);
         }
       }
     } catch (error) {

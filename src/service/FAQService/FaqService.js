@@ -53,6 +53,8 @@ const FaqService = () => {
               answer: "",
             };
           });
+        }else{
+          setIsLoader(false);
         }
       } else {
         setIsLoader(true);
@@ -73,6 +75,8 @@ const FaqService = () => {
               addNewFaq: false,
             };
           });
+        }else{
+          setIsLoader(false);
         }
       }
     } catch (error) {
@@ -140,6 +144,8 @@ const FaqService = () => {
       );
       if (response?.success) {
         handleGetAll();
+        setIsLoader(false);
+      }else{
         setIsLoader(false);
       }
     } catch (error) {

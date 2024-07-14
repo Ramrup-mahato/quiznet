@@ -20,7 +20,7 @@ export const postData = async (URL, data, token) => {
         })
         .catch((err) => {
           if (err.response) {
-            reject(err.response.data);
+            resolve(err.response.data);
           } else {
             reject({
               success: false,
@@ -54,7 +54,7 @@ export const getData = async (URL,token) => {
           resolve(res.data);
         })
         .catch((err) => {
-          reject(err.response.data);
+          resolve(err.response.data);
         });
     } catch (error) {
       toastError(
@@ -84,7 +84,7 @@ export const updateData = async (URL, data, token) => {
         })
         .catch((err) => {
           if (err.response) {
-            reject(err.response.data);
+            resolve(err.response.data);
           } else {
             reject({
               success: false,

@@ -79,10 +79,12 @@ const ReportService = () => {
         correctAnswer: report?.reportQuestion?.[0]?.userAnswer,
       };
       let res = await apiResponse(await updateData("/report", json, token));
-      if(res.success){
+      if(res?.success){
         setIsLoader(false);
         getAPIData()
         handleModal();
+      }else{
+        setIsLoader(false);
       }
     } catch (error) {
       setIsLoader(false);

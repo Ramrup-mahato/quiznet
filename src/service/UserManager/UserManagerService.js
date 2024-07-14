@@ -186,6 +186,8 @@ const UserManagerService = () => {
           data: "",
         }));
         setIsLoader(false);
+      }else{
+        setIsLoader(false);
       }
     } catch (error) {
       setIsLoader(false);

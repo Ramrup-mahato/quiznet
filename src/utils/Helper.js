@@ -31,19 +31,19 @@ export const filterQuestion = (data, search) => {
 };
 
 export const apiResponse = (data) => {
+  console.log("data", data);
   if (data?.success === true) {
     toastSuccess(data?.message);
     return data;
-  } else {
+  } else if (data?.success === false) {
     toastWarning(data?.message);
-    return data;
   }
 };
 
 export const apiGetResponse = (data) => {
   if (data?.success === true) {
     return data;
-  } else {
+  } else if (data?.success === false) {
     toastWarning(data?.message);
     return data;
   }
