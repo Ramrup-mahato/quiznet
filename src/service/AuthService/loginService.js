@@ -20,7 +20,7 @@ const LoginService = () => {
   const [ActOtp, setActOtp] = useState("");
   const [time, setTime] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const { errors, values, touched, handleBlur, handleChange, handleSubmit } =
+  const { errors, values, touched, handleBlur, handleChange, handleSubmit , setFieldValue} =
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginSchema,
@@ -109,10 +109,7 @@ const LoginService = () => {
   };
   // -------------------------login with Google ------------------------
   const handleGoogleSuccess = async (response) => {
-    console.log("response from google", response);
-
-    let newResponse = jwtDecode(response.credential);
-    console.log("newResponse", newResponse);
+ 
     try {
       setIsLoader(true);
       let json = {
@@ -128,7 +125,10 @@ const LoginService = () => {
         }, 2000);
       } else {
         setIsLoader(false);
+        
         if (res?.data?.isActive === false) {
+          let newResponse = jwtDecode(response.credential);
+          setFieldValue("email",newResponse.email)
           setTimeout(() => setOpenModal(true), 2000);
         }
         if (res?.data?.isBlocked) {
