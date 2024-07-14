@@ -562,6 +562,8 @@ const AddCourseService = () => {
           test: value.test,
           testTime: value.testTime,
           testMessage: value.testMessage,
+          pdfStatus: modal?.upload,
+          pdfFile: modal?.pdfFile,
         };
         console.log("Chapter", json);
         setIsLoader(true);
@@ -582,6 +584,7 @@ const AddCourseService = () => {
               updateFile: "",
               fileName: "",
               testToggle: false,
+              pdfFile:''
             };
           });
           handleReset();
