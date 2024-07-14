@@ -85,6 +85,8 @@ const LoginService = () => {
   };
   // -------------------------login with Google ------------------------
   const handleGoogleSuccess = async (response) => {
+    console.log("response from google", response);
+
     let newResponse = jwtDecode(response.credential);
     console.log("newResponse", newResponse);
   };

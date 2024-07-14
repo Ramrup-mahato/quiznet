@@ -8,7 +8,7 @@ const GoogleLoginButton = ({ handleGoogleSuccess, text }) => {
 
       <GoogleOAuthProvider
         clientId={
-          "67773642298-0koi3iih77bo0i29v13spa2agde53fap.apps.googleusercontent.com"
+          "691165217306-dtejo3j7ltcga2r6ahsvn40mdj1gjqdk.apps.googleusercontent.com"
         }
       >
         <GoogleLogin
