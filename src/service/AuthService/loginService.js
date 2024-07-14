@@ -20,14 +20,21 @@ const LoginService = () => {
   const [ActOtp, setActOtp] = useState("");
   const [time, setTime] = useState(0);
   const [openModal, setOpenModal] = useState(false);
-  const { errors, values, touched, handleBlur, handleChange, handleSubmit , setFieldValue} =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: LoginSchema,
-      onSubmit: async (values, action) => {
-        ApiCall(values);
-      },
-    });
+  const {
+    errors,
+    values,
+    touched,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: LoginSchema,
+    onSubmit: async (values, action) => {
+      ApiCall(values);
+    },
+  });
   // -----------------------------Api call for login and verify OTP=--------------------------
   const ApiCall = async (values) => {
     try {
@@ -109,14 +116,13 @@ const LoginService = () => {
   };
   // -------------------------login with Google ------------------------
   const handleGoogleSuccess = async (response) => {
- 
     try {
       setIsLoader(true);
       let json = {
         credential: response?.credential,
       };
       let res = await apiResponse(await postData("/login/google", json));
-     
+
       if (res?.success) {
         setIsLoader(false);
         localStorage.setItem("quizNetToken", JSON.stringify(res?.data));
@@ -125,26 +131,6 @@ const LoginService = () => {
         }, 2000);
       } else {
         setIsLoader(false);
-        
-        if (res?.data?.isActive === false) {
-          let newResponse = jwtDecode(response.credential);
-          setFieldValue("email",newResponse.email)
-          setTimeout(() => setOpenModal(true), 2000);
-        }
-        if (res?.data?.isBlocked) {
-          setTimeout(() => {
-            navigation("/");
-          }, 2000);
-          setTimeout(() => {
-            const element = document.getElementById("contactMessage");
-            const yOffset = -100;
-            const y =
-              element.getBoundingClientRect().top +
-              window.pageYOffset +
-              yOffset;
-            window.scrollTo({ top: y, behavior: "smooth" });
-          }, 4000);
-        }
       }
     } catch (error) {
       setIsLoader(false);
