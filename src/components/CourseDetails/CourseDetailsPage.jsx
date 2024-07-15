@@ -16,7 +16,7 @@ import { BsNintendoSwitch } from "react-icons/bs";
 import pdfImg from "../../assets/image/pdf.png";
 import { MdVerified } from "react-icons/md";
 import { NavLink } from "react-router-dom";
-import test from "../../assets/image/test1.png"
+import test from "../../assets/image/test1.png";
 
 const CourseDetailsPage = () => {
   const {
@@ -102,9 +102,9 @@ const CourseDetailsPage = () => {
                                   &nbsp;
                                   <span className="font-bold  underline">
                                     {" "}
-                                    {"100"}&nbsp;
+                                    {ele?.totalQuestion}&nbsp;
                                   </span>
-                                  questions
+                                  question{ele?.totalQuestion > 1 ? "s" : ""}
                                 </p>
                                 <NavLink to={"/term&condition"}>
                                   <p className="pr-3 hover:text-[var(--colB1)] hover:underline font-bold">
@@ -120,6 +120,7 @@ const CourseDetailsPage = () => {
                                 <p className=" py-2 font-bold">Download</p>
                                 <FaRegCircleDown
                                   size={30}
+                                  title="Download"
                                   className="text-[var(--colG2)] cursor-pointer"
                                   onClick={() => handleOpenPdf(ele?.pdfFile)}
                                 />
@@ -220,7 +221,11 @@ const CourseDetailsPage = () => {
                             ) : (
                               <>
                                 {ele?.test ? (
-                                  <img src={test} alt="Test..." className="w-[30px]" />
+                                  <img
+                                    src={test}
+                                    alt="Test..."
+                                    className="w-[30px]"
+                                  />
                                 ) : (
                                   <FaFolderOpen size={25} color="#D89F57" />
                                 )}
@@ -232,6 +237,7 @@ const CourseDetailsPage = () => {
                           {ele?.pdfStatus === true ? (
                             <FaRegCircleDown
                               size={20}
+                              title="Download"
                               className="text-[var(--colG2)] cursor-pointer"
                               onClick={() => handleOpenPdf(ele?.pdfFile)}
                             />
