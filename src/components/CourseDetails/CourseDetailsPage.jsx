@@ -3,6 +3,7 @@ import React from "react";
 import { IoIosArrowForward } from "react-icons/io";
 import {
   FaArrowLeftLong,
+  FaBookOpen,
   FaFilePdf,
   FaFolderOpen,
   FaRegCircleDown,
@@ -13,6 +14,9 @@ import Loader from "../ReUsable/Loader";
 import NotFound from "../ReUsable/NotFound ";
 import { BsNintendoSwitch } from "react-icons/bs";
 import pdfImg from "../../assets/image/pdf.png";
+import { MdVerified } from "react-icons/md";
+import { NavLink } from "react-router-dom";
+import test from "../../assets/image/test1.png"
 
 const CourseDetailsPage = () => {
   const {
@@ -64,11 +68,8 @@ const CourseDetailsPage = () => {
                     {subject?.chapters?.map((ele, i) => (
                       <div
                         key={i}
-                        className="item m-[2px] bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
-                 rounded-lg text-[14px]   cursor-pointer"
-                        onClick={() =>
-                          handleSelectTopic(ele, ele?.chapterPath, path)
-                        }
+                        className="item m-[2px] bg-[var(--colW1)] dark:bg-gray-700 flex justify-between items-center flex-col  mt-1 sm:my-2    shadow-slate-500 dark:shadow-slate-900
+               rounded-lg text-[14px]  cursor-pointer shadow-2xl"
                       >
                         <div>
                           <img
@@ -88,19 +89,28 @@ const CourseDetailsPage = () => {
                                   Format:
                                   <span className="font-bold">.pdf </span>{" "}
                                 </p>
-                                <p className="pr-3 text-[var(--colB1)] hover:underline">
-                                  T&C
-                                </p>
+                                <NavLink to={"/term&condition"}>
+                                  <p className="pr-3 hover:text-[var(--colB1)] hover:underline font-bold">
+                                    T&C
+                                  </p>
+                                </NavLink>
                               </>
                             ) : (
                               <>
-                                <p>
-                                  Total:<span className="font-bold"> 10 </span>{" "}
-                                  subject
+                                <p className="text-[11px] sm:text-[13px]  flex justify-center items-center">
+                                  <FaBookOpen size={15} color="#A1662F " />
+                                  &nbsp;
+                                  <span className="font-bold  underline">
+                                    {" "}
+                                    {"100"}&nbsp;
+                                  </span>
+                                  questions
                                 </p>
-                                <p className="pr-3 text-[var(--colB1)] hover:underline">
-                                  T&C
-                                </p>
+                                <NavLink to={"/term&condition"}>
+                                  <p className="pr-3 hover:text-[var(--colB1)] hover:underline font-bold">
+                                    T&C
+                                  </p>
+                                </NavLink>
                               </>
                             )}
                           </div>
@@ -116,15 +126,28 @@ const CourseDetailsPage = () => {
                               </>
                             ) : (
                               <>
-                                <p>
-                                  visit:<span className="font-bold"> 1254</span>
-                                </p>
+                                <div className="flex justify-center items-center">
+                                  <MdVerified className="text-[var(--colG4)] text-[14px] md:text-[20px]" />
+
+                                  <p className="text-[11px] sm:text-[13px]">
+                                    <span className="text-[var(--colG4)]">
+                                      Verified
+                                    </span>
+                                  </p>
+                                </div>
                                 <p
                                   className={` rounded-md px-2 sm:px-7 py-1 sm:py-2 font-bold  flex justify-center items-center ${
                                     ele?.test
                                       ? "text-[var(--colW1)]  bg-[var(--colG4)]  font-black border-[2px] border-[var(--colG4)]"
                                       : "text-[var(--colW1)] bg-[var(--colG2)] font-black border-[2px] border-[var(--colG2)]"
                                   }`}
+                                  onClick={() =>
+                                    handleSelectTopic(
+                                      ele,
+                                      ele?.chapterPath,
+                                      path
+                                    )
+                                  }
                                 >
                                   {ele?.test ? "Start Test" : "Start Quiz"}
                                 </p>
@@ -182,11 +205,11 @@ const CourseDetailsPage = () => {
                       {subject?.chapters?.map((ele, i) => (
                         <div
                           key={i}
-                          className={`w-full  bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-1 sm:my-2 py-2 rounded-full ${
+                          className={`w-full  bg-[var(--colW2)] dark:bg-gray-800 font-medium flex justify-between items-center px-3 my-1 sm:my-2 py-2 rounded-full ${
                             ele?.pdfStatus === true
                               ? ""
-                              : " shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950  text-[14px] hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
-                          }`}
+                              : " hover:bg-blue-50 hover:text-[var(--colB7)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]   cursor-pointer"
+                          } `}
                           onClick={() =>
                             handleSelectTopic(ele, ele?.chapterPath, path)
                           }
@@ -195,7 +218,13 @@ const CourseDetailsPage = () => {
                             {ele?.pdfStatus === true ? (
                               <FaFilePdf size={30} className="text-[#cc532b]" />
                             ) : (
-                              <FaFolderOpen size={25} color="#D89F57" />
+                              <>
+                                {ele?.test ? (
+                                  <img src={test} alt="Test..." className="w-[30px]" />
+                                ) : (
+                                  <FaFolderOpen size={25} color="#D89F57" />
+                                )}
+                              </>
                             )}
 
                             <p className="">{ele?.chapterTitle}</p>
@@ -203,7 +232,7 @@ const CourseDetailsPage = () => {
                           {ele?.pdfStatus === true ? (
                             <FaRegCircleDown
                               size={20}
-                              className="text-[#d5d8d9] cursor-pointer"
+                              className="text-[var(--colG2)] cursor-pointer"
                               onClick={() => handleOpenPdf(ele?.pdfFile)}
                             />
                           ) : (

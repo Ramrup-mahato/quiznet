@@ -16,6 +16,7 @@
   --colB4: #50e0ff;
   --colB5: #73e6ff;
   --colB6: #9bedff;
+  --colB7: #0a7ea4;
   --colW1: #f4f9fd;
   --colW2: #e9f1fa;
   --colW3: #ffffff;
@@ -122,6 +123,18 @@
 .img {
   -webkit-filter: drop-shadow(5px 5px 15px #3040749f);
   filter: drop-shadow(5px 5px 15px #3040749f);
+}
+.shadow1{
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px ;
+}
+.shadow2{
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.shadow3{
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.shadow4{
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
 .no-select {
@@ -317,7 +330,7 @@
   min-width: 200px;
   margin-bottom: 20px;
   background-color: var(--colW1);
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
 }
 .wrap-text {
   word-break: break-word;
@@ -373,7 +386,7 @@
     min-width: 180px;
     margin-bottom: 20px;
     background-color: var(--colW1);
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
   }
   .mainImage {
     width: 100%;
@@ -398,7 +411,7 @@
     min-width: 100px;
     margin-bottom: 0px;
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
   }
 }
 @media screen and (max-width: 370px) {
@@ -414,6 +427,6 @@
     min-width: 90px;
     margin-bottom: 0px;
     background-color: #f0f0f0;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
   }
 }

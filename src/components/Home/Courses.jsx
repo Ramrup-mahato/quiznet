@@ -9,7 +9,7 @@ import { IoIosSwitch } from "react-icons/io";
 import { BsNintendoSwitch } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
 import { FaBookOpen } from "react-icons/fa";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight, FaFolderOpen } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 
 const Courses = () => {
@@ -54,8 +54,8 @@ const Courses = () => {
                 {ele?.subjects.map((sub, i) => (
                   <div
                     key={i}
-                    className="item m-[2px] bg-[var(--colW1)] dark:bg-gray-800 flex justify-between items-center flex-col  mt-1 sm:my-2  shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)]
-               rounded-lg text-[14px]  cursor-pointer"
+                    className="item m-[2px] bg-[var(--colW1)] dark:bg-gray-700 flex justify-between items-center flex-col  mt-1 sm:my-2    shadow-slate-500 dark:shadow-slate-900
+               rounded-lg text-[14px]  cursor-pointer shadow-2xl"
                   >
                     <div>
                       <img
@@ -94,7 +94,7 @@ const Courses = () => {
                             </span>
                           </p>
                         </div>
-                        <div></div>
+
                         <p
                           className="flex gap-1 justify-center items-center text-[var(--colW2)] bg-[var(--colB1)] 
                         text-[12px] md:text-[14px] border-[2px] border-[var(--colB1)] rounded-md px-3 md:px-7
@@ -153,12 +153,19 @@ const Courses = () => {
                   {ele?.subjects.map((sub, i) => (
                     <div
                       key={i}
-                      className="w-full bg-[var(--colW2)] dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 shadow-sm shadow-slate-500 hover:shadow-[var(--colB1)] dark:hover:shadow-gray-950 rounded-full text-[14px] 
-                hover:bg-[var(--colB1)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
+                      className="w-full bg-[var(--colW2)] font-medium dark:bg-gray-800 flex justify-between items-center px-3 my-2 py-1 shadow-sm shadow-slate-500  dark:hover:shadow-gray-950 rounded-full text-[14px] 
+                hover:bg-blue-50 hover:text-[var(--colB7)] dark:hover:bg-gray-950 dark:hover:text-[var(--colB1)]  cursor-pointer"
                       onClick={() => handleSelectCourse(sub.subjectPath)}
                     >
-                      <p className="">{sub?.subjectTitle}</p>
-                      <IoIosArrowForward />
+                      <div className="flex justify-center items-center gap-2">
+                        <div className="w-5 h-5 flex justify-center items-center">
+                          <FaFolderOpen size={20} color="#D89F57" />
+                        </div>
+                        <p className="">{sub?.subjectTitle}</p>
+                      </div>
+                      <div className="w-4 h-4 flex justify-center items-center">
+                        <IoIosArrowForward />
+                      </div>
                     </div>
                   ))}
                 </div>

@@ -253,7 +253,7 @@ export const courseName = [
 export const termAndCondition=[
   {
     title:"Introduction",
-    paragraph:'Welcome to KizoStudy (“we,” “our,” “us”). These Terms and Conditions (“Terms,” “T&C”) govern your use of our website located at [KizoStudy Website URL] (together or individually “Service”) operated by KizoStudy.'
+    paragraph:'Welcome to KizoStudy (“we,” “our,” “us”). These Terms and Conditions (“Terms,” “T&C”) govern your use of our website located at www.kizostudy.com (together or individually “Service”) operated by KizoStudy.'
   },
   {
     title:" Accounts",
@@ -281,11 +281,11 @@ export const termAndCondition=[
   },
   {
     title:"Governing Law",
-    paragraph:'These Terms shall be governed and construed in accordance with the laws of [Your Country/State], without regard to its conflict of law provisions.'
+    paragraph:'These Terms shall be governed and construed in accordance with the laws of nepal,and others., without regard to its conflict of law provisions.'
   },
   {
     title:"Changes to Terms",
-    paragraph:'We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least [30 days] notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.'
+    paragraph:'We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.'
   },
   {
     title:"Termination",
