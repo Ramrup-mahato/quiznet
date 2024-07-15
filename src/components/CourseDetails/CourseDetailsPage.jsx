@@ -215,7 +215,7 @@ const CourseDetailsPage = () => {
                             handleSelectTopic(ele, ele?.chapterPath, path)
                           }
                         >
-                          <div className="flex flex-row justify-center items-center gap-3">
+                          <div className="flex flex-row justify-center items-center gap-2 sm:gap-3">
                             {ele?.pdfStatus === true ? (
                               <FaFilePdf size={30} className="text-[#cc532b]" />
                             ) : (
@@ -232,7 +232,7 @@ const CourseDetailsPage = () => {
                               </>
                             )}
 
-                            <p className="">{ele?.chapterTitle}</p>
+                            <p className="text-[13px] sm:text-[14px] font-bold text-gray-700 dark:text-gray-50">{ele?.chapterTitle}</p>
                           </div>
                           {ele?.pdfStatus === true ? (
                             <FaRegCircleDown

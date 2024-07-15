@@ -161,7 +161,7 @@ const Courses = () => {
                         <div className="w-5 h-5 flex justify-center items-center">
                           <FaFolderOpen size={20} color="#D89F57" />
                         </div>
-                        <p className="">{sub?.subjectTitle}</p>
+                        <p className="text-[13px] sm:text-[14px] font-bold text-gray-700 dark:text-gray-50">{sub?.subjectTitle}</p>
                       </div>
                       <div className="w-4 h-4 flex justify-center items-center">
                         <IoIosArrowForward />
