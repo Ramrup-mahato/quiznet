@@ -232,7 +232,7 @@ const CourseDetailsPage = () => {
                               </>
                             )}
 
-                            <p className="text-[13px] sm:text-[14px] font-bold text-gray-700 dark:text-gray-50">{ele?.chapterTitle}</p>
+                            <p className="text-[13px] sm:text-[14px] font-bold">{ele?.chapterTitle}</p>
                           </div>
                           {ele?.pdfStatus === true ? (
                             <FaRegCircleDown
