@@ -28,6 +28,7 @@ const ExamService = () => {
     pendingModal: false,
     pendingNo: [],
     testResult: false,
+    timeLimit: false,
   });
   const [loader, setLoader] = useState({
     newQuestionLoader: false,
@@ -173,7 +174,6 @@ const ExamService = () => {
           openModal: true,
           testId: res?.data?._id,
         }));
-        setTestTime(res?.data?.testTime * 60);
       }
     } catch (error) {
       setLoaderInFolder(false);
@@ -199,7 +199,7 @@ const ExamService = () => {
           ...prev,
           testResult: true,
           pendingModal: false,
-          termAgree:false
+          termAgree: false,
         }));
       }
     } catch (error) {
@@ -233,7 +233,15 @@ const ExamService = () => {
       ...prev,
       testResult: false,
       pendingModal: false,
-      questionNumber:0
+      questionNumber: 0,
+    }));
+  };
+  //-------------------------set Test Result----------------------------
+  const handleSeeTestResult = () => {
+    GetResult();
+    setExamInFo((prev) => ({
+      ...prev,
+      timeLimit: false,
     }));
   };
 
@@ -246,6 +254,12 @@ const ExamService = () => {
         setTestTime((prevTime) => prevTime - 1);
       }, 1000);
       return () => clearTimeout(timerId);
+    }
+    if (examInfo.totalTime !== 0 && testTime === 0) {
+      setExamInFo((prev) => ({
+        ...prev,
+        timeLimit: true,
+      }));
     }
   }, [testTime]);
   return {
@@ -269,6 +283,7 @@ const ExamService = () => {
     handleWarningSubmit,
     handleWarningCancel,
     handleAgainQuiz,
+    handleSeeTestResult,
   };
 };
 

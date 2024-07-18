@@ -34,6 +34,7 @@ const ExamMain = () => {
     handleWarningSubmit,
     handleWarningCancel,
     handleAgainQuiz,
+    handleSeeTestResult
   } = ExamService();
   return (
     <Parents>
@@ -90,6 +91,9 @@ const ExamMain = () => {
           handleWarningSubmit={handleWarningSubmit}
           handleWarningCancel={handleWarningCancel}
         />
+       <WarningTimeModal examInfo={examInfo} handleSeeTestResult={handleSeeTestResult} />
+         
+    
       </ContainerBox>
       <Footer />
     </Parents>
@@ -97,6 +101,7 @@ const ExamMain = () => {
 };
 
 export default ExamMain;
+
 
 const WarningModal = ({
   examInfo,
@@ -339,6 +344,32 @@ const TestModal = ({
                 Start Test
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    </Modal>
+  );
+};
+
+const WarningTimeModal = ({ examInfo, handleSeeTestResult }) => {
+  return (
+    <Modal open={examInfo?.timeLimit}>
+      <div className="p-2">
+        <div className="w-full  md:w-[500px]  max-h-[90vh] bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500  rounded-xl p-3">
+          <div>
+            <h1 className="font-bold fontFamily">
+              Sorry, there is no time left. Please click OK to see the answer.
+            </h1>
+          </div>
+
+          <div className="w-full flex justify-end items-end gap-2 p-3 ">
+            {" "}
+            <button
+              className={`border-[3px]  text-white px-5 py-1 rounded-full hover:shadow-md border-[var(--colG4)] bg-[var(--colG4)]`}
+              onClick={() => handleSeeTestResult()}
+            >
+              See Test Result
+            </button>
           </div>
         </div>
       </div>
