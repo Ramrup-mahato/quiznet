@@ -195,7 +195,7 @@ const Courses = () => {
           <h1 className="w-full font-extrabold  text-[25px] items-center dark:text-slate-50">
             We Love to connect, Help,Receive feedback just tell us...
           </h1>
-          <img src={contactImage} alt="contact ..."  className="w-[300px] h-[200p] sm:w-[500px] sm:h-[350px]" />
+          <img src={contactImage} alt="contact ..."  />
         </div>
         <div id="contactUs" className="w-full md:w-[55%] md:pt-10 ">
           <div>
