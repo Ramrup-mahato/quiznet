@@ -1,20 +1,20 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import Home from "../Screen/Home";
-import CourseDetails from "../Screen/CourseDetails";
-import QuizMain from "../Screen/QuizMain";
-import PTEScreen from "../Screen/PTEScreen";
-import Login from "../Screen/auth/Login";
-import Registration from "../Screen/auth/Registration";
-import Forget from "../Screen/auth/Forget";
-import AdminLogin from "../Screen/Admin/AdminScreen/AdminLogin";
-import Dashboard from "../Screen/Admin/DashboardScreen/Dashboard";
-import Employee from "../Screen/Admin/EmployeeScreen/Employee";
-import Faq from "../Screen/Admin/FAQScreen/Faq";
-import Report from "../Screen/Admin/ReportScreen/Report";
-import Contact from "../Screen/Admin/ContactScreen/Contact";
-import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
+// import Home from "../Screen/Home";
+// import CourseDetails from "../Screen/CourseDetails";
+// import QuizMain from "../Screen/QuizMain";
+// import PTEScreen from "../Screen/PTEScreen";
+// import Login from "../Screen/auth/Login";
+// import Registration from "../Screen/auth/Registration";
+// import Forget from "../Screen/auth/Forget";
+// import AdminLogin from "../Screen/Admin/AdminScreen/AdminLogin";
+// import Dashboard from "../Screen/Admin/DashboardScreen/Dashboard";
+// import Employee from "../Screen/Admin/EmployeeScreen/Employee";
+// import Faq from "../Screen/Admin/FAQScreen/Faq";
+// import Report from "../Screen/Admin/ReportScreen/Report";
+// import Contact from "../Screen/Admin/ContactScreen/Contact";
+// import AddCourse from "../Screen/Admin/AddCourseScreen/AddCourse";
 import AuthGard from "../components/AuthGard/AuthGard";
 import AdminAuthGard from "../components/AuthGard/AdminAuthGard";
 import NotFound from "../components/ReUsable/NotFound ";
@@ -25,24 +25,24 @@ import NotFound from "../components/ReUsable/NotFound ";
 import Loader from "../components/ReUsable/Loader";
 import ExamMain from "../Screen/ExamMain";
 import TermAndCondition from "../components/ReUsable/TermAndCondition";
-// const Home = lazy(() => import("../Screen/Home"));
-// const CourseDetails = lazy(() => import("../Screen/CourseDetails"));
-// const QuizMain = lazy(() => import("../Screen/QuizMain"));
-// const PTEScreen = lazy(() => import("../Screen/PTEScreen"));
-// const Login = lazy(() => import("../Screen/auth/Login"));
-// const Registration = lazy(() => import("../Screen/auth/Registration"));
-// const Forget = lazy(() => import("../Screen/auth/Forget"));
-// const AdminLogin = lazy(() => import("../Screen/Admin/AdminScreen/AdminLogin"));
-// const Dashboard = lazy(() =>
-//   import("../Screen/Admin/DashboardScreen/Dashboard")
-// );
-// const Employee = lazy(() => import("../Screen/Admin/EmployeeScreen/Employee"));
-// const Faq = lazy(() => import("../Screen/Admin/FAQScreen/Faq"));
-// const Report = lazy(() => import("../Screen/Admin/ReportScreen/Report"));
-// const Contact = lazy(() => import("../Screen/Admin/ContactScreen/Contact"));
-// const AddCourse = lazy(() =>
-//   import("../Screen/Admin/AddCourseScreen/AddCourse")
-// );
+const Home = lazy(() => import("../Screen/Home"));
+const CourseDetails = lazy(() => import("../Screen/CourseDetails"));
+const QuizMain = lazy(() => import("../Screen/QuizMain"));
+const PTEScreen = lazy(() => import("../Screen/PTEScreen"));
+const Login = lazy(() => import("../Screen/auth/Login"));
+const Registration = lazy(() => import("../Screen/auth/Registration"));
+const Forget = lazy(() => import("../Screen/auth/Forget"));
+const AdminLogin = lazy(() => import("../Screen/Admin/AdminScreen/AdminLogin"));
+const Dashboard = lazy(() =>
+  import("../Screen/Admin/DashboardScreen/Dashboard")
+);
+const Employee = lazy(() => import("../Screen/Admin/EmployeeScreen/Employee"));
+const Faq = lazy(() => import("../Screen/Admin/FAQScreen/Faq"));
+const Report = lazy(() => import("../Screen/Admin/ReportScreen/Report"));
+const Contact = lazy(() => import("../Screen/Admin/ContactScreen/Contact"));
+const AddCourse = lazy(() =>
+  import("../Screen/Admin/AddCourseScreen/AddCourse")
+);
 const About = lazy(() => import("../Screen/About"));
 const Setting = lazy(() => import("../Screen/Setting"));
 const UsersManager = lazy(() =>
