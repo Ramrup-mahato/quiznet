@@ -87,6 +87,7 @@ const NavBar = ({ pageName }) => {
               src={logo1}
               alt="QuizNet"
               className="sm:w-48 w-32  cursor-pointer"
+              width="600" height="400"
             />
           </NavLink>
         </div>
@@ -129,6 +130,7 @@ const NavBar = ({ pageName }) => {
                         }
                         alt="search course.."
                         className="w-[50px] h-[40px] rounded"
+                        width="600" height="400"
                       />
                       <div>
                         <p className="text-[13px] text-gray-700 dark:text-gray-100 font-bold">
@@ -177,6 +179,7 @@ const NavBar = ({ pageName }) => {
                 <img
                   src={userDetails?.avatar}
                   alt="Avatar"
+                  width="600" height="400"
                   className="w-10 h-10 rounded-full border-white border-2 imageAvatar object-cover"
                   onClick={() => handleNavMenu()}
                 />

@@ -190,12 +190,13 @@ const Courses = () => {
       <div
         id="contactMessage"
         className="w-full flex flex-col md:flex-row   gap-2 p-2 mb-7"
+        width="600" height="400"
       >
         <div className="w-full md:w-[45%] flex flex-col justify-center px-10">
           <h1 className="w-full font-extrabold  text-[25px] items-center dark:text-slate-50">
             We Love to connect, Help,Receive feedback just tell us...
           </h1>
-          <img src={contactImage} alt="contact ..." />
+          <img src={contactImage} alt="contact ..." width="600" height="400" />
         </div>
         <div id="contactUs" className="w-full md:w-[55%] md:pt-10 ">
           <div>
