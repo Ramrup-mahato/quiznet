@@ -174,7 +174,7 @@ const AddFolderModal = ({
               <input
                 type="file"
                 id="foldername"
-                accept=".jpg,.jpeg,.png,.heic"
+                accept=".jpg,.jpeg,.png,.heic,.webp"
                 className="hidden"
                 onChange={(e) => handleSelectImage(e)}
               />

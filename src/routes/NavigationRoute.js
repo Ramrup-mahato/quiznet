@@ -12,10 +12,10 @@ export const navRoute = [
     name: "Home",
     path: "/",
   },
-  {
-    name: "PTEpractice",
-    path: "/pte",
-  },
+  // {
+  //   name: "PTEpractice",
+  //   path: "/pte",
+  // },
   {
     name: "About",
     path: "/about",

@@ -1,11 +1,9 @@
 import React from "react";
-// import { courseName, faqDetails } from "../../utils/data";
 import { IoIosArrowForward } from "react-icons/io";
 import CourseService from "../../service/CourseService";
 import Accordion from "../Admin/FAQ/Accordion";
-import contactImage from "../../assets/image/studyBanner.png";
+import contactImage from "../../assets/image/studyBanner.webp";
 import TextInput from "../ReUsable/TextInput";
-import { IoIosSwitch } from "react-icons/io";
 import { BsNintendoSwitch } from "react-icons/bs";
 import { MdVerified } from "react-icons/md";
 import { FaBookOpen } from "react-icons/fa";

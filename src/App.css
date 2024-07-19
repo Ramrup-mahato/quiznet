@@ -404,6 +404,9 @@
     flex-wrap: wrap;
     gap: 4px;
   }
+  .mainImage {
+    height: 40vh;
+  }
 
   .item {
     flex: 1 1 170px;

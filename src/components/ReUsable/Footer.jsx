@@ -1,6 +1,6 @@
 import React from "react";
 import ContainerBox from "./ContainerBox";
-import logo from "../../assets/image/quizNet2.png";
+import logo from "../../assets/image/quizNet2.webp";
 
 const Footer = () => {
   return (

@@ -80,7 +80,7 @@ const NavBar = ({ pageName }) => {
     <nav
       className={`w-full flex justify-center items-center fixed top-0 z-20 `}
     >
-      <div className="md:w-[90%] w-[100%] sm:h-[75px] h-[50px] rounded-full m-2 px-3  flex flex-row justify-between items-center bg-[var(--colB2)] dark:bg-gray-900 dark:text-white drop-shadow-lg ">
+      <div className="md:w-[90%] w-[100%] sm:h-[75px] h-[50px] rounded-full m-2 px-[6px] sm:px-4  flex flex-row justify-between items-center bg-[var(--colB2)] dark:bg-gray-900 dark:text-white drop-shadow-lg ">
         <div>
           <NavLink to={"/"}>
             <img
