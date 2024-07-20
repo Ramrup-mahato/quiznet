@@ -3,6 +3,7 @@ import Study from "../../assets/image/study3.png";
 import RegistrationService from "../../service/AuthService/registrationService";
 import TextInput from "../ReUsable/TextInput";
 import GoogleLoginButton from "../ReUsable/GoogleLoginButton";
+import { NavLink } from "react-router-dom";
 const RegistrationPage = () => {
   const {
     errors,
@@ -192,9 +193,11 @@ const RegistrationPage = () => {
                     />
                     <p className=" text-gray-500 text-[12px]  ">
                       I agree to{" "}
-                      <span className="cursor-pointer text-[var(--colB1)] text-[14px] hover:underline">
-                        Term & conditions
-                      </span>{" "}
+                      <NavLink to={"/term&condition"}>
+                        <span className="cursor-pointer text-[var(--colB1)] text-[14px] hover:underline">
+                          Term & conditions
+                        </span>{" "}
+                      </NavLink>
                     </p>
                   </div>
                 </form>
@@ -222,7 +225,10 @@ const RegistrationPage = () => {
               )}
             </div>
 
-            <GoogleLoginButton text={"continue_with"} handleGoogleSuccess={handleGoogleSuccess} />
+            <GoogleLoginButton
+              text={"continue_with"}
+              handleGoogleSuccess={handleGoogleSuccess}
+            />
 
             <div className="pl-5 text-[13px] text-gray-500">
               <p>
