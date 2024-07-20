@@ -46,7 +46,7 @@ export const Context = ({ children }) => {
 
     try {
       getToken =
-        tokenJson && !tokenJson == "undefined" ? JSON.parse(tokenJson) : "";
+        tokenJson && tokenJson !== "undefined" ? JSON.parse(tokenJson) : "";
     } catch (error) {
       console.error("Error parsing tokenJson from localStorage:", error);
       getToken = "";
