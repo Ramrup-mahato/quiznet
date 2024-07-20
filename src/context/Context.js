@@ -39,19 +39,17 @@ export const Context = ({ children }) => {
   }, [theme]);
 
   useEffect(() => {
-    let tokenJson = localStorage.getItem('quizNetToken');
-    if (!tokenJson) {
-      console.log('No token found in localStorage');
-      return;
-    }
+    let tokenJson = localStorage.getItem("quizNetToken");
 
-    let getToken = '';
+    console.log("tokenJson################", tokenJson);
+    let getToken = "";
 
     try {
-      getToken = tokenJson ? JSON.parse(tokenJson) : '';
+      getToken =
+        tokenJson && !tokenJson == "undefined" ? JSON.parse(tokenJson) : "";
     } catch (error) {
-      console.error('Error parsing tokenJson from localStorage:', error);
-      getToken = '';
+      console.error("Error parsing tokenJson from localStorage:", error);
+      getToken = "";
     }
     if (getToken) {
       if (getToken?.token) {
