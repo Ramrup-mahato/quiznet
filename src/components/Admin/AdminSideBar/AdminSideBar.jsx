@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../assets/image/quizNet2.png";
+import logo from "../../../assets/image/kizostudy.png";
 import ToggleButton from "../../ToggleButton";
 import { adminSideBarRoute } from "../../../routes/NavigationRoute";
 import { NavLink } from "react-router-dom";

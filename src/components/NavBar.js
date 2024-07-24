@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import logo1 from "../assets/image/quizNet2.png";
+import logo1 from "../assets/image/kizostudy.png";
 import ToggleButton from "./ToggleButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import { navRoute } from "../routes/NavigationRoute";

@@ -1,6 +1,6 @@
 import React from "react";
 import ContainerBox from "./ContainerBox";
-import logo from "../../assets/image/quizNet2.webp";
+import logo from "../../assets/image/logo2.png";
 import youtube from "../../assets/image/youtube.png";
 import facebook from "../../assets/image/Facebook.png";
 import instagram from "../../assets/image/Instagram.png";
