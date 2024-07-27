@@ -22,12 +22,12 @@ const ProfileMailPage = () => {
   return (
     <div className="w-full min-h-[90vh] flex justify-center items-center gap-5 flex-col sm:px-5   pt-[50px]  sm:pt-[60px] pb-5 sm:pb-10">
       <div className="flex gap-8 ">
-        <div className="w-full  min-h-[80vh]  flex justify-center items-center">
+        <div className="w-full  min-h-[80vh]  flex justify-center items-center p">
           <div
-            className="w-full  lg:w-[1000px] h-[500px] flex flex-col justify-end items-end bg-[var(--colW3)] dark:bg-gray-900 shadow-xl shadow-[var(--colG3)]
+            className="w-full   lg:w-[1000px] h-[500px] flex flex-col justify-end items-end bg-[var(--colW3)] dark:bg-gray-900 shadow-xl shadow-[var(--colG3)]
                  dark:shadow-gray-700 text-black dark:text-white rounded-b-sm rounded-t-3xl "
           >
-            <div className="h-[100px]  sm:h-[150px] md:h-[200px] w-full relative">
+            <div className="h-[100px]  sm:h-[150px] md:h-[200px] w-full relative ">
               <img
                 src={banner}
                 alt="banner "
@@ -72,10 +72,10 @@ const ProfileMailPage = () => {
             <div className="w-full dark:text-gray-100 md:max-w-[700px] h-full flex p-3 sm:px-5 flex-col justify-center items-center ">
               <div className="w-full">
                 <div className="flex justify-center items-center">
-                  <p className="min-w-[100px] text-[14px] text-gray-500 dark:text-gray-100 ">
+                  <p className="min-w-[60px] sm:min-w-[100px] text-[12px] sm:text-[14px] text-gray-500 dark:text-gray-100 ">
                     UserName:
                   </p>
-                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
+                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[12px] sm:text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
                     {userDetails?.username}
                   </p>
                   <div className="size-6 justify-center items-center">
@@ -89,10 +89,10 @@ const ProfileMailPage = () => {
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
-                  <p className="min-w-[100px] text-[14px] text-gray-500 dark:text-gray-100">
+                  <p className="min-w-[60px] sm:min-w-[100px] text-[12px] sm:text-[14px] text-gray-500 dark:text-gray-100">
                     Email:
                   </p>
-                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
+                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[12px] sm:text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
                     {userDetails?.email}
                   </p>
                   <div className="size-6 justify-center items-center">
@@ -103,10 +103,10 @@ const ProfileMailPage = () => {
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
-                  <p className="min-w-[100px] text-[14px] text-gray-500 dark:text-gray-100">
+                  <p className="min-w-[60px] sm:min-w-[100px] text-[12px] sm:text-[14px] text-gray-500 dark:text-gray-100">
                     Phone:
                   </p>
-                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
+                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[12px] sm:text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
                     {userDetails?.phone}
                   </p>
                   <div className="size-6 justify-center items-center">
@@ -118,10 +118,10 @@ const ProfileMailPage = () => {
                   </div>
                 </div>
                 <div className="flex justify-center items-center">
-                  <p className="min-w-[100px] text-[14px] text-gray-500 dark:text-gray-100">
+                  <p className="min-w-[60px] sm:min-w-[100px] text-[12px] sm:text-[14px] text-gray-500 dark:text-gray-100">
                     user type:
                   </p>
-                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
+                  <p className="bg-[var(--colW1)] dark:bg-slate-700  p-2 m-1 border-2 rounded-md text-[12px] sm:text-[13px] font-bold text-gray-600 dark:text-gray-100 w-full">
                     {userDetails?.userType}
                   </p>
                   <div className="size-6 justify-center items-center">
@@ -161,7 +161,7 @@ const EditModal = ({
 }) => {
   return (
     <Modal open={profile.modal} onClose={handleModal}>
-      <div className="w-[500px]   bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500 rounded-tr-3xl rounded-bl-3xl ">
+      <div className="w-full sm:w-[500px]   bg-[var(--colW2)] dark:bg-slate-800 shadow-md shadow-slate-500 rounded-tr-3xl rounded-bl-3xl ">
         <div
           className="flex items-center bg-[var(--colB1)] dark:bg-gray-950 text-black dark:text-[var(--colW2)]
         font-semibold text-base shadow-md shadow-slate-500 dark:shadow-gray-900 p-2 rounded-tr-3xl"

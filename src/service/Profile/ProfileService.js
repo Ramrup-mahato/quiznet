@@ -8,7 +8,7 @@ const FullName = /^[A-Za-z. ]{3,30}$/;
 const phoneValidation = /^[789]\d{9}$/;
 
 const ProfileService = () => {
-  const { userDetails, token, loaderInFolder, setLoaderInFolder,setIsLoader } =
+  const { userDetails, token, loaderInFolder, setLoaderInFolder, setIsLoader } =
     useContext(ContextStore);
   const [profile, setProfile] = useState({
     modal: false,
@@ -92,22 +92,21 @@ const ProfileService = () => {
     let val = e.target.value;
     setProfile((prev) => ({
       ...prev,
-    value:val,
-    error:''
+      value: val,
+      error: "",
     }));
-  } ;
+  };
   // ---------------------------------submit --------------------------------
-  const handleSubmit=async()=>{
+  const handleSubmit = async () => {
     setProfile((prev) => ({
       ...prev,
       error: "",
     }));
     let getToken = JSON.parse(localStorage.getItem("quizNetToken"));
     try {
-      
       if (profile.editFor === "username") {
         if (FullName.test(profile.value)) {
-          setIsLoader(true)
+          setIsLoader(true);
           let json = {
             _id: userDetails?._id,
             username: profile.value,
@@ -119,8 +118,7 @@ const ProfileService = () => {
             getToken.user.username = profile.value;
             localStorage.setItem("quizNetToken", JSON.stringify(getToken));
             window.location.reload();
-            setIsLoader(false)
-
+            setIsLoader(false);
           }
         } else {
           setProfile((prev) => ({
@@ -128,9 +126,9 @@ const ProfileService = () => {
             error: "please give valid name.",
           }));
         }
-      }else if(profile.editFor === "phone"){
+      } else if (profile.editFor === "phone") {
         if (phoneValidation.test(profile.value)) {
-          setIsLoader(true)
+          setIsLoader(true);
           let json = {
             _id: userDetails?._id,
             phone: profile.value,
@@ -142,7 +140,7 @@ const ProfileService = () => {
             getToken.user.phone = profile.value;
             localStorage.setItem("quizNetToken", JSON.stringify(getToken));
             window.location.reload();
-            setIsLoader(false)
+            setIsLoader(false);
           }
         } else {
           setProfile((prev) => ({
@@ -150,8 +148,8 @@ const ProfileService = () => {
             error: "please give valid phone.",
           }));
         }
-      }else if(profile.editFor === "userType"){
-        setIsLoader(true)
+      } else if (profile.editFor === "userType") {
+        setIsLoader(true);
         let json = {
           _id: userDetails?._id,
           userType: profile.value,
@@ -163,14 +161,14 @@ const ProfileService = () => {
           getToken.user.userType = profile.value;
           localStorage.setItem("quizNetToken", JSON.stringify(getToken));
           window.location.reload();
-          setIsLoader(false)
+          setIsLoader(false);
         }
       }
     } catch (error) {
-      setIsLoader(false)
-      toastError(error.message)
+      setIsLoader(false);
+      toastError(error.message);
     }
-  }
+  };
   return {
     userDetails,
     token,
