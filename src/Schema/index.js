@@ -16,7 +16,9 @@ export const RegisterSchema = Yup.object({
     .matches(FullName, "Please Give valid name")
     .required("Please enter username..."),
   email: Yup.string().email().required("Please enter your email..."),
-  phone: Yup.string().required("Please enter your phone"),
+  phone: Yup.string()
+  .matches(phoneValidation, "Give valid phone")
+  .required("Please Enter a phone number"),
   password: Yup.string()
     .min(8)
     .matches(
@@ -82,3 +84,5 @@ export const contactSchema = Yup.object({
     .required("Please Enter a phone number"),
   message: Yup.string().required("Please Enter Your FullName.."),
 });
+
+
