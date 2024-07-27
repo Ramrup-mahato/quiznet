@@ -10,9 +10,7 @@ const Home = () => {
     <Parents>
       <NavBar pageName={"Home"} />
       <ContainerBox>
-        {/* <Banner /> */}
         <Courses />
-       
       </ContainerBox>
       <Footer />
     </Parents>

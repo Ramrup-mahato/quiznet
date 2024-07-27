@@ -59,7 +59,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
               ) : (
                 <div className="">
                   <p className="w-10 h-10 rounded-full border-white border-2 imageAvatar flex justify-center items-center font-bold  bg-[#512Dab] text-[var(--colW2)] text-[25px]">
-                    {userName&&userName[0]?.toUpperCase()}
+                    {userName && userName[0]?.toUpperCase()}
                   </p>
                 </div>
               )}

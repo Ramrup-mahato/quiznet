@@ -16,10 +16,7 @@ const About = () => {
   return (
     <Parents>
       <NavBar pageName={"Home"} />
-      {/* <ContainerBox>
-        <CourseDetailsPage path={path} />
-      </ContainerBox>
-      <Footer /> */}
+   
       <div className="mainImage">
         <div className="backdrop-blur-sm w-full h-full flex justify-center items-center">
           <p className="text-[30px] md:text-[50px] drop-shadow-2xl text-white p-3  font-[900] fontFamily">

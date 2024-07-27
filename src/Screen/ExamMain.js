@@ -14,7 +14,6 @@ import ShowAnswerList from "../components/ExamPage/ShowAnswerList";
 const ExamMain = () => {
   const {
     examInfo,
-    setExamInFo,
     handleGoBack,
     testTime,
     loaderInFolder,
@@ -92,8 +91,6 @@ const ExamMain = () => {
           handleWarningCancel={handleWarningCancel}
         />
        <WarningTimeModal examInfo={examInfo} handleSeeTestResult={handleSeeTestResult} />
-         
-    
       </ContainerBox>
       <Footer />
     </Parents>
