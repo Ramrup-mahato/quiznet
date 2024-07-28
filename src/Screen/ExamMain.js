@@ -33,7 +33,9 @@ const ExamMain = () => {
     handleWarningSubmit,
     handleWarningCancel,
     handleAgainQuiz,
-    handleSeeTestResult
+    handleSeeTestResult,
+    handleSaveQuestion
+
   } = ExamService();
   return (
     <Parents>
@@ -69,6 +71,7 @@ const ExamMain = () => {
                     handlePreviousQuestion={handlePreviousQuestion}
                     handleSelectAnswers={handleSelectAnswers}
                     handleSeeResult={handleSeeResult}
+                    handleSaveQuestion={handleSaveQuestion}
                   />
                 ) : (
                   <NotFound noData={true} />

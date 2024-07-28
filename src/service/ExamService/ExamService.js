@@ -61,16 +61,17 @@ const ExamService = () => {
     }
   };
 
-  //   ---------------------------select question---------------------------------
+  //   ---------------------------select question from list ---------------------------------
   const handleSelectQuestion = (i) => {
     setQuestion(response?.[i]);
     setExamInFo((prev) => ({
       ...prev,
       questionNumber: i,
+      answer: "",
     }));
   };
-  //   ---------------------save answer in db & next question----------------
-  const handleNextQuestion = async () => {
+  //   ---------------------save answer in db----------------
+  const handleSaveQuestion = async (last) => {
     try {
       setLoader((prev) => ({
         ...prev,
@@ -85,11 +86,29 @@ const ExamService = () => {
         await updateData("/test/answer", json, token)
       );
       if (res?.success) {
-        setQuestion(response?.[examInfo.questionNumber + 1]);
-        setExamInFo((prev) => ({
-          ...prev,
-          questionNumber: prev.questionNumber + 1,
-        }));
+        let arr = [...response];
+
+        arr.forEach((item, i) => {
+          if (item._id === examInfo.questionId) {
+            item.yourAnswer = examInfo.answer;
+          }
+        });
+        setResponse([...arr]);
+
+        if (last === "last") {
+          setExamInFo((prev) => ({
+            ...prev,
+
+            answer: "",
+          }));
+        } else {
+          setQuestion(response?.[examInfo.questionNumber + 1]);
+          setExamInFo((prev) => ({
+            ...prev,
+            questionNumber: prev.questionNumber + 1,
+            answer: "",
+          }));
+        }
         setLoader((prev) => ({
           ...prev,
           newQuestionLoader: false,
@@ -108,6 +127,15 @@ const ExamService = () => {
       console.log(error);
     }
   };
+  // ----------------Next -----------------
+  const handleNextQuestion = () => {
+    setQuestion(response?.[examInfo.questionNumber + 1]);
+    setExamInFo((prev) => ({
+      ...prev,
+      questionNumber: prev.questionNumber + 1,
+      answer: "",
+    }));
+  };
   //   -----------------------previous -----------------------
   const handlePreviousQuestion = () => {
     setQuestion(response?.[examInfo.questionNumber - 1]);
@@ -118,14 +146,14 @@ const ExamService = () => {
   };
   // ------------------------select Answer---------------------------
   const handleSelectAnswers = (answer, id) => {
-    let arr = [...response];
+    // let arr = [...response];
 
-    arr.forEach((item, i) => {
-      if (item._id === id) {
-        item.yourAnswer = answer;
-      }
-    });
-    setResponse([...arr]);
+    // arr.forEach((item, i) => {
+    //   if (item._id === id) {
+    //     item.yourAnswer = answer;
+    //   }
+    // });
+    // setResponse([...arr]);
     setExamInFo((prev) => ({
       ...prev,
       questionId: id,
@@ -284,6 +312,7 @@ const ExamService = () => {
     handleWarningCancel,
     handleAgainQuiz,
     handleSeeTestResult,
+    handleSaveQuestion,
   };
 };
 

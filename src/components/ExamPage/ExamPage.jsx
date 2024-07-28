@@ -20,6 +20,7 @@ const ExamPage = ({
   handleSelectAnswers,
   handlePreviousQuestion,
   handleSeeResult,
+  handleSaveQuestion,
 }) => {
   const percentage = (testTime / examInfo?.totalTime) * 100;
 
@@ -113,6 +114,7 @@ const ExamPage = ({
           ) : (
             <div className="w-full h-full  sm:p-5">
               <ShowTestQuestion
+                examInfo={examInfo}
                 question={question}
                 handleSelectAnswers={handleSelectAnswers}
               />
@@ -129,19 +131,32 @@ const ExamPage = ({
                 )}
 
                 {examInfo?.questionNumber + 1 === response?.length ? (
-                  <button
-                    onClick={() => handleSeeResult()}
-                    className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]  cursor-pointer"
-                  >
-                    Save & Submit
-                  </button>
+                  <>
+                    {examInfo.answer ? (
+                      <button
+                        onClick={() => handleSaveQuestion("last")}
+                        className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]   cursor-pointer"
+                      >
+                        Save
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleSeeResult()}
+                        className="rounded-full h-[35px] px-5 py-1 bg-[var(--colG4)] text-[var(--colW2)]  cursor-pointer"
+                      >
+                        Submit
+                      </button>
+                    )}
+                  </>
                 ) : (
-                  <button
-                    onClick={() => handleNextQuestion()}
-                    className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]   cursor-pointer"
-                  >
-                    Save & Next
-                  </button>
+                  <>
+                    <button
+                      onClick={() => handleSaveQuestion()}
+                      className="rounded-full h-[35px] px-5 py-1 bg-[var(--colB1)] text-[var(--colW2)]   cursor-pointer"
+                    >
+                      Save & Next
+                    </button>
+                  </>
                 )}
               </div>
             </div>

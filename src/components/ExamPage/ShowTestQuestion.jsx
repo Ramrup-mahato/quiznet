@@ -6,6 +6,7 @@ const ShowTestQuestion = ({
   question,
   handleSelectAnswers,
   handleReportQuestion,
+  examInfo
 }) => {
   return (
     <div className=" sm:p-5">
@@ -40,7 +41,7 @@ const ShowTestQuestion = ({
           correctAns={question?.correctAnswer}
           yourAns={question?.yourAnswer}
           answerNo={"a"}
-          answerResult={question?.yourAnswer === "a" ? "correct" : null}
+          answerResult={examInfo.answer?examInfo.answer==='a'&&"correct":question?.yourAnswer === "a" ? "correct" : null}
           questionId={question?._id}
           img={question?.aImg}
           handleSelectAnswers={handleSelectAnswers}
@@ -54,7 +55,7 @@ const ShowTestQuestion = ({
           handleSelectAnswers={handleSelectAnswers}
           yourAns={question?.yourAnswer}
           questionId={question?._id}
-          answerResult={question?.yourAnswer === "b" ? "correct" : null}
+          answerResult={examInfo.answer?examInfo.answer==='b'&&"correct":question?.yourAnswer === "b" ? "correct" : null}
         />
         <QuestionShow
           // question={question}
@@ -65,7 +66,7 @@ const ShowTestQuestion = ({
           handleSelectAnswers={handleSelectAnswers}
           yourAns={question?.yourAnswer}
           questionId={question?._id}
-          answerResult={question?.yourAnswer === "c" ? "correct" : null}
+          answerResult={examInfo.answer?examInfo.answer==='c'&&"correct":question?.yourAnswer === "c" ? "correct" : null}
         />
         <QuestionShow
           // question={question}
@@ -76,7 +77,7 @@ const ShowTestQuestion = ({
           handleSelectAnswers={handleSelectAnswers}
           yourAns={question?.yourAnswer}
           questionId={question?._id}
-          answerResult={question?.yourAnswer === "d" ? "correct" : null}
+          answerResult={examInfo.answer?examInfo.answer==='d'&&"correct":question?.yourAnswer === "d" ? "correct" : null}
         />
       </div>
     </div>
