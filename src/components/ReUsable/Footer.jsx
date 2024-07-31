@@ -11,7 +11,7 @@ const Footer = () => {
       <ContainerBox>
         <div className="w-full flex justify-center gap-16 sm:justify-around flex-col sm:flex-row p-10">
           <div className="">
-            <img src={logo} alt="QuizNet logo..." className="w-[200px]" />
+            <img src={logo} alt="KizoStudy logo..." className="w-[200px]" />
             <div className="pl-10 text-[var(--colW2)]">
               <h3 className="pb-2">Our Service</h3>
               <p className="text-[12px] ">To educate People</p>

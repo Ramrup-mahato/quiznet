@@ -21,7 +21,7 @@ const AdminSideBar = ({ children, selected, avatar, userName }) => {
           >
             <img
               src={logo}
-              alt="QuizNet logo"
+              alt="KizoStudy logo"
               className="sm:w-48 w-32  cursor-pointer"
             />
           </div>

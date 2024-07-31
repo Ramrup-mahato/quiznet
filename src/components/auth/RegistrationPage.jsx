@@ -43,7 +43,7 @@ const RegistrationPage = () => {
               className="hidden md:block w-[150px] md:w-[350px]"
             />
             <p className="text-[25px] text-[var(--colB1)] font-[900]">
-              Welcome To QuizNet !
+              Welcome To KizoStudy !
             </p>
             <p className="text-[12px] text-[var(--colB1)] font-[900]">
               Your 100% Study Solution

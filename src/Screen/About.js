@@ -147,9 +147,9 @@ const About = () => {
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     My name is Ramrup . I am the CEO, Founder, and Developer of
-                    QuizNet, and I'm excited to share that QuizNet is a platform
+                    KizoStudy, and I'm excited to share that KizoStudy is a platform
                     where you can find and play quiz games for fun. You can
-                    access QuizNet from both the app and website. QuizNet offers
+                    access KizoStudy from both the app and website. KizoStudy offers
                     various types of quizzes related to government exams,
                     license exams, memory tests, fun quizzes, and more. Experts
                     can also add and create question papers.
@@ -180,12 +180,12 @@ const About = () => {
 
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    Hi, I'm Ramsorup. Welcome to QuizNet. I am the Marketing
-                    Lead of QuizNet, and I'm glad to share that QuizNet is a
+                    Hi, I'm Ramsorup. Welcome to KizoStudy. I am the Marketing
+                    Lead of KizoStudy, and I'm glad to share that KizoStudy is a
                     platform for all kinds of students who want to prepare for
                     various levels of LokSewa exams, entrance exams, vehicle
                     licenses, and more. Experts can add and create question
-                    papers. With QuizNet, you can participate in live quizzes
+                    papers. With KizoStudy, you can participate in live quizzes
                     and enhance your learning experience effortlessly. Our
                     platform offers comprehensive study tools to help you
                     prepare effectively for exams.
@@ -217,12 +217,12 @@ const About = () => {
                   <i className="fontFamily  px-5 text-[12px]">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     Hi, my name is Priyanka . I am the HR (Human Resources) of
-                    QuizNet, and I'm excited to share that QuizNet is a platform
+                    KizoStudy, and I'm excited to share that KizoStudy is a platform
                     where you can find all kinds of course-related quizzes. If
                     you're a student, just log in, and you'll be able to access
                     a wide range of courses and live quizzes. Our platform
                     offers comprehensive study tools to help you prepare
-                    effectively for exams. With QuizNet, participate in live
+                    effectively for exams. With KizoStudy, participate in live
                     quizzes, and enhance your learning experience with ease.
                   </i>
                   <br />

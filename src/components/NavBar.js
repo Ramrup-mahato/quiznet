@@ -85,7 +85,7 @@ const NavBar = ({ pageName }) => {
           <NavLink to={"/"}>
             <img
               src={logo1}
-              alt="QuizNet"
+              alt="KizoStudy"
               className="sm:w-48 w-32  cursor-pointer"
               width="600" height="400"
             />
